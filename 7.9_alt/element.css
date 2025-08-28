@@ -1,0 +1,30 @@
+#smallhero { background-image: url(small.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    display: none;
+}
+#mediumhero { background-image: url(medium.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    display: none; 
+}
+#largehero { background-image: url(large.jpg);
+		   background-repeat: no-repeat;
+		   background-size: cover;
+		   height: 600px;
+		   display: none; }
+@media (min-width: 600px) { 
+    nav ul { flex-flow: row nowrap;
+              justify-content: flex-end; }
+    nav li { width: 7em; }
+    section { padding-left: 2em;
+              padding-right: 2em; }
+    #largehero, #mediumhero, #smallhero { display: block; 
+                            padding-bottom: 1em; }
+    #flow { display: flex;
+            flex-direction: row; }
+    #mobile { display: none; }
+    #desktop { display: inline; }
+}

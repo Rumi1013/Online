@@ -1,0 +1,433 @@
+{%- comment -%}
+  MIDNIGHT MAGNOLIA THEME
+  Footer Section - Links, Information & Newsletter
+  Spiritual wellness and healing tools theme
+{%- endcomment -%}
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+
+    {%- comment -%} Main Footer Content {%- endcomment -%}
+    <div class="footer__content">
+
+      {%- comment -%} Brand Section {%- endcomment -%}
+      <div class="footer__section footer__brand">
+        <div class="brand-content">
+          {%- if settings.footer_logo != blank -%}
+            <img src="{{ settings.footer_logo | image_url: width: 150 }}"
+                 alt="{{ shop.name }}"
+                 class="footer-logo">
+          {%- else -%}
+            <h3 class="footer-brand-name">{{ shop.name }}</h3>
+          {%- endif -%}
+
+          <p class="footer-description">
+            {{ settings.footer_description | default: "Your digital sanctuary for spiritual wellness, healing tools, and transformative resources. Join our sacred community on the journey to inner peace and positive change." }}
+          </p>
+
+          {%- comment -%} Social Media Links {%- endcomment -%}
+          <div class="social-links">
+            <h4 class="social-title">Connect with Our Sacred Community</h4>
+            <div class="social-icons">
+              {%- if settings.social_instagram_link != blank -%}
+                <a href="{{ settings.social_instagram_link }}"
+                   class="social-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Follow us on Instagram">
+                  <span class="social-icon">📷</span>
+                  <span class="social-text">Instagram</span>
+                </a>
+              {%- endif -%}
+
+              {%- if settings.social_facebook_link != blank -%}
+                <a href="{{ settings.social_facebook_link }}"
+                   class="social-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Follow us on Facebook">
+                  <span class="social-icon">📘</span>
+                  <span class="social-text">Facebook</span>
+                </a>
+              {%- endif -%}
+
+              {%- if settings.social_pinterest_link != blank -%}
+                <a href="{{ settings.social_pinterest_link }}"
+                   class="social-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Follow us on Pinterest">
+                  <span class="social-icon">📌</span>
+                  <span class="social-text">Pinterest</span>
+                </a>
+              {%- endif -%}
+
+              {%- if settings.social_youtube_link != blank -%}
+                <a href="{{ settings.social_youtube_link }}"
+                   class="social-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Subscribe to our YouTube channel">
+                  <span class="social-icon">📺</span>
+                  <span class="social-text">YouTube</span>
+                </a>
+              {%- endif -%}
+
+              {%- if settings.social_tiktok_link != blank -%}
+                <a href="{{ settings.social_tiktok_link }}"
+                   class="social-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Follow us on TikTok">
+                  <span class="social-icon">🎵</span>
+                  <span class="social-text">TikTok</span>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Sacred Tools Links {%- endcomment -%}
+      <div class="footer__section">
+        <h4 class="footer__title">Sacred Tools</h4>
+        <ul class="footer__links">
+          <li><a href="/collections/healing-journals">📖 Healing Journals</a></li>
+          <li><a href="/collections/tarot-divination">🔮 Tarot & Divination</a></li>
+          <li><a href="/collections/digital-planners">📅 Digital Planners</a></li>
+          <li><a href="/collections/ritual-guides">🌙 Ritual Guides</a></li>
+          <li><a href="/collections/sacred-home">🏠 Sacred Home Collection</a></li>
+          <li><a href="/collections/mystical-accessories">💎 Mystical Accessories</a></li>
+          <li><a href="/collections/bestsellers">✨ Bestsellers</a></li>
+          <li><a href="/collections/new-arrivals">🌸 New Arrivals</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Community & Support {%- endcomment -%}
+      <div class="footer__section">
+        <h4 class="footer__title">Community & Support</h4>
+        <ul class="footer__links">
+          <li><a href="/pages/our-story">Our Sacred Story</a></li>
+          <li><a href="/pages/justice-healing">Justice & Healing</a></li>
+          <li><a href="/pages/healing-circle">Healing Circle</a></li>
+          <li><a href="/pages/community">Community Guidelines</a></li>
+          <li><a href="/blogs/midnight-musings">Midnight Musings Blog</a></li>
+          <li><a href="/pages/sacred-promise">Our Sacred Promise</a></li>
+          <li><a href="/pages/testimonials">Sacred Testimonials</a></li>
+          <li><a href="/pages/affiliate-program">Sacred Affiliate Program</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Customer Care {%- endcomment -%}
+      <div class="footer__section">
+        <h4 class="footer__title">Customer Care</h4>
+        <ul class="footer__links">
+          <li><a href="/pages/contact">Contact Sacred Support</a></li>
+          <li><a href="/pages/faq">Frequently Asked Questions</a></li>
+          <li><a href="/pages/shipping-info">Shipping & Delivery</a></li>
+          <li><a href="/pages/returns-exchanges">Returns & Exchanges</a></li>
+          <li><a href="/pages/digital-downloads">Digital Download Help</a></li>
+          <li><a href="/pages/size-guide">Size Guide</a></li>
+          <li><a href="/pages/care-instructions">Care Instructions</a></li>
+          <li><a href="/pages/wholesale">Wholesale Inquiries</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Newsletter Signup {%- endcomment -%}
+      <div class="footer__section footer__newsletter">
+        <h4 class="footer__title">Join Our Sacred Circle</h4>
+        <p class="newsletter-description">
+          Receive monthly moon letters with spiritual insights, new tool releases,
+          and exclusive content for our healing community.
+        </p>
+
+        <form action="/contact#contact_form" method="post" class="newsletter-form">
+          <div class="newsletter-input-group">
+            <label for="footer-newsletter-email" class="visually-hidden">Email Address</label>
+            <input type="email"
+                   id="footer-newsletter-email"
+                   name="contact[email]"
+                   class="newsletter-input"
+                   placeholder="Enter your email address"
+                   required>
+            <button type="submit" class="newsletter-submit">
+              <span class="submit-text">🌙 Join</span>
+            </button>
+          </div>
+          <input type="hidden" name="contact[tags]" value="newsletter">
+
+          <div class="newsletter-benefits">
+            <div class="benefit">
+              <span class="benefit-icon">✨</span>
+              <span class="benefit-text">Exclusive early access to new tools</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-icon">🌙</span>
+              <span class="benefit-text">Monthly spiritual guidance & rituals</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-icon">💫</span>
+              <span class="benefit-text">Special discounts for circle members</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {%- comment -%} Footer Bottom {%- endcomment -%}
+    <div class="footer__bottom">
+      <div class="footer-bottom-content">
+
+        {%- comment -%} Legal Links {%- endcomment -%}
+        <div class="legal-links">
+          <a href="/pages/privacy-policy">Privacy Policy</a>
+          <a href="/pages/terms-of-service">Terms of Service</a>
+          <a href="/pages/accessibility">Accessibility</a>
+          <a href="/pages/cookies">Cookie Policy</a>
+        </div>
+
+        {%- comment -%} Payment Methods {%- endcomment -%}
+        <div class="payment-methods">
+          <span class="payment-text">We accept:</span>
+          <div class="payment-icons">
+            <span class="payment-icon" title="Visa">💳</span>
+            <span class="payment-icon" title="Mastercard">💳</span>
+            <span class="payment-icon" title="American Express">💳</span>
+            <span class="payment-icon" title="PayPal">💰</span>
+            <span class="payment-icon" title="Apple Pay">📱</span>
+            <span class="payment-icon" title="Google Pay">📱</span>
+          </div>
+        </div>
+
+        {%- comment -%} Copyright {%- endcomment -%}
+        <div class="copyright">
+          <p>
+            © {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
+            <span class="sacred-note">Created with love and spiritual intention.</span>
+          </p>
+        </div>
+
+        {%- comment -%} Trust Badges {%- endcomment -%}
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <span class="trust-icon">🔒</span>
+            <span class="trust-text">SSL Secured</span>
+          </div>
+          <div class="trust-badge">
+            <span class="trust-icon">🌱</span>
+            <span class="trust-text">Eco-Friendly</span>
+          </div>
+          <div class="trust-badge">
+            <span class="trust-icon">💖</span>
+            <span class="trust-text">Made with Love</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Floating Back to Top Button {%- endcomment -%}
+    <button class="back-to-top"
+            id="back-to-top"
+            onclick="scrollToTop()"
+            aria-label="Back to top"
+            style="display: none;">
+      <span class="back-to-top-icon">🌙</span>
+    </button>
+  </div>
+</footer>
+
+{%- comment -%} Footer JavaScript {%- endcomment -%}
+<script>
+  // Newsletter form handling
+  document.querySelector('.newsletter-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const email = form.querySelector('input[name="contact[email]"]').value;
+    const submitBtn = form.querySelector('.newsletter-submit');
+    const submitText = submitBtn.querySelector('.submit-text');
+
+    // Basic email validation
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Show loading state
+    submitText.textContent = '🌙 Joining...';
+    submitBtn.disabled = true;
+
+    // Submit form
+    fetch('/contact', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        submitText.textContent = '✨ Welcome!';
+        form.querySelector('input[name="contact[email]"]').value = '';
+
+        // Show success message
+        const successMsg = document.createElement('div');
+        successMsg.className = 'newsletter-success';
+        successMsg.textContent = 'Welcome to our sacred circle! Check your email for a special welcome gift.';
+        form.appendChild(successMsg);
+
+        setTimeout(() => {
+          submitText.textContent = '🌙 Join';
+          submitBtn.disabled = false;
+          successMsg.remove();
+        }, 3000);
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    })
+    .catch(error => {
+      console.error('Newsletter signup error:', error);
+      submitText.textContent = 'Try Again';
+      submitBtn.disabled = false;
+
+      setTimeout(() => {
+        submitText.textContent = '🌙 Join';
+      }, 2000);
+    });
+  });
+
+  // Back to top functionality
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // Show/hide back to top button
+  window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('back-to-top');
+    if (window.pageYOffset > 300) {
+      backToTop.style.display = 'block';
+    } else {
+      backToTop.style.display = 'none';
+    }
+  });
+
+  // Social link tracking (for analytics)
+  document.querySelectorAll('.social-link').forEach(link => {
+    link.addEventListener('click', function() {
+      const platform = this.querySelector('.social-text').textContent;
+      console.log(`Social link clicked: ${platform}`);
+
+      // Here you would typically send to analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'social_click', {
+          'social_platform': platform.toLowerCase()
+        });
+      }
+    });
+  });
+
+  // Footer link hover effects
+  document.querySelectorAll('.footer__links a').forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateX(5px)';
+    });
+
+    link.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateX(0)';
+    });
+  });
+</script>
+
+{%- comment -%} Footer Schema Settings {%- endcomment -%}
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer logo"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_description",
+      "label": "Footer description",
+      "default": "Your digital sanctuary for spiritual wellness, healing tools, and transformative resources."
+    },
+    {
+      "type": "header",
+      "content": "Social Media Links"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram_link",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook_link",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_pinterest_link",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "url",
+      "id": "social_youtube_link",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok_link",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_newsletter",
+      "label": "Enable newsletter signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Join Our Sacred Circle"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_description",
+      "label": "Newsletter description",
+      "default": "Receive monthly moon letters with spiritual insights and exclusive content."
+    },
+    {
+      "type": "header",
+      "content": "Footer Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment method icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show trust badges",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

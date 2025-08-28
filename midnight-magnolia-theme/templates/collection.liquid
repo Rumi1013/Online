@@ -1,0 +1,556 @@
+{%- comment -%}
+  MIDNIGHT MAGNOLIA THEME
+  Collection Template - Sacred Tools Marketplace
+  Spiritual wellness and healing tools theme
+{%- endcomment -%}
+
+<div class="collection-page celestial-bg">
+
+  {%- comment -%} Collection Header {%- endcomment -%}
+  <section class="collection-header section">
+    <div class="container">
+      <div class="collection-hero text-center animate-fade-in-up">
+        {%- if collection.image -%}
+          <div class="collection-image mb-3">
+            <img src="{{ collection.image | image_url: width: 800 }}"
+                 alt="{{ collection.image.alt | escape }}"
+                 style="max-width: 200px; border-radius: 1rem; opacity: 0.8;">
+          </div>
+        {%- endif -%}
+
+        <h1 class="collection-title">{{ collection.title }}</h1>
+
+        {%- if collection.description != blank -%}
+          <div class="collection-description">
+            {{ collection.description }}
+          </div>
+        {%- endif -%}
+
+        <div class="collection-meta">
+          <span class="product-count">{{ collection.products_count }} Sacred Tools</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Collection Filters & Sort {%- endcomment -%}
+  <section class="collection-toolbar section--small">
+    <div class="container">
+      <div class="toolbar animate-fade-in-up" style="animation-delay: 0.2s;">
+
+        {%- comment -%} Filter Toggle {%- endcomment -%}
+        <div class="toolbar-left">
+          <button class="filter-toggle btn btn--ghost" onclick="toggleFilters()">
+            🔮 Filter & Sort
+          </button>
+          <span class="results-count">{{ collection.products_count }} tools found</span>
+        </div>
+
+        {%- comment -%} Sort Options {%- endcomment -%}
+        <div class="toolbar-right">
+          <div class="sort-options">
+            <label for="sort-select" class="sort-label">Sort by:</label>
+            <select id="sort-select" class="sort-select form-select" onchange="sortCollection(this.value)">
+              <option value="manual">Featured</option>
+              <option value="best-selling">Best Selling</option>
+              <option value="title-ascending">A-Z</option>
+              <option value="title-descending">Z-A</option>
+              <option value="price-ascending">Price: Low to High</option>
+              <option value="price-descending">Price: High to Low</option>
+              <option value="created-descending">Newest First</option>
+              <option value="created-ascending">Oldest First</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Filter Panel {%- endcomment -%}
+      <div class="filter-panel" id="filter-panel" style="display: none;">
+        <div class="magnolia-card">
+          <div class="filter-grid">
+
+            {%- comment -%} Category Filter {%- endcomment -%}
+            <div class="filter-group">
+              <h4 class="filter-title">Categories</h4>
+              <div class="filter-options">
+                {%- assign all_tags = collection.all_tags -%}
+                {%- for tag in all_tags limit: 8 -%}
+                  <label class="filter-option">
+                    <input type="checkbox" name="tag" value="{{ tag | handle }}" onchange="filterProducts()">
+                    <span class="checkmark"></span>
+                    {{ tag }}
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+
+            {%- comment -%} Format Filter {%- endcomment -%}
+            <div class="filter-group">
+              <h4 class="filter-title">Format</h4>
+              <div class="filter-options">
+                <label class="filter-option">
+                  <input type="checkbox" name="format" value="digital" onchange="filterProducts()">
+                  <span class="checkmark"></span>
+                  Digital Download
+                </label>
+                <label class="filter-option">
+                  <input type="checkbox" name="format" value="physical" onchange="filterProducts()">
+                  <span class="checkmark"></span>
+                  Physical Product
+                </label>
+                <label class="filter-option">
+                  <input type="checkbox" name="format" value="kdp" onchange="filterProducts()">
+                  <span class="checkmark"></span>
+                  KDP Paperback
+                </label>
+              </div>
+            </div>
+
+            {%- comment -%} Price Filter {%- endcomment -%}
+            <div class="filter-group">
+              <h4 class="filter-title">Price Range</h4>
+              <div class="price-range">
+                <input type="range" id="price-min" min="0" max="100" value="0" class="price-slider">
+                <input type="range" id="price-max" min="0" max="100" value="100" class="price-slider">
+                <div class="price-display">
+                  <span id="price-min-display">$0</span> - <span id="price-max-display">$100+</span>
+                </div>
+              </div>
+            </div>
+
+            {%- comment -%} Special Filters {%- endcomment -%}
+            <div class="filter-group">
+              <h4 class="filter-title">Special</h4>
+              <div class="filter-options">
+                <label class="filter-option">
+                  <input type="checkbox" name="special" value="bestseller" onchange="filterProducts()">
+                  <span class="checkmark"></span>
+                  ✨ Bestsellers
+                </label>
+                <label class="filter-option">
+                  <input type="checkbox" name="special" value="sale" onchange="filterProducts()">
+                  <span class="checkmark"></span>
+                  🌙 On Sale
+                </label>
+                <label class="filter-option">
+                  <input type="checkbox" name="special" value="new" onchange="filterProducts()">
+                  <span class="checkmark"></span>
+                  🌸 New Arrivals
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn--ghost" onclick="clearFilters()">Clear All</button>
+            <button class="btn btn--primary" onclick="applyFilters()">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Products Grid {%- endcomment -%}
+  <section class="collection-products section">
+    <div class="container">
+
+      {%- if collection.products.size > 0 -%}
+        <div class="products-grid grid grid--3-col" id="products-grid">
+          {%- for product in collection.products -%}
+            <div class="product-card animate-fade-in-up"
+                 style="animation-delay: {{ forloop.index | times: 0.05 }}s;"
+                 data-product-id="{{ product.id }}"
+                 data-price="{{ product.price }}"
+                 data-tags="{{ product.tags | join: ',' | downcase }}"
+                 data-format="{% if product.metafields.midnight_magnolia.product_format contains 'Digital' %}digital{% elsif product.metafields.midnight_magnolia.product_format contains 'KDP' %}kdp{% else %}physical{% endif %}"
+                 data-bestseller="{% if product.metafields.midnight_magnolia.bestseller %}true{% else %}false{% endif %}"
+                 data-sale="{% if product.compare_at_price > product.price %}true{% else %}false{% endif %}"
+                 data-created="{{ product.created_at | date: '%s' }}">
+
+              {%- comment -%} Product Image {%- endcomment -%}
+              <div class="product-card__image">
+                {%- if product.featured_media -%}
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_media | image_url: width: 400 }}"
+                         alt="{{ product.featured_media.alt | escape }}"
+                         loading="lazy">
+                  </a>
+                {%- else -%}
+                  <div class="product-card__placeholder">
+                    <a href="{{ product.url }}">
+                      {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 100px; height: 100px; opacity: 0.3;' }}
+                    </a>
+                  </div>
+                {%- endif -%}
+
+                {%- comment -%} Product Badges {%- endcomment -%}
+                <div class="product-card__badges">
+                  {%- if product.metafields.midnight_magnolia.bestseller -%}
+                    <span class="badge badge--bestseller">✨ Bestseller</span>
+                  {%- endif -%}
+                  {%- if product.metafields.midnight_magnolia.coming_soon -%}
+                    <span class="badge badge--coming-soon">🌙 Coming Soon</span>
+                  {%- endif -%}
+                  {%- if product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
+                    <span class="badge badge--digital">💫 Digital</span>
+                  {%- endif -%}
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="badge badge--sale">Sale</span>
+                  {%- endif -%}
+                </div>
+
+                {%- comment -%} Quick Actions {%- endcomment -%}
+                <div class="product-card__actions">
+                  <button class="quick-action wishlist-btn" data-product-id="{{ product.id }}" title="Add to Wishlist">
+                    💖
+                  </button>
+                  <button class="quick-action quick-view-btn" data-product-id="{{ product.id }}" title="Quick View">
+                    👁️
+                  </button>
+                </div>
+              </div>
+
+              {%- comment -%} Product Content {%- endcomment -%}
+              <div class="product-card__content">
+                {%- if product.metafields.midnight_magnolia.category_tag -%}
+                  <span class="product-card__category">{{ product.metafields.midnight_magnolia.category_tag }}</span>
+                {%- endif -%}
+
+                <h3 class="product-card__title">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+
+                {%- if product.description != blank -%}
+                  <p class="product-card__description">
+                    {{ product.description | strip_html | truncate: 100 }}
+                  </p>
+                {%- endif -%}
+
+                {%- comment -%} Product Rating {%- endcomment -%}
+                <div class="product-card__rating">
+                  <div class="stars-small">
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                  </div>
+                  <span class="rating-count">({{ product.metafields.reviews.rating_count | default: '5' }})</span>
+                </div>
+
+                <div class="product-card__price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="price price--sale">{{ product.price | money }}</span>
+                    <span class="price price--compare">{{ product.compare_at_price | money }}</span>
+                  {%- else -%}
+                    <span class="price">{{ product.price | money }}</span>
+                  {%- endif -%}
+                </div>
+
+                <div class="product-card__cta">
+                  {%- if product.metafields.midnight_magnolia.coming_soon -%}
+                    <button class="btn btn--ghost w-full" disabled>
+                      🌙 Coming Soon
+                    </button>
+                  {%- elsif product.available -%}
+                    <a href="{{ product.url }}" class="btn btn--ghost w-full">
+                      ✨ Explore Tool
+                    </a>
+                  {%- else -%}
+                    <button class="btn btn--ghost w-full" disabled>
+                      Sold Out
+                    </button>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} Load More / Pagination {%- endcomment -%}
+        {%- if paginate.pages > 1 -%}
+          <div class="pagination-wrapper text-center mt-4">
+            <div class="pagination">
+              {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}" class="pagination-btn pagination-prev">
+                  ← Previous
+                </a>
+              {%- endif -%}
+
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" class="pagination-btn">{{ part.title }}</a>
+                {%- else -%}
+                  {%- if part.title == paginate.current_page -%}
+                    <span class="pagination-btn pagination-current">{{ part.title }}</span>
+                  {%- else -%}
+                    <span class="pagination-btn pagination-gap">{{ part.title }}</span>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}" class="pagination-btn pagination-next">
+                  Next →
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+      {%- else -%}
+        {%- comment -%} Empty Collection State {%- endcomment -%}
+        <div class="empty-collection text-center">
+          <div class="magnolia-card" style="max-width: 600px; margin: 0 auto;">
+            <div class="empty-state-icon mb-3">
+              {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 120px; height: 120px; opacity: 0.3;' }}
+            </div>
+            <h2>No Sacred Tools Found</h2>
+            <p>We're still cultivating this collection. Check back soon for new spiritual tools and healing resources.</p>
+            <a href="/collections/all" class="btn btn--primary">
+              Explore All Collections
+            </a>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- comment -%} Collection Features {%- endcomment -%}
+  <section class="collection-features section celestial-bg">
+    <div class="container">
+      <div class="features-grid grid grid--3-col">
+        <div class="feature-card magnolia-card text-center animate-fade-in-up">
+          <div class="feature-icon">🌙</div>
+          <h3>Intentionally Crafted</h3>
+          <p>Every tool is created with spiritual intention and mindful design to support your healing journey.</p>
+        </div>
+
+        <div class="feature-card magnolia-card text-center animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="feature-icon">💫</div>
+          <h3>Instant Access</h3>
+          <p>Digital tools are available immediately after purchase, so you can begin your transformation right away.</p>
+        </div>
+
+        <div class="feature-card magnolia-card text-center animate-fade-in-up" style="animation-delay: 0.4s;">
+          <div class="feature-icon">🌸</div>
+          <h3>Community Support</h3>
+          <p>Join our healing circle for guidance, support, and connection with fellow spiritual seekers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{%- comment -%} Collection JavaScript {%- endcomment -%}
+<script>
+  // Filter and sort functionality
+  let allProducts = [];
+  let filteredProducts = [];
+
+  // Initialize products array
+  document.addEventListener('DOMContentLoaded', function() {
+    allProducts = Array.from(document.querySelectorAll('.product-card'));
+    filteredProducts = [...allProducts];
+  });
+
+  // Toggle filter panel
+  function toggleFilters() {
+    const filterPanel = document.getElementById('filter-panel');
+    const isVisible = filterPanel.style.display !== 'none';
+    filterPanel.style.display = isVisible ? 'none' : 'block';
+  }
+
+  // Sort collection
+  function sortCollection(sortValue) {
+    const productsGrid = document.getElementById('products-grid');
+    let sortedProducts = [...filteredProducts];
+
+    switch(sortValue) {
+      case 'title-ascending':
+        sortedProducts.sort((a, b) => {
+          const titleA = a.querySelector('.product-card__title a').textContent.toLowerCase();
+          const titleB = b.querySelector('.product-card__title a').textContent.toLowerCase();
+          return titleA.localeCompare(titleB);
+        });
+        break;
+
+      case 'title-descending':
+        sortedProducts.sort((a, b) => {
+          const titleA = a.querySelector('.product-card__title a').textContent.toLowerCase();
+          const titleB = b.querySelector('.product-card__title a').textContent.toLowerCase();
+          return titleB.localeCompare(titleA);
+        });
+        break;
+
+      case 'price-ascending':
+        sortedProducts.sort((a, b) => {
+          return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+        });
+        break;
+
+      case 'price-descending':
+        sortedProducts.sort((a, b) => {
+          return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+        });
+        break;
+
+      case 'created-descending':
+        sortedProducts.sort((a, b) => {
+          return parseInt(b.dataset.created) - parseInt(a.dataset.created);
+        });
+        break;
+
+      case 'created-ascending':
+        sortedProducts.sort((a, b) => {
+          return parseInt(a.dataset.created) - parseInt(b.dataset.created);
+        });
+        break;
+
+      case 'best-selling':
+        sortedProducts.sort((a, b) => {
+          const aIsBestseller = a.dataset.bestseller === 'true';
+          const bIsBestseller = b.dataset.bestseller === 'true';
+          if (aIsBestseller && !bIsBestseller) return -1;
+          if (!aIsBestseller && bIsBestseller) return 1;
+          return 0;
+        });
+        break;
+    }
+
+    // Clear and repopulate grid
+    productsGrid.innerHTML = '';
+    sortedProducts.forEach(product => {
+      productsGrid.appendChild(product);
+    });
+  }
+
+  // Filter products
+  function filterProducts() {
+    const checkedTags = Array.from(document.querySelectorAll('input[name="tag"]:checked')).map(cb => cb.value);
+    const checkedFormats = Array.from(document.querySelectorAll('input[name="format"]:checked')).map(cb => cb.value);
+    const checkedSpecial = Array.from(document.querySelectorAll('input[name="special"]:checked')).map(cb => cb.value);
+
+    filteredProducts = allProducts.filter(product => {
+      // Tag filter
+      if (checkedTags.length > 0) {
+        const productTags = product.dataset.tags.split(',');
+        const hasMatchingTag = checkedTags.some(tag => productTags.includes(tag));
+        if (!hasMatchingTag) return false;
+      }
+
+      // Format filter
+      if (checkedFormats.length > 0) {
+        if (!checkedFormats.includes(product.dataset.format)) return false;
+      }
+
+      // Special filter
+      if (checkedSpecial.length > 0) {
+        const isBestseller = product.dataset.bestseller === 'true';
+        const isOnSale = product.dataset.sale === 'true';
+        const isNew = Date.now() - parseInt(product.dataset.created) * 1000 < 30 * 24 * 60 * 60 * 1000; // 30 days
+
+        const matchesSpecial = checkedSpecial.some(special => {
+          if (special === 'bestseller' && isBestseller) return true;
+          if (special === 'sale' && isOnSale) return true;
+          if (special === 'new' && isNew) return true;
+          return false;
+        });
+
+        if (!matchesSpecial) return false;
+      }
+
+      return true;
+    });
+
+    // Update results count
+    document.querySelector('.results-count').textContent = `${filteredProducts.length} tools found`;
+
+    // Re-sort with current sort option
+    const currentSort = document.getElementById('sort-select').value;
+    sortCollection(currentSort);
+  }
+
+  // Apply filters
+  function applyFilters() {
+    filterProducts();
+    toggleFilters();
+  }
+
+  // Clear all filters
+  function clearFilters() {
+    document.querySelectorAll('.filter-panel input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.getElementById('price-min').value = 0;
+    document.getElementById('price-max').value = 100;
+    filteredProducts = [...allProducts];
+    document.querySelector('.results-count').textContent = `${allProducts.length} tools found`;
+
+    const productsGrid = document.getElementById('products-grid');
+    productsGrid.innerHTML = '';
+    allProducts.forEach(product => {
+      productsGrid.appendChild(product);
+    });
+  }
+
+  // Wishlist functionality
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const productId = this.dataset.productId;
+
+      // Toggle wishlist state
+      this.classList.toggle('active');
+      this.innerHTML = this.classList.contains('active') ? '💖' : '🤍';
+
+      // Here you would typically save to localStorage or send to server
+      console.log('Wishlist toggled for product:', productId);
+    });
+  });
+
+  // Quick view functionality
+  document.querySelectorAll('.quick-view-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const productId = this.dataset.productId;
+
+      // Here you would open a modal with product details
+      console.log('Quick view for product:', productId);
+    });
+  });
+</script>
+
+{%- comment -%} Collection Schema Markup {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{ collection.title | escape }}",
+  "description": "{{ collection.description | strip_html | escape }}",
+  "url": "{{ shop.url }}{{ collection.url }}",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ collection.products_count }},
+    "itemListElement": [
+      {%- for product in collection.products limit: 20 -%}
+        {
+          "@type": "Product",
+          "position": {{ forloop.index }},
+          "name": "{{ product.title | escape }}",
+          "url": "{{ shop.url }}{{ product.url }}",
+          "image": "{{ product.featured_media | image_url: width: 600 }}",
+          "offers": {
+            "@type": "Offer",
+            "price": "{{ product.price | divided_by: 100.0 }}",
+            "priceCurrency": "{{ cart.currency.iso_code }}",
+            "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+}
+</script>
+
+{%- paginate collection.products by 24 -%}
+{%- endpaginate -%}

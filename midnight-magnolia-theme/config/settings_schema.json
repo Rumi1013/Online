@@ -1,0 +1,660 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Midnight Magnolia",
+    "theme_version": "1.0.0",
+    "theme_author": "Digital Sanctuary",
+    "theme_documentation_url": "https://github.com/midnight-magnolia/shopify-theme",
+    "theme_support_url": "https://midnightmagnolia.com/support"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Mystical Color Palette"
+      },
+      {
+        "type": "color",
+        "id": "colors_text",
+        "default": "#ffffff",
+        "label": "Text color"
+      },
+      {
+        "type": "color",
+        "id": "colors_background_1",
+        "default": "#1a1a2e",
+        "label": "Primary background"
+      },
+      {
+        "type": "color",
+        "id": "colors_background_2",
+        "default": "#2d3748",
+        "label": "Secondary background"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_1",
+        "default": "#f6d55c",
+        "label": "Golden accent"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_2",
+        "default": "#9f7aea",
+        "label": "Mystical purple accent"
+      },
+      {
+        "type": "color",
+        "id": "colors_solid_button_labels",
+        "default": "#1a1a2e",
+        "label": "Button text"
+      },
+      {
+        "type": "color",
+        "id": "colors_outline_button_labels",
+        "default": "#f6d55c",
+        "label": "Outline button text"
+      },
+      {
+        "type": "header",
+        "content": "Gradients"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient_background_1",
+        "label": "Primary gradient background"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient_background_2",
+        "label": "Secondary gradient background"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient_accent_1",
+        "label": "Golden gradient accent"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient_accent_2",
+        "label": "Mystical gradient accent"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Typography"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "playfair_display_n4",
+        "label": "Heading font",
+        "info": "Used for headings and brand elements"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "inter_n4",
+        "label": "Body font",
+        "info": "Used for body text and navigation"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "min": 100,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Heading scale",
+        "default": 120
+      },
+      {
+        "type": "range",
+        "id": "body_scale",
+        "min": 90,
+        "max": 120,
+        "step": 5,
+        "unit": "%",
+        "label": "Body scale",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Page Layout"
+      },
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1000,
+        "max": 1600,
+        "step": 100,
+        "unit": "px",
+        "label": "Page width",
+        "default": 1200
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Section spacing",
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "spacing_grid_horizontal",
+        "min": 4,
+        "max": 40,
+        "step": 4,
+        "unit": "px",
+        "label": "Grid horizontal spacing",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "spacing_grid_vertical",
+        "min": 4,
+        "max": 40,
+        "step": 4,
+        "unit": "px",
+        "label": "Grid vertical spacing",
+        "default": 24
+      }
+    ]
+  },
+  {
+    "name": "Product Cards",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Tools Display"
+      },
+      {
+        "type": "select",
+        "id": "card_text_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left",
+        "label": "Text alignment"
+      },
+      {
+        "type": "range",
+        "id": "card_corner_radius",
+        "min": 0,
+        "max": 40,
+        "step": 4,
+        "unit": "px",
+        "label": "Corner radius",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "card_image_padding",
+        "min": 0,
+        "max": 20,
+        "step": 2,
+        "unit": "px",
+        "label": "Image padding",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "card_border_thickness",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "unit": "px",
+        "label": "Border thickness",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "card_border_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Border opacity",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "card_shadow_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Shadow opacity",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "card_shadow_horizontal_offset",
+        "min": -40,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Shadow horizontal offset",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "card_shadow_vertical_offset",
+        "min": -40,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Shadow vertical offset",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "card_shadow_blur",
+        "min": 0,
+        "max": 40,
+        "step": 5,
+        "unit": "px",
+        "label": "Shadow blur",
+        "default": 32
+      }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Action Buttons"
+      },
+      {
+        "type": "range",
+        "id": "buttons_radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Corner radius",
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "buttons_border_thickness",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "unit": "px",
+        "label": "Border thickness",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "buttons_border_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Border opacity",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "buttons_shadow_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Shadow opacity",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "buttons_shadow_horizontal_offset",
+        "min": -40,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Shadow horizontal offset",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "buttons_shadow_vertical_offset",
+        "min": -40,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Shadow vertical offset",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "buttons_shadow_blur",
+        "min": 0,
+        "max": 40,
+        "step": 5,
+        "unit": "px",
+        "label": "Shadow blur",
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Animations",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Celestial Animations"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_celestial_animations",
+        "label": "Enable celestial animations",
+        "default": true,
+        "info": "Floating stars, moon phases, and mystical elements"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_scroll_animations",
+        "label": "Enable scroll animations",
+        "default": true,
+        "info": "Fade-in effects when scrolling"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_hover_animations",
+        "label": "Enable hover animations",
+        "default": true,
+        "info": "Interactive hover effects on cards and buttons"
+      },
+      {
+        "type": "select",
+        "id": "animations_hover_elements",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "fade",
+            "label": "Fade"
+          },
+          {
+            "value": "scale",
+            "label": "Scale"
+          },
+          {
+            "value": "lift",
+            "label": "Lift"
+          }
+        ],
+        "default": "lift",
+        "label": "Hover animation style"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Community Links"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https://instagram.com/yourusername"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https://facebook.com/yourpage"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https://pinterest.com/yourusername"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https://youtube.com/yourchannel"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok_link",
+        "label": "TikTok",
+        "info": "https://tiktok.com/@yourusername"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https://twitter.com/yourusername"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Search"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "default": true,
+        "label": "Enable predictive search",
+        "info": "Show search suggestions as you type"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_vendor",
+        "default": false,
+        "label": "Show vendor in search results"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_price",
+        "default": true,
+        "label": "Show price in search results"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Collection Cart"
+      },
+      {
+        "type": "select",
+        "id": "cart_type",
+        "options": [
+          {
+            "value": "page",
+            "label": "Page"
+          },
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          }
+        ],
+        "default": "drawer",
+        "label": "Cart type"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_vendor",
+        "default": false,
+        "label": "Show vendor"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_note",
+        "default": true,
+        "label": "Enable cart notes"
+      }
+    ]
+  },
+  {
+    "name": "Checkout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Journey Completion"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "32 x 32px .png recommended"
+      },
+      {
+        "type": "checkbox",
+        "id": "checkout_logo_image",
+        "default": false,
+        "label": "Show logo on checkout"
+      },
+      {
+        "type": "select",
+        "id": "checkout_logo_position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "left",
+        "label": "Logo position"
+      },
+      {
+        "type": "select",
+        "id": "checkout_accent_color",
+        "options": [
+          {
+            "value": "#f6d55c",
+            "label": "Golden Yellow"
+          },
+          {
+            "value": "#9f7aea",
+            "label": "Mystical Purple"
+          },
+          {
+            "value": "#1a1a2e",
+            "label": "Midnight Navy"
+          }
+        ],
+        "default": "#f6d55c",
+        "label": "Accent color"
+      }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Sacred Brand Identity"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "default": 180,
+        "unit": "px",
+        "label": "Logo width"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer_logo",
+        "label": "Footer logo"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_description",
+        "label": "Footer description",
+        "default": "Your digital sanctuary for spiritual wellness, healing tools, and transformative resources. Join our sacred community on the journey to inner peace and positive change."
+      }
+    ]
+  },
+  {
+    "name": "Advanced",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Advanced Settings"
+      },
+      {
+        "type": "liquid",
+        "id": "custom_css",
+        "label": "Custom CSS",
+        "info": "Add custom CSS for advanced styling"
+      },
+      {
+        "type": "html",
+        "id": "custom_javascript",
+        "label": "Custom JavaScript",
+        "info": "Add custom JavaScript for advanced functionality"
+      },
+      {
+        "type": "text",
+        "id": "google_analytics_id",
+        "label": "Google Analytics ID",
+        "info": "GA4 Measurement ID (G-XXXXXXXXXX)"
+      },
+      {
+        "type": "text",
+        "id": "facebook_pixel_id",
+        "label": "Facebook Pixel ID"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_rtl",
+        "label": "Enable RTL support",
+        "default": false,
+        "info": "Right-to-left language support"
+      }
+    ]
+  }
+]
