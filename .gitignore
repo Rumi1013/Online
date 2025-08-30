@@ -122,3 +122,6 @@ test-results/
 # - Review files before committing
 # - Use .env files for local development only
 # - Keep .env files out of version control
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

@@ -11,30 +11,30 @@
 }
 
 body {
-  background: var(--color-midnight-blue);
-  color: var(--color-magnolia-white);
-  font-family: var(--font-body);
+  background: var(--color-midnight-blue) !important;
+  color: var(--color-magnolia-white) !important;
+  font-family: var(--font-body) !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-header);
-  color: var(--color-gold);
+  font-family: var(--font-header) !important;
+  color: var(--color-gold) !important;
 }
 
 a, button, .cta {
-  color: var(--color-sage-green);
-  font-family: var(--font-accent);
+  color: var(--color-sage-green) !important;
+  font-family: var(--font-accent) !important;
   transition: color 0.2s, background 0.2s;
 }
 
 a:hover, button:hover, .cta:hover {
-  color: var(--color-gold);
-  background: var(--color-magnolia-white);
+  color: var(--color-gold) !important;
+  background: var(--color-magnolia-white) !important;
 }
 
 .header, .footer {
-  background: var(--color-midnight-blue);
-  color: var(--color-magnolia-white);
+  background: var(--color-midnight-blue) !important;
+  color: var(--color-magnolia-white) !important;
 }
 
 /* Accessibility & ADHD-friendly navigation */
@@ -51,8 +51,8 @@ a:hover, button:hover, .cta:hover {
   top: 0;
   width: auto;
   height: auto;
-  background: var(--color-gold);
-  color: var(--color-midnight-blue);
+  background: var(--color-gold) !important;
+  color: var(--color-midnight-blue) !important;
   z-index: 1000;
 }
 
@@ -62,17 +62,17 @@ a:hover, button:hover, .cta:hover {
 }
 
 .shopify-header {
-  background: var(--color-midnight-blue);
-  color: var(--color-magnolia-white);
-  font-family: var(--font-header);
-  border-bottom: 1px solid var(--color-warm-gray);
+  background: var(--color-midnight-blue) !important;
+  color: var(--color-magnolia-white) !important;
+  font-family: var(--font-header) !important;
+  border-bottom: 1px solid var(--color-warm-gray) !important;
 }
 
 .shopify-footer {
-  background: var(--color-midnight-blue);
-  color: var(--color-magnolia-white);
-  font-family: var(--font-header);
-  border-top: 1px solid var(--color-warm-gray);
+  background: var(--color-midnight-blue) !important;
+  color: var(--color-magnolia-white) !important;
+  font-family: var(--font-header) !important;
+  border-top: 1px solid var(--color-warm-gray) !important;
 }
 
 .shopify-logo {
@@ -83,23 +83,23 @@ a:hover, button:hover, .cta:hover {
 .shopify-nav {
   display: flex;
   gap: 2rem;
-  font-family: var(--font-accent);
+  font-family: var(--font-accent) !important;
 }
 
 .shopify-nav a {
-  color: var(--color-sage-green);
+  color: var(--color-sage-green) !important;
   text-decoration: none;
   font-size: 1.1rem;
 }
 
 .shopify-nav a:hover {
-  color: var(--color-gold);
+  color: var(--color-gold) !important;
 }
 
 .shopify-btn, .shopify-cta {
-  background: var(--color-sage-green);
-  color: var(--color-midnight-blue);
-  font-family: var(--font-accent);
+  background: var(--color-sage-green) !important;
+  color: var(--color-midnight-blue) !important;
+  font-family: var(--font-accent) !important;
   border-radius: 4px;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -108,13 +108,13 @@ a:hover, button:hover, .cta:hover {
 }
 
 .shopify-btn:hover, .shopify-cta:hover {
-  background: var(--color-gold);
-  color: var(--color-midnight-blue);
+  background: var(--color-gold) !important;
+  color: var(--color-midnight-blue) !important;
 }
 
 .shopify-testimonial {
-  background: var(--color-warm-gray);
-  color: var(--color-midnight-blue);
+  background: var(--color-warm-gray) !important;
+  color: var(--color-midnight-blue) !important;
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1rem;
@@ -132,8 +132,8 @@ a:hover, button:hover, .cta:hover {
 }
 
 .shopify-product-card {
-  background: var(--color-magnolia-white);
-  color: var(--color-midnight-blue);
+  background: var(--color-magnolia-white) !important;
+  color: var(--color-midnight-blue) !important;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(10,25,47,0.08);
   padding: 1.5rem;
@@ -144,16 +144,16 @@ a:hover, button:hover, .cta:hover {
 }
 
 .shopify-blog-preview {
-  background: var(--color-warm-gray);
-  color: var(--color-midnight-blue);
+  background: var(--color-warm-gray) !important;
+  color: var(--color-midnight-blue) !important;
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
 }
 
 .shopify-newsletter {
-  background: var(--color-gold);
-  color: var(--color-midnight-blue);
+  background: var(--color-gold) !important;
+  color: var(--color-midnight-blue) !important;
   border-radius: 8px;
   padding: 1.5rem;
   text-align: center;
