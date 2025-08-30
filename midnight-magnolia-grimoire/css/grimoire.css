@@ -1,3 +1,4 @@
+/*
    MIDNIGHT MAGNOLIA GRIMOIRE
    A digital grimoire for spiritual wisdom
    =============================================== */
@@ -588,7 +589,7 @@ a:hover {
 }
 
 .tarot-card:hover {
-  transform: transform translateY(-8px);
+  transform: translateY(-8px);
 }
 
 .tarot-icon {
