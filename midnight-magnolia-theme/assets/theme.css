@@ -122,8 +122,8 @@ a:hover {
   right: 0;
   bottom: 0;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(159, 122, 234, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(246, 213, 92, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 25% 25%, rgba(163, 177, 138, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
@@ -150,7 +150,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(159, 122, 234, 0.05) 0%, rgba(246, 213, 92, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(163, 177, 138, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -192,25 +192,25 @@ a:hover {
 
 .btn--primary {
   background: var(--golden-gradient);
-  color: var(--color-midnight-navy);
-  box-shadow: 0 4px 16px rgba(246, 213, 92, 0.3);
+  color: var(--color-magnolia-white);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
 }
 
 .btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(246, 213, 92, 0.4);
-  color: var(--color-midnight-navy);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+  color: var(--color-magnolia-white);
 }
 
 .btn--secondary {
   background: transparent;
-  color: var(--color-golden-yellow);
-  border: 2px solid var(--color-golden-yellow);
+  color: var(--color-gold);
+  border: 2px solid var(--color-gold);
 }
 
 .btn--secondary:hover {
-  background: var(--color-golden-yellow);
-  color: var(--color-midnight-navy);
+  background: var(--color-gold);
+  color: var(--color-magnolia-white);
   transform: translateY(-2px);
 }
 
@@ -230,8 +230,8 @@ a:hover {
 
 .btn--enter-garden {
   background: var(--celestial-gradient);
-  color: var(--color-pure-white);
-  border: 1px solid rgba(159, 122, 234, 0.3);
+  color: var(--color-magnolia-white);
+  border: 1px solid rgba(163, 177, 138, 0.3);
   position: relative;
 }
 
@@ -242,8 +242,8 @@ a:hover {
 }
 
 .btn--enter-garden:hover {
-  box-shadow: 0 8px 24px rgba(159, 122, 234, 0.4);
-  color: var(--color-pure-white);
+  box-shadow: 0 8px 24px rgba(163, 177, 138, 0.4);
+  color: var(--color-magnolia-white);
 }
 
 /* ===============================================
@@ -299,11 +299,11 @@ a:hover {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: var(--color-pure-white);
+  color: var(--color-magnolia-white);
 }
 
 .product-card__description {
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   font-size: 0.9rem;
   line-height: 1.5;
   margin-bottom: 1rem;
@@ -313,7 +313,7 @@ a:hover {
 .product-card__price {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
   margin-bottom: 1rem;
 }
 
@@ -341,8 +341,8 @@ a:hover {
 }
 
 .badge--coming-soon {
-  background: rgba(159, 122, 234, 0.9);
-  color: var(--color-pure-white);
+  background: rgba(163, 177, 138, 0.9);
+  color: var(--color-magnolia-white);
 }
 
 .badge--digital {
@@ -355,10 +355,10 @@ a:hover {
    =============================================== */
 
 .header {
-  background: rgba(26, 26, 46, 0.95);
+  background: rgba(10, 25, 47, 0.95);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(247, 243, 233, 0.1);
+  border-bottom: 1px solid rgba(250, 243, 224, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -375,7 +375,7 @@ a:hover {
   font-family: var(--font-heading-family);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-pure-white);
+  color: var(--color-magnolia-white);
   text-decoration: none;
 }
 
@@ -392,24 +392,24 @@ a:hover {
 }
 
 .nav__link {
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   font-weight: 500;
   padding: 0.5rem 0;
   transition: color 0.3s ease;
 }
 
 .nav__link:hover {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
 }
 
 .nav__dropdown {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(26, 26, 46, 0.98);
+  background: rgba(10, 25, 47, 0.98);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(247, 243, 233, 0.1);
+  border: 1px solid rgba(250, 243, 224, 0.1);
   border-radius: 0.5rem;
   padding: 1rem 0;
   min-width: 200px;
@@ -417,7 +417,7 @@ a:hover {
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(26, 26, 46, 0.4);
+  box-shadow: 0 8px 32px rgba(10, 25, 47, 0.4);
 }
 
 .nav__item:hover .nav__dropdown {
@@ -431,13 +431,13 @@ a:hover {
 }
 
 .nav__dropdown-link {
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   font-size: 0.9rem;
   transition: color 0.3s ease;
 }
 
 .nav__dropdown-link:hover {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
 }
 
 /* Mobile Menu Toggle */
@@ -458,14 +458,14 @@ a:hover {
 }
 
 .mobile-menu-toggle:hover {
-  background: rgba(247, 243, 233, 0.2);
-  border-color: var(--color-golden-yellow);
+  background: rgba(250, 243, 224, 0.2);
+  border-color: var(--color-gold);
 }
 
 .hamburger-line {
   width: 20px;
   height: 2px;
-  background: var(--color-warm-cream);
+  background: var(--color-magnolia-white);
   margin: 2px 0;
   transition: all 0.3s ease;
   border-radius: 1px;
@@ -477,10 +477,10 @@ a:hover {
   top: 100%;
   left: 0;
   width: 100%;
-  background: rgba(26, 26, 46, 0.98);
+  background: rgba(10, 25, 47, 0.98);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(247, 243, 233, 0.1);
+  border-top: 1px solid rgba(250, 243, 224, 0.1);
   z-index: 999;
   max-height: 70vh;
   overflow-y: auto;
@@ -499,7 +499,7 @@ a:hover {
 }
 
 .mobile-nav-title {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
   font-size: 1.125rem;
   margin-bottom: 1rem;
   font-weight: 600;
@@ -516,7 +516,7 @@ a:hover {
 }
 
 .mobile-nav-links a {
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   text-decoration: none;
   font-size: 1rem;
   padding: 0.5rem 0;
@@ -525,13 +525,13 @@ a:hover {
 }
 
 .mobile-nav-links a:hover {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
 }
 
 .mobile-menu-close {
   background: none;
   border: none;
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -540,8 +540,8 @@ a:hover {
 }
 
 .mobile-menu-close:hover {
-  background: rgba(247, 243, 233, 0.1);
-  color: var(--color-pure-white);
+  background: rgba(250, 243, 224, 0.1);
+  color: var(--color-magnolia-white);
 }
 
 /* Navigation Actions */
@@ -557,10 +557,10 @@ a:hover {
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: rgba(247, 243, 233, 0.1);
-  border: 1px solid rgba(247, 243, 233, 0.2);
+  background: rgba(250, 243, 224, 0.1);
+  border: 1px solid rgba(250, 243, 224, 0.2);
   border-radius: 8px;
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -570,9 +570,9 @@ a:hover {
 }
 
 .nav__action:hover {
-  background: rgba(247, 243, 233, 0.2);
-  border-color: var(--color-golden-yellow);
-  color: var(--color-golden-yellow);
+  background: rgba(250, 243, 224, 0.2);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
 }
 
 .action-icon {
@@ -585,8 +585,8 @@ a:hover {
   position: absolute;
   top: -8px;
   right: -8px;
-  background: var(--color-golden-yellow);
-  color: var(--color-midnight-navy);
+  background: var(--color-gold);
+  color: var(--color-magnolia-white);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.25rem 0.5rem;
@@ -602,10 +602,10 @@ a:hover {
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(26, 26, 46, 0.98);
+  background: rgba(10, 25, 47, 0.98);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(247, 243, 233, 0.1);
+  border-top: 1px solid rgba(250, 243, 224, 0.1);
   padding: 2rem;
   z-index: 998;
 }
@@ -624,10 +624,10 @@ a:hover {
 .search-input {
   width: 100%;
   padding: 1rem 3rem 1rem 1rem;
-  background: rgba(247, 243, 233, 0.05);
-  border: 1px solid rgba(247, 243, 233, 0.2);
+  background: rgba(250, 243, 224, 0.05);
+  border: 1px solid rgba(250, 243, 224, 0.2);
   border-radius: 8px;
-  color: var(--color-pure-white);
+  color: var(--color-magnolia-white);
   font-size: 1rem;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -635,8 +635,8 @@ a:hover {
 
 .search-input:focus {
   outline: none;
-  border-color: var(--color-golden-yellow);
-  box-shadow: 0 0 0 3px rgba(246, 213, 92, 0.1);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .search-submit,
@@ -645,7 +645,7 @@ a:hover {
   right: 0;
   background: none;
   border: none;
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   cursor: pointer;
   padding: 1rem;
   font-size: 1.2rem;
@@ -654,7 +654,7 @@ a:hover {
 
 .search-submit:hover,
 .search-close:hover {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
 }
 
 .search-suggestions {
@@ -666,7 +666,7 @@ a:hover {
 }
 
 .suggestion-section h4 {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
   margin-bottom: 1rem;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -682,20 +682,20 @@ a:hover {
 
 .suggestion-tag,
 .suggestion-link {
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
   transition: all 0.3s ease;
-  border: 1px solid rgba(247, 243, 233, 0.2);
+  border: 1px solid rgba(250, 243, 224, 0.2);
 }
 
 .suggestion-tag:hover,
 .suggestion-link:hover {
-  color: var(--color-golden-yellow);
-  border-color: var(--color-golden-yellow);
-  background: rgba(246, 213, 92, 0.1);
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  background: rgba(212, 175, 55, 0.1);
 }
 
 /* ===============================================
@@ -720,8 +720,8 @@ a:hover {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 30% 20%, rgba(159, 122, 234, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(246, 213, 92, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 30% 20%, rgba(163, 177, 138, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -734,7 +734,7 @@ a:hover {
 .hero__title {
   font-size: clamp(3rem, 8vw, 5rem);
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--color-pure-white) 0%, var(--color-golden-yellow) 100%);
+  background: linear-gradient(135deg, var(--color-magnolia-white) 0%, var(--color-gold) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -742,7 +742,7 @@ a:hover {
 
 .hero__subtitle {
   font-size: clamp(1.25rem, 3vw, 1.75rem);
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   margin-bottom: 2rem;
   opacity: 0.9;
 }
@@ -786,7 +786,7 @@ a:hover {
 .form-label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   font-weight: 500;
 }
 
@@ -795,10 +795,10 @@ a:hover {
 .form-select {
   width: 100%;
   padding: 0.875rem 1rem;
-  background: rgba(247, 243, 233, 0.05);
-  border: 1px solid rgba(247, 243, 233, 0.2);
+  background: rgba(250, 243, 224, 0.05);
+  border: 1px solid rgba(250, 243, 224, 0.2);
   border-radius: 0.5rem;
-  color: var(--color-pure-white);
+  color: var(--color-magnolia-white);
   font-family: var(--font-body-family);
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -810,14 +810,14 @@ a:hover {
 .form-textarea:focus,
 .form-select:focus {
   outline: none;
-  border-color: var(--color-golden-yellow);
-  box-shadow: 0 0 0 3px rgba(246, 213, 92, 0.1);
-  background: rgba(247, 243, 233, 0.1);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  background: rgba(250, 243, 224, 0.1);
 }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: rgba(247, 243, 233, 0.6);
+  color: rgba(250, 243, 224, 0.6);
 }
 
 /* ===============================================
@@ -825,10 +825,10 @@ a:hover {
    =============================================== */
 
 .footer {
-  background: rgba(26, 26, 46, 0.95);
+  background: rgba(10, 25, 47, 0.95);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(247, 243, 233, 0.1);
+  border-top: 1px solid rgba(250, 243, 224, 0.1);
   padding: 3rem 0 1rem;
   margin-top: 4rem;
 }
@@ -841,7 +841,7 @@ a:hover {
 }
 
 .footer__section h4 {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
   margin-bottom: 1rem;
   font-size: 1.125rem;
 }
@@ -857,20 +857,20 @@ a:hover {
 }
 
 .footer__links a {
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
   font-size: 0.9rem;
   transition: color 0.3s ease;
 }
 
 .footer__links a:hover {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
 }
 
 .footer__bottom {
-  border-top: 1px solid rgba(247, 243, 233, 0.1);
+  border-top: 1px solid rgba(250, 243, 224, 0.1);
   padding-top: 1rem;
   text-align: center;
-  color: rgba(247, 243, 233, 0.7);
+  color: rgba(250, 243, 224, 0.7);
   font-size: 0.875rem;
 }
 
@@ -1001,8 +1001,8 @@ a:hover {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: var(--color-midnight-navy);
-  color: var(--color-pure-white);
+  background: var(--color-midnight-blue);
+  color: var(--color-magnolia-white);
   padding: 8px;
   text-decoration: none;
   border-radius: 4px;
@@ -1015,13 +1015,13 @@ a:hover {
 
 /* Focus styles */
 *:focus {
-  outline: 2px solid var(--color-golden-yellow);
+  outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
 
 button:focus,
 .btn:focus {
-  outline: 2px solid var(--color-golden-yellow);
+  outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
 
