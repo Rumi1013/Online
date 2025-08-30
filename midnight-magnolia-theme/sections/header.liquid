@@ -1,0 +1,121 @@
+{%- comment -%}
+  Header section for Midnight Magnolia theme
+{%- endcomment -%}
+
+<header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="logo-link">
+        {%- if settings.logo != blank -%}
+          <img 
+            src="{{ settings.logo | image_url: width: settings.logo_width | default: 120 }}"
+            alt="{{ shop.name }}"
+            loading="lazy"
+            width="{{ settings.logo_width | default: 120 }}"
+            height="auto"
+            class="logo-image"
+          >
+        {%- else -%}
+          <h1 class="logo-text">{{ shop.name }}</h1>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <nav class="header__nav" role="navigation">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="{{ routes.root_url }}" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ routes.all_products_collection_url }}" class="nav-link">All Products</a>
+        </li>
+        {%- for link in linklists.main-menu.links -%}
+          <li class="nav-item">
+            <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      {%- if settings.predictive_search_enabled -%}
+        <div class="header__search">
+          <button type="button" class="search-toggle" aria-label="Open search">
+            🔍
+          </button>
+        </div>
+      {%- endif -%}
+
+      <div class="header__cart">
+        <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="cart-link" aria-label="Cart ({{ cart.item_count }} items)">
+          🛒
+          {%- if cart.item_count > 0 -%}
+            <span class="cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle mobile navigation">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile Navigation {%- endcomment -%}
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li class="mobile-nav-item">
+        <a href="{{ routes.root_url }}" class="mobile-nav-link">Home</a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="{{ routes.all_products_collection_url }}" class="mobile-nav-link">All Products</a>
+      </li>
+      {%- for link in linklists.main-menu.links -%}
+        <li class="mobile-nav-item">
+          <a href="{{ link.url }}" class="mobile-nav-link">{{ link.title }}</a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</header>
+
+<script>
+  // Mobile navigation toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (mobileToggle && mobileNav) {
+      mobileToggle.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        this.setAttribute('aria-expanded', mobileNav.classList.contains('active'));
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "Show line separator"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "default": true,
+      "label": "Enable sticky header"
+    }
+  ]
+}
+{% endschema %}

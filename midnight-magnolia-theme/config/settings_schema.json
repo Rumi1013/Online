@@ -1,0 +1,164 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Midnight Magnolia",
+    "theme_version": "1.1.0",
+    "theme_author": "Midnight Magnolia",
+    "theme_documentation_url": "https://github.com/Rumi1013/Online/tree/master/midnight-magnolia-theme",
+    "theme_support_url": "https://github.com/Rumi1013/Online/issues"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Color scheme"
+      },
+      {
+        "type": "color",
+        "id": "color_midnight_navy",
+        "label": "Midnight Navy",
+        "default": "#1a1a2e"
+      },
+      {
+        "type": "color",
+        "id": "color_magnolia_white",
+        "label": "Magnolia White",
+        "default": "#f7f3e9"
+      },
+      {
+        "type": "color",
+        "id": "color_warm_cream",
+        "label": "Warm Cream",
+        "default": "#e8dcc0"
+      },
+      {
+        "type": "color",
+        "id": "color_golden_yellow",
+        "label": "Golden Yellow",
+        "default": "#f6d55c"
+      },
+      {
+        "type": "color",
+        "id": "color_mystical_purple",
+        "label": "Mystical Purple",
+        "default": "#9f7aea"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fonts"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "playfair_display_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "georgia_n4"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "text",
+        "id": "logo_width",
+        "label": "Logo width (px)",
+        "default": "120"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social media accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      }
+    ]
+  },
+  {
+    "name": "Analytics",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Analytics & Tracking"
+      },
+      {
+        "type": "text",
+        "id": "google_analytics_id",
+        "label": "Google Analytics ID"
+      },
+      {
+        "type": "text",
+        "id": "facebook_pixel_id",
+        "label": "Facebook Pixel ID"
+      }
+    ]
+  },
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Newsletter settings"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_heading",
+        "label": "Newsletter heading",
+        "default": "Join Our Sacred Circle"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter_text",
+        "label": "Newsletter description",
+        "default": "Receive monthly moon letters with spiritual wisdom, new arrivals, and exclusive offers."
+      }
+    ]
+  }
+]

@@ -1,0 +1,162 @@
+{%- comment -%}
+  Footer section for Midnight Magnolia theme
+{%- endcomment -%}
+
+<footer class="footer">
+  <div class="footer__content">
+    <div class="container">
+      <div class="footer__blocks">
+        
+        {%- comment -%} Newsletter Block {%- endcomment -%}
+        <div class="footer__block footer__newsletter">
+          <h3 class="footer__title">{{ settings.newsletter_heading | default: 'Join Our Sacred Circle' }}</h3>
+          <p class="footer__text">{{ settings.newsletter_text | default: 'Receive monthly moon letters with spiritual wisdom and exclusive offers.' }}</p>
+          
+          {% form 'customer' %}
+            <div class="newsletter-form footer__newsletter-form">
+              <input 
+                type="email" 
+                name="contact[email]" 
+                placeholder="Enter your email"
+                class="newsletter-input"
+                required
+              >
+              <button type="submit" class="btn btn--primary newsletter-btn">
+                Subscribe
+              </button>
+            </div>
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            
+            {%- if form.posted_successfully? -%}
+              <p class="newsletter-success">🌙 Welcome to our sacred circle!</p>
+            {%- endif -%}
+            
+            {%- if form.errors -%}
+              <p class="newsletter-error">{{ form.errors | first }}</p>
+            {%- endif -%}
+          {% endform %}
+        </div>
+
+        {%- comment -%} Quick Links {%- endcomment -%}
+        <div class="footer__block">
+          <h3 class="footer__title">Quick Links</h3>
+          <ul class="footer__list">
+            <li><a href="{{ routes.search_url }}" class="footer__link">Search</a></li>
+            <li><a href="{{ routes.root_url }}" class="footer__link">Home</a></li>
+            <li><a href="{{ routes.all_products_collection_url }}" class="footer__link">All Products</a></li>
+            {%- for link in linklists.footer.links -%}
+              <li><a href="{{ link.url }}" class="footer__link">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        {%- comment -%} Collections {%- endcomment -%}
+        <div class="footer__block">
+          <h3 class="footer__title">Sacred Collections</h3>
+          <ul class="footer__list">
+            <li><a href="{{ collections['sacred-home'].url }}" class="footer__link">Sacred Home</a></li>
+            <li><a href="{{ collections['mystical-accessories'].url }}" class="footer__link">Mystical Accessories</a></li>
+            <li><a href="{{ collections['healing-journals'].url }}" class="footer__link">Healing Journals</a></li>
+            <li><a href="{{ collections['tarot-divination'].url }}" class="footer__link">Tarot & Divination</a></li>
+          </ul>
+        </div>
+
+        {%- comment -%} Customer Care {%- endcomment -%}
+        <div class="footer__block">
+          <h3 class="footer__title">Customer Care</h3>
+          <ul class="footer__list">
+            {%- if shop.customer_accounts_enabled -%}
+              <li><a href="{{ routes.account_url }}" class="footer__link">Account</a></li>
+            {%- endif -%}
+            <li><a href="{{ policies.shipping_policy.url }}" class="footer__link">Shipping Info</a></li>
+            <li><a href="{{ policies.refund_policy.url }}" class="footer__link">Returns</a></li>
+            <li><a href="{{ policies.privacy_policy.url }}" class="footer__link">Privacy Policy</a></li>
+            <li><a href="{{ policies.terms_of_service.url }}" class="footer__link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      {%- comment -%} Social Media {%- endcomment -%}
+      <div class="footer__social">
+        <h3 class="footer__title">Connect With Us</h3>
+        <div class="social-links">
+          {%- if settings.social_twitter_link != blank -%}
+            <a href="{{ settings.social_twitter_link }}" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+              🐦
+            </a>
+          {%- endif -%}
+          {%- if settings.social_facebook_link != blank -%}
+            <a href="{{ settings.social_facebook_link }}" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              📘
+            </a>
+          {%- endif -%}
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              📷
+            </a>
+          {%- endif -%}
+          {%- if settings.social_pinterest_link != blank -%}
+            <a href="{{ settings.social_pinterest_link }}" class="social-link" target="_blank" rel="noopener" aria-label="Pinterest">
+              📌
+            </a>
+          {%- endif -%}
+          {%- if settings.social_youtube_link != blank -%}
+            <a href="{{ settings.social_youtube_link }}" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
+              📺
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Footer Bottom {%- endcomment -%}
+      <div class="footer__bottom">
+        <div class="footer__copyright">
+          <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+          <p class="footer__tagline">🌙 Your Digital Sanctuary for Spiritual Wellness ✨</p>
+        </div>
+        
+        <div class="footer__payment">
+          {%- if shop.enabled_payment_types.size > 0 -%}
+            <div class="payment-icons">
+              {%- for type in shop.enabled_payment_types -%}
+                {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "default": "footer",
+      "label": "Footer menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "Show newsletter signup"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "Show social media links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "default": true,
+      "label": "Show payment icons"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,148 @@
+{%- comment -%}
+  Homepage template for Midnight Magnolia theme
+{%- endcomment -%}
+
+<div class="homepage-content">
+  {%- comment -%} Hero Section {%- endcomment -%}
+  <section class="hero-section animate-fade-in">
+    <div class="hero-content">
+      <h1 class="hero-title">{{ section.settings.hero_title | default: 'Welcome to Midnight Magnolia' }}</h1>
+      <p class="hero-subtitle">{{ section.settings.hero_subtitle | default: 'Your digital sanctuary for spiritual wellness and sacred tools' }}</p>
+      
+      {%- if section.settings.hero_button_text != blank -%}
+        <a href="{{ section.settings.hero_button_link | default: '/collections/all' }}" class="btn btn--primary hero-btn">
+          {{ section.settings.hero_button_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- comment -%} Featured Collections {%- endcomment -%}
+  <section class="featured-collections">
+    <div class="container">
+      <h2 class="section-title">Sacred Collections</h2>
+      <div class="collections-grid">
+        {%- assign featured_collections = collections['sacred-home'], collections['mystical-accessories'], collections['healing-journals'], collections['tarot-divination'] -%}
+        
+        {%- for collection in featured_collections limit: 4 -%}
+          {%- if collection != empty -%}
+            <div class="collection-card animate-fade-in-up" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
+              <a href="{{ collection.url }}" class="collection-link">
+                {%- if collection.featured_image -%}
+                  <div class="collection-image">
+                    <img 
+                      src="{{ collection.featured_image | image_url: width: 400 }}"
+                      alt="{{ collection.featured_image.alt | default: collection.title | escape }}"
+                      loading="lazy"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="collection-info">
+                  <h3 class="collection-title">{{ collection.title }}</h3>
+                  <p class="collection-count">{{ collection.products_count }} items</p>
+                </div>
+              </a>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Featured Products {%- endcomment -%}
+  <section class="featured-products">
+    <div class="container">
+      <h2 class="section-title">Featured Sacred Tools</h2>
+      <div class="products-grid">
+        {%- for product in collections.featured.products limit: 8 -%}
+          {% render 'product-card', product: product, show_vendor: false %}
+        {%- else -%}
+          {%- comment -%} Fallback to all products if no featured collection {%- endcomment -%}
+          {%- for product in collections.all.products limit: 8 -%}
+            {% render 'product-card', product: product, show_vendor: false %}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Newsletter Section {%- endcomment -%}
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2 class="newsletter-title">{{ settings.newsletter_heading | default: 'Join Our Sacred Circle' }}</h2>
+        <p class="newsletter-description">{{ settings.newsletter_text | default: 'Receive monthly moon letters with spiritual wisdom, new arrivals, and exclusive offers.' }}</p>
+        
+        {% form 'customer' %}
+          <div class="newsletter-form">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              placeholder="Enter your email address"
+              class="newsletter-input"
+              required
+            >
+            <button type="submit" class="btn btn--primary newsletter-btn">
+              Subscribe ✨
+            </button>
+          </div>
+          
+          <div class="newsletter-form">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+          </div>
+          
+          {%- if form.posted_successfully? -%}
+            <p class="newsletter-success">Thank you for joining our sacred circle! 🌙</p>
+          {%- endif -%}
+          
+          {%- if form.errors -%}
+            <p class="newsletter-error">{{ form.errors | first }}</p>
+          {%- endif -%}
+        {% endform %}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} About Preview {%- endcomment -%}
+  <section class="about-preview">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2 class="about-title">About Midnight Magnolia</h2>
+          <p class="about-description">
+            A digital sanctuary for spiritual wellness, offering sacred tools and wisdom for those seeking healing, transformation, and connection to the divine. Our mission is to make sacred wisdom accessible to all who seek it.
+          </p>
+          <a href="{{ pages.about.url | default: '/pages/about' }}" class="btn btn--secondary">
+            Learn More About Our Story
+          </a>
+        </div>
+        <div class="about-image">
+          {%- if settings.about_image -%}
+            <img 
+              src="{{ settings.about_image | image_url: width: 500 }}"
+              alt="About Midnight Magnolia"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{%- comment -%} Schema Markup for Homepage {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  "url": "{{ shop.url }}",
+  "logo": "{{ settings.logo | image_url }}",
+  "description": "{{ shop.description | escape }}",
+  "sameAs": [
+    {%- if settings.social_twitter_link != blank -%}"{{ settings.social_twitter_link }}"{% unless settings.social_facebook_link == blank or settings.social_instagram_link == blank %},{% endunless %}{%- endif -%}
+    {%- if settings.social_facebook_link != blank -%}"{{ settings.social_facebook_link }}"{% unless settings.social_instagram_link == blank %},{% endunless %}{%- endif -%}
+    {%- if settings.social_instagram_link != blank -%}"{{ settings.social_instagram_link }}"{%- endif -%}
+  ]
+}
+</script>
