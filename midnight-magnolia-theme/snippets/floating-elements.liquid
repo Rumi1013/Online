@@ -116,9 +116,129 @@
   }
 }
 
+/* Extra Small Devices (320px and up) */
+@media (max-width: 320px) {
+  .petal-svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .petal {
+    opacity: 0.5;
+  }
+
+  .mystical-element {
+    opacity: 0.3;
+  }
+
+  .petal-1, .petal-3, .petal-5, .petal-7 { display: none; } /* Reduce elements for performance */
+  .element-2, .element-4, .element-6 { display: none; }
+}
+
+/* Small Devices (321px to 480px) */
+@media (min-width: 321px) and (max-width: 480px) {
+  .petal-svg {
+    width: 35px;
+    height: 35px;
+  }
+
+  .petal {
+    opacity: 0.6;
+  }
+
+  .mystical-element {
+    opacity: 0.4;
+  }
+
+  .petal-1, .petal-7 { display: none; } /* Reduce some elements */
+  .element-2, .element-6 { display: none; }
+}
+
+/* Medium Devices (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .petal-svg {
+    width: 45px;
+    height: 45px;
+  }
+
+  .petal {
+    opacity: 0.65;
+  }
+
+  .mystical-element {
+    opacity: 0.45;
+  }
+}
+
+/* Large Devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .petal-svg {
+    width: 55px;
+    height: 55px;
+  }
+
+  .petal {
+    opacity: 0.7;
+  }
+
+  .mystical-element {
+    opacity: 0.5;
+  }
+}
+
+/* Extra Large Devices (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .petal-svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .petal {
+    opacity: 0.75;
+  }
+
+  .mystical-element {
+    opacity: 0.55;
+  }
+}
+
+/* Ultra Large Devices (1441px and up) */
+@media (min-width: 1441px) {
+  .petal-svg {
+    width: 65px;
+    height: 65px;
+  }
+
+  .petal {
+    opacity: 0.8;
+  }
+
+  .mystical-element {
+    opacity: 0.6;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .petal, .mystical-element {
     animation: none;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .petal:hover, .mystical-element:hover {
+    transform: none; /* Disable hover effects on touch devices */
+  }
+}
+
+/* Performance optimization for low-end devices */
+@media (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .floating-petals, .mystical-elements {
+    will-change: auto; /* Disable will-change for better performance */
+  }
+
+  .petal, .mystical-element {
+    animation-duration: 20s; /* Slower animations for performance */
   }
 }
 </style>

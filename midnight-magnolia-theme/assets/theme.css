@@ -1006,52 +1006,81 @@ a:hover {
 .animate-delay-15 { animation-delay: 1.5s; }
 
 /* ===============================================
-   RESPONSIVE DESIGN
-   =============================================== */
+    RESPONSIVE DESIGN
+    =============================================== */
 
-@media (max-width: 768px) {
+/* Extra Small Devices (320px and up) */
+@media (max-width: 320px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .section {
+    padding: 1.5rem 0;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    min-height: 44px; /* Touch target size */
+  }
+
+  .product-card__content {
+    padding: 0.75rem;
+  }
+
+  .magnolia-card {
+    padding: 1rem;
+  }
+
+  /* Mystical elements optimization for very small screens */
+  .floating-petals .petal-svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .moon-phase-indicator {
+    position: static;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    max-width: none;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .nav__logo {
+    font-size: 1.25rem;
+  }
+
+  .mobile-menu-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .action-icon {
+    font-size: 1rem;
+  }
+}
+
+/* Small Devices (321px to 480px) */
+@media (min-width: 321px) and (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
   }
 
   .section {
     padding: 2rem 0;
-  }
-
-  .section--large {
-    padding: 3rem 0;
-  }
-
-  .nav__menu {
-    display: none;
-  }
-
-  .mobile-menu-toggle {
-    display: flex;
-  }
-
-  .hero__cta {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .grid {
-    gap: 1.5rem;
-  }
-
-  .magnolia-card {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 0.75rem;
   }
 
   .hero__title {
@@ -1062,11 +1091,20 @@ a:hover {
     font-size: 1.125rem;
   }
 
+  .btn {
+    padding: 0.875rem 2rem;
+    min-height: 48px;
+  }
+
   .product-card__content {
     padding: 1rem;
   }
 
-  /* Mystical elements mobile optimization */
+  .magnolia-card {
+    padding: 1.25rem;
+  }
+
+  /* Mystical elements optimization */
   .floating-petals .petal-svg {
     width: 40px;
     height: 40px;
@@ -1075,8 +1113,8 @@ a:hover {
   .moon-phase-indicator {
     position: static;
     margin: 1rem;
-    max-width: none;
     padding: 0.75rem;
+    max-width: none;
   }
 
   .moon-phases-svg {
@@ -1094,6 +1132,402 @@ a:hover {
     height: 120%;
     transform: translate(-10%, -10%);
   }
+
+  .nav__logo {
+    font-size: 1.375rem;
+  }
+
+  .mobile-menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Medium Devices (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .section--large {
+    padding: 3.5rem 0;
+  }
+
+  .hero__title {
+    font-size: 3rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+  }
+
+  .product-card__content {
+    padding: 1.25rem;
+  }
+
+  .magnolia-card {
+    padding: 1.5rem;
+  }
+
+  /* Mystical elements optimization */
+  .floating-petals .petal-svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .moon-phase-indicator {
+    position: static;
+    margin: 1rem;
+    padding: 1rem;
+    max-width: none;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .constellation-display {
+    opacity: 0.05; /* Very subtle on tablets */
+  }
+
+  .nav__menu {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Large Devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section--large {
+    padding: 4rem 0;
+  }
+
+  .hero__title {
+    font-size: 3.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+  }
+
+  .product-card__content {
+    padding: 1.5rem;
+  }
+
+  .magnolia-card {
+    padding: 1.75rem;
+  }
+
+  /* Mystical elements optimization */
+  .floating-petals .petal-svg {
+    width: 55px;
+    height: 55px;
+  }
+
+  .moon-phase-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 300px;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .constellation-display {
+    opacity: 0.08;
+  }
+
+  .nav__menu {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  .hero__cta {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .btn {
+    width: auto;
+    max-width: none;
+  }
+
+  .grid {
+    gap: 2rem;
+  }
+
+  .grid--3-col {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .grid--4-col {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+/* Extra Large Devices (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section--large {
+    padding: 5rem 0;
+  }
+
+  .hero__title {
+    font-size: 4rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.75rem;
+  }
+
+  .btn {
+    padding: 1.125rem 2.75rem;
+  }
+
+  .product-card__content {
+    padding: 1.75rem;
+  }
+
+  .magnolia-card {
+    padding: 2rem;
+  }
+
+  /* Mystical elements optimization */
+  .floating-petals .petal-svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .moon-phase-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 320px;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .constellation-display {
+    opacity: 0.1;
+  }
+
+  .nav__menu {
+    gap: 2rem;
+  }
+
+  .grid--3-col {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .grid--4-col {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Ultra Large Devices (1441px and up) */
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1400px;
+    padding: 0 2.5rem;
+  }
+
+  .section {
+    padding: 5rem 0;
+  }
+
+  .section--large {
+    padding: 6rem 0;
+  }
+
+  .hero__title {
+    font-size: 4.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.875rem;
+  }
+
+  .btn {
+    padding: 1.25rem 3rem;
+  }
+
+  .product-card__content {
+    padding: 2rem;
+  }
+
+  .magnolia-card {
+    padding: 2.25rem;
+  }
+
+  /* Mystical elements optimization */
+  .floating-petals .petal-svg {
+    width: 65px;
+    height: 65px;
+  }
+
+  .moon-phase-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 350px;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .constellation-display {
+    opacity: 0.12;
+  }
+
+  .nav__menu {
+    gap: 2.5rem;
+  }
+
+  .grid--3-col {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .grid--4-col {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* ===============================================
+    MOBILE PERFORMANCE OPTIMIZATIONS
+    =============================================== */
+
+/* Lazy loading for images */
+.lazy {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lazy.loaded {
+  opacity: 1;
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  /* Reduce motion for better performance */
+  .animate-float,
+  .animate-fade-in-up,
+  .animate-fade-in {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+  }
+
+  /* Optimize backdrop filters for mobile */
+  .magnolia-card,
+  .header,
+  .mobile-menu,
+  .search-bar {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Reduce shadow complexity on mobile */
+  .magnolia-card {
+    box-shadow:
+      0 4px 16px rgba(26, 26, 46, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn--primary {
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+  }
+
+  /* Optimize font rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Low power mode styles */
+.low-power-mode {
+  --animation-duration: 0.01ms;
+}
+
+.low-power-mode *,
+.low-power-mode *::before,
+.low-power-mode *::after {
+  animation-duration: var(--animation-duration) !important;
+  transition-duration: var(--animation-duration) !important;
+}
+
+.low-power-mode .floating-petals,
+.low-power-mode .mystical-elements,
+.low-power-mode .energy-orbs {
+  display: none !important;
+}
+
+/* Connection-aware optimizations */
+.slow-connection .animate-float,
+.slow-connection .animate-fade-in-up {
+  animation-duration: 1.5s;
+}
+
+.slow-connection .floating-petals .petal,
+.slow-connection .mystical-elements .mystical-element {
+  animation-duration: 25s;
 }
 
 /* ===============================================
@@ -1193,6 +1627,203 @@ button:focus,
   .btn {
     border-width: 2px;
   }
+
+  .product-card {
+    border: 2px solid;
+  }
+
+  .nav__link {
+    text-decoration: underline;
+  }
+
+  .moon-phase-indicator {
+    border-width: 3px;
+  }
+
+  .current-phase-marker {
+    border-width: 3px;
+  }
+}
+
+/* Responsive accessibility enhancements */
+
+/* Extra Small Devices (320px and up) */
+@media (max-width: 320px) {
+  /* Larger focus indicators for touch */
+  *:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  .btn:focus, button:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  /* Ensure minimum touch targets */
+  .skip-to-content-link {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* Improve readability */
+  .phase-description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+}
+
+/* Small Devices (321px to 480px) */
+@media (min-width: 321px) and (max-width: 480px) {
+  /* Enhanced focus visibility */
+  *:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn:focus, button:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Better touch targets */
+  .nav__action {
+    width: 48px;
+    height: 48px;
+  }
+
+  .mobile-menu-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Improved text contrast */
+  .phase-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
+
+/* Medium Devices (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Standard focus indicators */
+  *:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn:focus, button:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Ensure readable text sizes */
+  .phase-name {
+    font-size: 1rem;
+  }
+
+  .phase-description {
+    font-size: 0.875rem;
+  }
+}
+
+/* Large Devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Maintain focus visibility */
+  *:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn:focus, button:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Ensure proper spacing for larger screens */
+  .skip-to-content-link {
+    top: -50px;
+  }
+
+  .skip-to-content-link:focus {
+    top: 10px;
+  }
+}
+
+/* Extra Large Devices (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  /* Enhanced focus for larger screens */
+  *:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn:focus, button:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Better visibility for mystical elements */
+  .moon-phase-indicator {
+    border-width: 2px;
+  }
+
+  .current-phase-marker {
+    border-width: 3px;
+  }
+}
+
+/* Ultra Large Devices (1441px and up) */
+@media (min-width: 1441px) {
+  /* Maintain accessibility on very large screens */
+  *:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn:focus, button:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Ensure mystical elements remain accessible */
+  .moon-phase-indicator {
+    border-width: 2px;
+  }
+
+  .current-phase-marker {
+    border-width: 3px;
+  }
+}
+
+/* Screen reader only content - responsive */
+@media (max-width: 480px) {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    background: var(--color-midnight-blue);
+    color: var(--color-magnolia-white);
+    border: 2px solid var(--color-gold);
+    z-index: 1000;
+  }
 }
 
 /* Reduced motion support */
@@ -1211,8 +1842,93 @@ button:focus,
 }
 
 /* ===============================================
-   UTILITY CLASSES
-   =============================================== */
+    TOUCH INTERACTIONS & MOBILE OPTIMIZATIONS
+    =============================================== */
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets for better usability */
+  .btn, button, .button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .nav__action {
+    width: 48px;
+    height: 48px;
+  }
+
+  .mobile-menu-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Disable hover effects on touch devices */
+  .btn:hover, button:hover, .button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .nav__link:hover {
+    color: inherit;
+    text-shadow: none;
+  }
+
+  .magnolia-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .product-card:hover .product-card__image img {
+    transform: none;
+  }
+
+  /* Add active states for touch feedback */
+  .btn:active, button:active, .button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .nav__action:active {
+    background: rgba(250, 243, 224, 0.3);
+    transform: scale(0.95);
+  }
+}
+
+/* Swipe gestures support */
+.touch-swipe-area {
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* High contrast touch targets for accessibility */
+@media (prefers-contrast: high) and (hover: none) {
+  .btn, button, .button {
+    border: 2px solid;
+    border-radius: 6px;
+  }
+
+  .nav__action {
+    border: 2px solid;
+  }
+}
+
+/* ===============================================
+    UTILITY CLASSES
+    =============================================== */
 
 .text-center { text-align: center; }
 .text-left { text-align: left; }

@@ -124,15 +124,225 @@
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@media (max-width: 768px) {
+/* Extra Small Devices (320px and up) */
+@media (max-width: 320px) {
   .moon-phase-indicator {
     position: static;
-    margin: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
     max-width: none;
+    border-radius: 12px;
+  }
+
+  .moon-phase-display {
+    margin-bottom: 0.5rem;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .current-phase-marker {
+    width: 40px;
+    height: 40px;
+  }
+
+  .phase-name {
+    font-size: 0.9rem;
+  }
+
+  .phase-description {
+    font-size: 0.8rem;
   }
 
   .constellation-display {
     display: none;
+  }
+}
+
+/* Small Devices (321px to 480px) */
+@media (min-width: 321px) and (max-width: 480px) {
+  .moon-phase-indicator {
+    position: static;
+    margin: 0.75rem;
+    padding: 0.75rem;
+    max-width: none;
+    border-radius: 14px;
+  }
+
+  .moon-phase-display {
+    margin-bottom: 0.75rem;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .current-phase-marker {
+    width: 45px;
+    height: 45px;
+  }
+
+  .phase-name {
+    font-size: 0.95rem;
+  }
+
+  .phase-description {
+    font-size: 0.85rem;
+  }
+
+  .constellation-display {
+    display: none;
+  }
+}
+
+/* Medium Devices (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .moon-phase-indicator {
+    position: static;
+    margin: 1rem;
+    padding: 1rem;
+    max-width: none;
+    border-radius: 16px;
+  }
+
+  .moon-phase-display {
+    margin-bottom: 0.75rem;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .current-phase-marker {
+    width: 48px;
+    height: 48px;
+  }
+
+  .phase-name {
+    font-size: 1rem;
+  }
+
+  .phase-description {
+    font-size: 0.875rem;
+  }
+
+  .constellation-display {
+    opacity: 0.03;
+  }
+}
+
+/* Large Devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .moon-phase-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 280px;
+    border-radius: 16px;
+  }
+
+  .moon-phase-display {
+    margin-bottom: 0.75rem;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .current-phase-marker {
+    width: 50px;
+    height: 50px;
+  }
+
+  .phase-name {
+    font-size: 1rem;
+  }
+
+  .phase-description {
+    font-size: 0.9rem;
+  }
+
+  .constellation-display {
+    opacity: 0.05;
+  }
+}
+
+/* Extra Large Devices (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .moon-phase-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 300px;
+    border-radius: 16px;
+  }
+
+  .moon-phase-display {
+    margin-bottom: 0.75rem;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .current-phase-marker {
+    width: 50px;
+    height: 50px;
+  }
+
+  .phase-name {
+    font-size: 1.05rem;
+  }
+
+  .phase-description {
+    font-size: 0.925rem;
+  }
+
+  .constellation-display {
+    opacity: 0.08;
+  }
+}
+
+/* Ultra Large Devices (1441px and up) */
+@media (min-width: 1441px) {
+  .moon-phase-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 320px;
+    border-radius: 16px;
+  }
+
+  .moon-phase-display {
+    margin-bottom: 0.75rem;
+  }
+
+  .moon-phases-svg {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .current-phase-marker {
+    width: 52px;
+    height: 52px;
+  }
+
+  .phase-name {
+    font-size: 1.1rem;
+  }
+
+  .phase-description {
+    font-size: 0.95rem;
+  }
+
+  .constellation-display {
+    opacity: 0.1;
   }
 }
 

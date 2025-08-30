@@ -30,6 +30,8 @@
       this.initParallaxEffects();
       this.optimizeSVGs();
       this.initEnhancedComponents();
+      this.implementLazyLoading();
+      this.implementAdaptiveLoading();
     }
 
     /**
@@ -1259,14 +1261,140 @@
     }
 
     /**
-     * Optimize animations based on user preferences
+     * Implement lazy loading for images and mystical elements
+     */
+    implementLazyLoading() {
+      // Lazy load images
+      const lazyImages = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.add('lazy', 'loaded');
+            imageObserver.unobserve(img);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      });
+
+      lazyImages.forEach(img => imageObserver.observe(img));
+
+      // Lazy load mystical elements
+      const mysticalElements = document.querySelectorAll('.floating-petals, .mystical-elements, .energy-orbs');
+      const mysticalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mystical-loaded');
+            mysticalObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '100px 0px',
+        threshold: 0.1
+      });
+
+      mysticalElements.forEach(element => mysticalObserver.observe(element));
+    }
+
+    /**
+     * Implement performance monitoring and adaptive loading
+     */
+    implementAdaptiveLoading() {
+      // Monitor device performance
+      const performanceObserver = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        entries.forEach(entry => {
+          if (entry.entryType === 'layout-shift') {
+            // Reduce animations if layout shifts are too frequent
+            if (entry.value > 0.1) {
+              this.enableReducedMotion();
+            }
+          }
+        });
+      });
+
+      try {
+        performanceObserver.observe({ entryTypes: ['layout-shift', 'largest-contentful-paint'] });
+      } catch (e) {
+        // Performance observer not supported
+      }
+
+      // Adaptive loading based on connection
+      if ('connection' in navigator) {
+        const connection = navigator.connection;
+        if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+          this.enableSlowConnectionMode();
+        }
+
+        connection.addEventListener('change', () => {
+          if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+            this.enableSlowConnectionMode();
+          } else {
+            this.disableSlowConnectionMode();
+          }
+        });
+      }
+    }
+
+    /**
+     * Enable reduced motion mode
+     */
+    enableReducedMotion() {
+      document.documentElement.style.setProperty('--animation-duration', '0.3s');
+      const animatedElements = document.querySelectorAll('.animate-float, .animate-fade-in-up, .petal, .mystical-element');
+      animatedElements.forEach(element => {
+        element.style.animationDuration = '0.3s';
+      });
+    }
+
+    /**
+     * Enable slow connection optimizations
+     */
+    enableSlowConnectionMode() {
+      document.body.classList.add('slow-connection');
+
+      // Reduce particle effects
+      const particles = document.querySelectorAll('.petal, .mystical-element');
+      for (let i = 0; i < particles.length; i += 2) {
+        particles[i].style.display = 'none';
+      }
+
+      // Disable complex animations
+      const complexAnimations = document.querySelectorAll('.energy-orb, .zodiac-sign');
+      complexAnimations.forEach(element => {
+        element.style.animation = 'none';
+      });
+    }
+
+    /**
+     * Disable slow connection mode
+     */
+    disableSlowConnectionMode() {
+      document.body.classList.remove('slow-connection');
+
+      // Restore elements
+      const hiddenParticles = document.querySelectorAll('.petal[style*="display: none"], .mystical-element[style*="display: none"]');
+      hiddenParticles.forEach(element => {
+        element.style.display = '';
+      });
+    }
+
+    /**
+     * Optimize animations based on user preferences and device capabilities
      */
     optimizeAnimations() {
       // Respect user's motion preferences
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+        this.disableComplexAnimations();
         return;
       }
+
+      // Device-specific optimizations
+      this.optimizeForDeviceCapabilities();
 
       // Pause animations when tab is not visible
       document.addEventListener('visibilitychange', () => {
@@ -1278,6 +1406,192 @@
             element.style.animationPlayState = 'running';
           }
         });
+      });
+
+      // Reduce animations on low battery
+      if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+          if (battery.level < 0.2) {
+            this.enableLowPowerMode();
+          }
+
+          battery.addEventListener('levelchange', () => {
+            if (battery.level < 0.2) {
+              this.enableLowPowerMode();
+            } else {
+              this.disableLowPowerMode();
+            }
+          });
+        });
+      }
+    }
+
+    /**
+     * Optimize animations for different device capabilities
+     */
+    optimizeForDeviceCapabilities() {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isSlowConnection = navigator.connection && (navigator.connection.effectiveType === 'slow-2g' || navigator.connection.effectiveType === '2g');
+
+      if (isMobile) {
+        // Reduce particle counts on mobile
+        this.reduceParticleEffects();
+
+        // Use transform3d for better mobile performance
+        this.enableHardwareAcceleration();
+
+        // Throttle scroll-based animations
+        this.throttleScrollAnimations();
+      }
+
+      if (isSlowConnection) {
+        // Further reduce animations on slow connections
+        this.enablePerformanceMode();
+      }
+
+      // Check for high refresh rate displays
+      if (window.matchMedia && window.matchMedia('(min-resolution: 2dppx)').matches) {
+        // Optimize for high-DPI displays
+        this.optimizeForHighDPI();
+      }
+    }
+
+    /**
+     * Reduce particle effects for better mobile performance
+     */
+    reduceParticleEffects() {
+      // Reduce the number of floating elements on mobile
+      const floatingElements = document.querySelectorAll('.petal, .mystical-element');
+      const elementsToHide = Math.floor(floatingElements.length * 0.4); // Hide 40% of elements
+
+      for (let i = 0; i < elementsToHide; i++) {
+        if (floatingElements[i]) {
+          floatingElements[i].style.display = 'none';
+        }
+      }
+
+      // Reduce energy orb count
+      const energyOrbs = document.querySelectorAll('.interactive-energy-orb');
+      if (energyOrbs.length > 5) {
+        for (let i = 5; i < energyOrbs.length; i++) {
+          energyOrbs[i].style.display = 'none';
+        }
+      }
+    }
+
+    /**
+     * Enable hardware acceleration for better performance
+     */
+    enableHardwareAcceleration() {
+      const animatedElements = document.querySelectorAll('.animate-float, .petal, .mystical-element, .energy-orb');
+      animatedElements.forEach(element => {
+        element.style.transform = 'translateZ(0)';
+        element.style.backfaceVisibility = 'hidden';
+        element.style.perspective = '1000px';
+      });
+    }
+
+    /**
+     * Throttle scroll-based animations for mobile
+     */
+    throttleScrollAnimations() {
+      let scrollTimeout;
+      const scrollHandler = () => {
+        if (!scrollTimeout) {
+          scrollTimeout = setTimeout(() => {
+            // Process scroll animations
+            this.processScrollAnimations();
+            scrollTimeout = null;
+          }, 16); // ~60fps
+        }
+      };
+
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+    }
+
+    /**
+     * Process scroll animations with throttling
+     */
+    processScrollAnimations() {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      animatedElements.forEach(element => {
+        const elementTop = element.offsetTop;
+        const elementVisible = scrollY + windowHeight > elementTop + 100;
+
+        if (elementVisible && !element.classList.contains('animate-in')) {
+          element.classList.add('animate-in');
+        }
+      });
+    }
+
+    /**
+     * Optimize for high-DPI displays
+     */
+    optimizeForHighDPI() {
+      // Increase canvas resolution for crisp animations
+      const canvases = document.querySelectorAll('canvas');
+      canvases.forEach(canvas => {
+        const ctx = canvas.getContext('2d');
+        const dpr = window.devicePixelRatio || 1;
+
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+      });
+    }
+
+    /**
+     * Enable low power mode for battery conservation
+     */
+    enableLowPowerMode() {
+      document.documentElement.classList.add('low-power-mode');
+
+      // Reduce animation complexity
+      const style = document.createElement('style');
+      style.textContent = `
+        .low-power-mode .petal,
+        .low-power-mode .mystical-element,
+        .low-power-mode .energy-orb {
+          animation-duration: 0.01ms !important;
+        }
+
+        .low-power-mode .floating-petals,
+        .low-power-mode .mystical-elements {
+          opacity: 0.3;
+        }
+
+        .low-power-mode .constellation-overlay {
+          display: none;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    /**
+     * Disable low power mode
+     */
+    disableLowPowerMode() {
+      document.documentElement.classList.remove('low-power-mode');
+      const lowPowerStyles = document.querySelector('style[data-low-power]');
+      if (lowPowerStyles) {
+        lowPowerStyles.remove();
+      }
+    }
+
+    /**
+     * Disable complex animations for accessibility
+     */
+    disableComplexAnimations() {
+      const complexElements = document.querySelectorAll('.floating-petals, .mystical-elements, .energy-orbs, .zodiac-constellation');
+      complexElements.forEach(element => {
+        element.style.display = 'none';
       });
     }
   }

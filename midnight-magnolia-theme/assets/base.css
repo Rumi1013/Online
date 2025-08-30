@@ -393,7 +393,46 @@ details[open] .summary__icon--caret {
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 749px) {
+
+/* Extra Small Devices (320px and up) */
+@media screen and (max-width: 320px) {
+  .drawer__inner {
+    max-width: 100%;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cart-item__media {
+    align-self: flex-start;
+  }
+
+  .cart-item__image {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .quantity__button {
+    width: 3.5rem;
+    font-size: 1.4rem;
+  }
+
+  .button {
+    padding: 1rem 1.8rem;
+    font-size: 1.2rem;
+    min-height: 4rem;
+  }
+
+  .field__input {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* Small Devices (321px to 480px) */
+@media screen and (min-width: 321px) and (max-width: 480px) {
   .drawer__inner {
     max-width: 100%;
   }
@@ -410,5 +449,147 @@ details[open] .summary__icon--caret {
   .cart-item__image {
     width: 6rem;
     height: 6rem;
+  }
+
+  .quantity__button {
+    width: 4rem;
+    font-size: 1.6rem;
+  }
+
+  .button {
+    padding: 1.1rem 2rem;
+    font-size: 1.3rem;
+    min-height: 4.2rem;
+  }
+
+  .field__input {
+    padding: 1.1rem;
+    font-size: 1.3rem;
+  }
+}
+
+/* Medium Devices (481px to 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .drawer__inner {
+    max-width: 90%;
+  }
+
+  .cart-item {
+    flex-direction: row;
+    gap: 1.25rem;
+  }
+
+  .cart-item__image {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .quantity__button {
+    width: 4.2rem;
+    font-size: 1.7rem;
+  }
+
+  .button {
+    padding: 1.1rem 2.2rem;
+    font-size: 1.3rem;
+    min-height: 4.4rem;
+  }
+
+  .field__input {
+    padding: 1.1rem;
+    font-size: 1.3rem;
+  }
+}
+
+/* Large Devices (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .drawer__inner {
+    max-width: 80%;
+  }
+
+  .cart-item {
+    gap: 1.5rem;
+  }
+
+  .cart-item__image {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .quantity__button {
+    width: 4.5rem;
+  }
+
+  .button {
+    padding: 1.2rem 2.4rem;
+    font-size: 1.4rem;
+    min-height: 4.5rem;
+  }
+
+  .field__input {
+    padding: 1.2rem;
+    font-size: 1.4rem;
+  }
+}
+
+/* Extra Large Devices (1025px to 1440px) */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .drawer__inner {
+    max-width: 70%;
+  }
+
+  .cart-item {
+    gap: 1.75rem;
+  }
+
+  .cart-item__image {
+    width: 8.5rem;
+    height: 8.5rem;
+  }
+
+  .quantity__button {
+    width: 4.5rem;
+  }
+
+  .button {
+    padding: 1.2rem 2.4rem;
+    font-size: 1.4rem;
+    min-height: 4.5rem;
+  }
+
+  .field__input {
+    padding: 1.2rem;
+    font-size: 1.4rem;
+  }
+}
+
+/* Ultra Large Devices (1441px and up) */
+@media screen and (min-width: 1441px) {
+  .drawer__inner {
+    max-width: 60%;
+  }
+
+  .cart-item {
+    gap: 2rem;
+  }
+
+  .cart-item__image {
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .quantity__button {
+    width: 4.5rem;
+  }
+
+  .button {
+    padding: 1.2rem 2.4rem;
+    font-size: 1.4rem;
+    min-height: 4.5rem;
+  }
+
+  .field__input {
+    padding: 1.2rem;
+    font-size: 1.4rem;
   }
 }
