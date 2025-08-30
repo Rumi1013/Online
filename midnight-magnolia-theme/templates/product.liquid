@@ -22,6 +22,7 @@
               <div class="product-image animate-fade-in">
                 <img src="{{ product.featured_media | image_url: width: 600 }}"
                      alt="{{ product.featured_media.alt | escape }}"
+                     loading="eager"
                      id="main-product-image">
               </div>
 
@@ -46,7 +47,8 @@
                           data-media-id="{{ media.id }}"
                           onclick="changeMainImage('{{ media | image_url: width: 600 }}', this)">
                     <img src="{{ media | image_url: width: 100 }}"
-                         alt="{{ media.alt | escape }}">
+                         alt="{{ media.alt | escape }}"
+                         loading="lazy">
                   </button>
                 {%- endfor -%}
               </div>
@@ -338,12 +340,16 @@
             {%- unless related_product.id == product.id -%}
               <div class="product-card">
                 <div class="product-card__image">
-                  {%- if related_product.featured_media -%}
-                    <img src="{{ related_product.featured_media | image_url: width: 300 }}"
-                         alt="{{ related_product.featured_media.alt | escape }}"
-                         loading="lazy">
-                  {%- endif -%}
-                </div>
+                    {%- if related_product.featured_media -%}
+                      <img src="{{ related_product.featured_media | image_url: width: 300 }}"
+                           alt="{{ related_product.featured_media.alt | escape }}"
+                           loading="lazy">
+                    {%- else -%}
+                      <div class="product-card__placeholder">
+                        {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 100px; height: 100px; opacity: 0.3;' }}
+                      </div>
+                    {%- endif -%}
+                  </div>
 
                 <div class="product-card__content">
                   <h3 class="product-card__title">

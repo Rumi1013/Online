@@ -52,7 +52,7 @@
         <div class="article-featured-image animate-fade-in-up">
           <img src="{{ article.image | img_url: '1200x600' }}"
                alt="{{ article.image.alt | default: article.title }}"
-               loading="lazy">
+               loading="eager">
           <div class="image-overlay"></div>
         </div>
       </div>

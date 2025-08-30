@@ -47,7 +47,8 @@
                   <div class="cart-item__image">
                     {%- if item.image -%}
                       <img src="{{ item.image | image_url: width: 150 }}"
-                           alt="{{ item.image.alt | escape }}">
+                           alt="{{ item.image.alt | escape }}"
+                           loading="lazy">
                     {%- else -%}
                       {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 80px; height: 80px; opacity: 0.3;' }}
                     {%- endif -%}
