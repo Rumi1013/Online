@@ -1,9 +1,10 @@
+"use client"
+
 import dynamic from "next/dynamic"
 import { Suspense } from "react"
 
 // 🌙 Dynamically import the client component to avoid SSR issues
 const ShopPageClient = dynamic(() => import("./ShopPageClient"), {
-  ssr: false,
   loading: () => (
     <div className="min-h-screen bg-midnight-blue flex items-center justify-center">
       <div className="text-center">

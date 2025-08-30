@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Removed output: 'export' to support API routes for Azure deployment
   trailingSlash: true,
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],

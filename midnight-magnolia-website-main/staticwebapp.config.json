@@ -1,0 +1,48 @@
+{
+  "platform": {
+    "apiRuntime": "node:18"
+  },
+  "navigationFallback": {
+    "rewrite": "/api/404"
+  },
+  "routes": [
+    {
+      "route": "/api/*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/admin/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/dashboard/*",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
+  },
+  "forwardingGateway": {
+    "allowedForwardedHosts": ["midnight-magnolia.com"],
+    "requiredHeaders": {
+      "X-Azure-FDID": "custom-azure-front-door-id"
+    }
+  },
+  "auth": {
+    "rolesSource": "/api/GetRoles",
+    "identityProviders": {
+      "github": {
+        "registration": {
+          "clientIdSettingName": "GITHUB_CLIENT_ID",
+          "clientSecretSettingName": "GITHUB_CLIENT_SECRET"
+        }
+      }
+    }
+  },
+  "networking": {
+    "allowedIpRanges": []
+  }
+}
