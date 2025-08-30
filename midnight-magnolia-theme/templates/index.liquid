@@ -70,6 +70,17 @@
 
           {%- for product in collections['featured-tools'].products limit: 3 -%}
             <div class="product-card animate-fade-in-up animate-delay-0{{ forloop.index | plus: 3 }}">
+              {%- comment -%} Product Image {%- endcomment -%}
+              <div class="product-card__image">
+                {%- if product.featured_media -%}
+                  <img src="{{ product.featured_media | image_url: width: 400 }}"
+                       alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                       loading="lazy">
+                {%- else -%}
+                  <div class="product-card__placeholder">
+                    {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 100px; height: 100px; opacity: 0.3;' }}
+                  </div>
+                {%- endif -%}
 
                 {%- comment -%} Product Badges {%- endcomment -%}
                 <div class="product-card__badges">
