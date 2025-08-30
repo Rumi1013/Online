@@ -1,0 +1,702 @@
+<section class="hero-section celestial-background-section" {{ section.settings.custom_css | style }}>
+  <div class="celestial-overlay">
+    <!-- Main celestial background -->
+    <div class="celestial-main-bg">
+      {{ 'celestial-bg.svg' | asset_url | image_tag:
+        width: '1920',
+        height: '1080',
+        alt: '',
+        class: 'celestial-bg-svg',
+        loading: 'eager'
+      }}
+    </div>
+
+    <!-- Enhanced star field -->
+    <div class="enhanced-stars" aria-hidden="true">
+      {% for i in (1..15) %}
+        <div class="star star-{{ i }}" style="
+          left: {{ 1 | times: 100 | random }}%;
+          top: {{ 1 | times: 100 | random }}%;
+          animation-delay: {{ i | times: 0.15 }}s;
+          animation-duration: {{ 2 | plus: i | times: 0.08 }}s;
+        "></div>
+      {% endfor %}
+    </div>
+
+    <!-- Mystical energy waves -->
+    <div class="energy-waves" aria-hidden="true">
+      {% for i in (1..2) %}
+        <div class="energy-wave wave-{{ i }}" style="animation-delay: {{ i | times: 3 }}s;"></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Hero Content Container -->
+  <div class="hero-container">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left Side: Text Content -->
+        <div class="hero-content">
+          {% if section.settings.title != blank %}
+            <h1 class="hero-title animate-fade-in-up">{{ section.settings.title }}</h1>
+          {% endif %}
+
+          {% if section.settings.subtitle != blank %}
+            <p class="hero-subtitle animate-fade-in-up" style="animation-delay: 0.2s;">{{ section.settings.subtitle }}</p>
+          {% endif %}
+
+          {% if section.settings.description != blank %}
+            <div class="hero-description animate-fade-in-up" style="animation-delay: 0.4s;">
+              {{ section.settings.description }}
+            </div>
+          {% endif %}
+
+          <div class="hero-cta animate-fade-in-up" style="animation-delay: 0.6s;">
+            {% if section.settings.primary_cta_text != blank and section.settings.primary_cta_link != blank %}
+              <a href="{{ section.settings.primary_cta_link }}" class="btn btn--primary hero-cta-primary">
+                {{ section.settings.primary_cta_text }}
+              </a>
+            {% endif %}
+
+            {% if section.settings.secondary_cta_text != blank and section.settings.secondary_cta_link != blank %}
+              <a href="{{ section.settings.secondary_cta_link }}" class="btn btn--secondary hero-cta-secondary">
+                {{ section.settings.secondary_cta_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Right Side: Mystical Illustration -->
+        <div class="hero-illustration">
+          <div class="illustration-container">
+            <!-- Central Mystical Element -->
+            <div class="central-element animate-float">
+              <div class="mystical-circle">
+                <div class="circle-inner">
+                  <div class="moon-phase-display">
+                    {{ 'moon-phases.svg' | asset_url | image_tag:
+                      width: '120',
+                      height: '120',
+                      alt: 'Current moon phase',
+                      class: 'moon-svg'
+                    }}
+                  </div>
+                  <div class="central-glow"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Zodiac Signs -->
+            <div class="zodiac-constellation" aria-hidden="true">
+              {% assign zodiac_signs = '♈,♉,♊,♋,♌,♍,♎,♏,♐,♑,♒,♓' | split: ',' %}
+              {% for i in (1..8) %}
+                <div class="zodiac-sign zodiac-{{ i }} animate-float" style="
+                  animation-delay: {{ i | times: 0.3 }}s;
+                  left: {{ 20 | plus: i | times: 8 }}%;
+                  top: {{ 15 | plus: i | times: 10 }}%;
+                ">
+                  {{ zodiac_signs[i] }}
+                </div>
+              {% endfor %}
+            </div>
+
+            <!-- Enhanced Magnolia Petals -->
+            <div class="hero-petals" aria-hidden="true">
+              {% for i in (1..6) %}
+                <div class="hero-petal petal-{{ i }} animate-float" style="animation-delay: {{ i | times: 0.4 }}s;">
+                  {{ 'magnolia-flower.svg' | asset_url | image_tag:
+                    width: '40',
+                    height: '40',
+                    alt: '',
+                    class: 'petal-svg-small'
+                  }}
+                </div>
+              {% endfor %}
+            </div>
+
+            <!-- Mystical Energy Orbs -->
+            <div class="energy-orbs" aria-hidden="true">
+              {% for i in (1..4) %}
+                <div class="energy-orb orb-{{ i }}" style="animation-delay: {{ i | times: 0.6 }}s;"></div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  {% if section.settings.show_scroll_indicator %}
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <div class="scroll-text">Scroll to explore</div>
+    </div>
+  {% endif %}
+</section>
+
+<style>
+/* Hero Section Base Styles */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.hero-content {
+  padding-right: 2rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--color-magnolia-white) 0%, var(--color-gold) 50%, var(--color-sage-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 40px rgba(246, 213, 92, 0.2);
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  color: var(--color-magnolia-white);
+}
+
+.hero-description {
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(247, 243, 233, 0.9);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-cta-primary {
+  box-shadow: 0 8px 32px rgba(246, 213, 92, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.hero-cta-primary:hover::before {
+  left: 100%;
+}
+
+.hero-cta-secondary {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* Hero Illustration Styles */
+.hero-illustration {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}
+
+.illustration-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.central-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.mystical-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(159, 122, 234, 0.2) 0%, rgba(163, 177, 138, 0.1) 70%, transparent 100%);
+  border: 2px solid rgba(246, 213, 92, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: mysticalPulse 4s ease-in-out infinite;
+}
+
+.circle-inner {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(246, 213, 92, 0.1) 0%, rgba(159, 122, 234, 0.05) 100%);
+  border: 1px solid rgba(163, 177, 138, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.moon-phase-display {
+  position: relative;
+  z-index: 1;
+}
+
+.moon-svg {
+  filter: drop-shadow(0 0 20px rgba(246, 213, 92, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.moon-svg:hover {
+  transform: scale(1.05);
+}
+
+.central-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(246, 213, 92, 0.2) 0%, transparent 70%);
+  animation: centralGlow 3s ease-in-out infinite alternate;
+}
+
+/* Zodiac Constellation */
+.zodiac-constellation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.zodiac-sign {
+  position: absolute;
+  font-size: 1.5rem;
+  color: rgba(246, 213, 92, 0.7);
+  text-shadow: 0 0 10px rgba(246, 213, 92, 0.3);
+  animation-duration: 6s;
+  font-weight: bold;
+}
+
+.zodiac-sign:nth-child(odd) {
+  color: rgba(159, 122, 234, 0.6);
+  text-shadow: 0 0 10px rgba(159, 122, 234, 0.3);
+}
+
+/* Hero Petals */
+.hero-petals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-petal {
+  position: absolute;
+  opacity: 0.7;
+  animation-duration: 8s;
+}
+
+.petal-1 { top: 20%; left: 10%; }
+.petal-2 { top: 15%; right: 15%; }
+.petal-3 { top: 70%; left: 20%; }
+.petal-4 { top: 75%; right: 10%; }
+.petal-5 { top: 40%; left: 5%; }
+.petal-6 { top: 60%; right: 5%; }
+
+.petal-svg-small {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Energy Orbs */
+.energy-orbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.energy-orb {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(246, 213, 92, 0.8) 0%, rgba(159, 122, 234, 0.4) 100%);
+  animation: energyOrbFloat 5s ease-in-out infinite;
+}
+
+.orb-1 { top: 30%; left: 25%; }
+.orb-2 { top: 50%; right: 30%; }
+.orb-3 { top: 10%; right: 20%; }
+.orb-4 { top: 80%; left: 30%; }
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba(247, 243, 233, 0.7);
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 36px;
+  border: 2px solid rgba(247, 243, 233, 0.7);
+  border-radius: 12px;
+  margin: 0 auto 0.5rem;
+  position: relative;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 8px;
+  background: rgba(247, 243, 233, 0.7);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+
+.scroll-text {
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Animations */
+@keyframes mysticalPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes centralGlow {
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes energyOrbFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+    opacity: 1;
+  }
+}
+
+@keyframes scrollWheel {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(16px);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-grid {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-content {
+    padding-right: 0;
+    order: 2;
+  }
+
+  .hero-illustration {
+    order: 1;
+    min-height: 300px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+  }
+
+  .mystical-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .circle-inner {
+    width: 120px;
+    height: 120px;
+  }
+
+  .moon-svg {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .hero-grid {
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-cta .btn {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .mystical-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .circle-inner {
+    width: 90px;
+    height: 90px;
+  }
+
+  .moon-svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .zodiac-sign {
+    font-size: 1.2rem;
+  }
+
+  .petal-svg-small {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title,
+  .hero-subtitle,
+  .hero-description,
+  .hero-cta,
+  .central-element,
+  .zodiac-sign,
+  .hero-petal,
+  .energy-orb,
+  .scroll-indicator {
+    animation: none;
+  }
+
+  .mystical-circle,
+  .moon-svg {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .hero-title {
+    -webkit-text-fill-color: var(--color-magnolia-white);
+    background: none;
+    text-shadow: none;
+  }
+
+  .zodiac-sign,
+  .energy-orb {
+    opacity: 0.9;
+  }
+}
+
+/* Focus styles */
+.hero-cta-primary:focus,
+.hero-cta-secondary:focus {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Animated Hero Section",
+  "tag": "section",
+  "class": "hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero Title",
+      "default": "Welcome to Your Digital Sanctuary"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Hero Subtitle",
+      "default": "Discover transformative tools for spiritual wellness and celestial guidance"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Hero Description",
+      "default": "Embark on a journey of self-discovery with our curated collection of digital tools designed to support your spiritual growth and healing process."
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "Primary CTA Text",
+      "default": "Enter the Garden"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_link",
+      "label": "Primary CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary CTA Text",
+      "default": "Our Sacred Story"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_link",
+      "label": "Secondary CTA Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show scroll indicator",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Animated Hero Section"
+    }
+  ]
+}
+{% endschema %}

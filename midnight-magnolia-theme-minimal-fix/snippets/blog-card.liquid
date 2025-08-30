@@ -1,0 +1,27 @@
+<article class="shopify-blog-preview animate-fade-in-up" tabindex="0" aria-label="{{ article.title }}">
+  {% if article.image %}
+    <div class="blog-card__image">
+      <img src="{{ article.image | image_url: width: 400 }}"
+           alt="{{ article.image.alt | escape }}"
+           loading="lazy"
+           class="w-full h-auto rounded shadow-lg transition-transform duration-200 hover:scale-105" />
+    </div>
+  {% endif %}
+  <div class="blog-card__content">
+    <div class="blog-card__meta">
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+        {{ article.published_at | date: '%B %d, %Y' }}
+      </time>
+      {% if article.tags.size > 0 %}
+        <span class="blog-card__category">{{ article.tags.first }}</span>
+      {% endif %}
+    </div>
+    <h3 class="blog-card__title">
+      <a href="{{ article.url }}" class="hover:text-gold">{{ article.title }}</a>
+    </h3>
+    <p class="blog-card__excerpt text-warm-gray">
+      {{ article.excerpt | default: article.content | strip_html | truncate: 150 }}
+    </p>
+    <a href="{{ article.url }}" class="shopify-btn mt-2">Read More</a>
+  </div>
+</article>
