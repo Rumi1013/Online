@@ -25,7 +25,8 @@
                  alt="{{ shop.name }}"
                  class="logo-image"
                  width="{{ settings.logo_width | default: 180 }}"
-                 height="auto">
+                 height="auto"
+                 loading="eager">
           </a>
         {%- else -%}
           <a href="{{ routes.root_url }}" class="logo-link">
@@ -33,7 +34,8 @@
                  alt="{{ shop.name }}"
                  class="logo-image"
                  width="{{ settings.logo_width | default: 180 }}"
-                 height="auto">
+                 height="auto"
+                 loading="eager">
           </a>
         {%- endif -%}
       </div>

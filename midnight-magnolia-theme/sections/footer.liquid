@@ -16,7 +16,8 @@
           {%- if settings.footer_logo != blank -%}
             <img src="{{ settings.footer_logo | image_url: width: 150 }}"
                  alt="{{ shop.name }}"
-                 class="footer-logo">
+                 class="footer-logo"
+                 loading="lazy">
           {%- else -%}
             <h3 class="footer-brand-name">{{ shop.name }}</h3>
           {%- endif -%}

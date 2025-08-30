@@ -32,7 +32,7 @@
               <div class="product-card__image">
                 {%- if product.featured_media -%}
                   <img src="{{ product.featured_media | image_url: width: 400 }}"
-                       alt="{{ product.featured_media.alt | escape }}"
+                       alt="{{ product.featured_media.alt | default: product.title | escape }}"
                        loading="lazy">
                 {%- else -%}
                   <div class="product-card__placeholder">

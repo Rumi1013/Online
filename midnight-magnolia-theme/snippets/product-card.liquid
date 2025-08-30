@@ -24,7 +24,7 @@
     <a href="{{ product.url }}" class="product-card__image-link">
       {%- if product.featured_media -%}
         <img src="{{ product.featured_media | image_url: width: 400 }}"
-             alt="{{ product.featured_media.alt | escape }}"
+             alt="{{ product.featured_media.alt | default: product.title | escape }}"
              class="product-card__img"
              {% if lazy_load %}loading="lazy"{% endif %}
              width="400"
@@ -33,7 +33,7 @@
         {%- comment -%} Hover image (second image) {%- endcomment -%}
         {%- if product.media[1] -%}
           <img src="{{ product.media[1] | image_url: width: 400 }}"
-               alt="{{ product.media[1].alt | escape }}"
+               alt="{{ product.media[1].alt | default: product.title | escape }}"
                class="product-card__img product-card__img--hover"
                {% if lazy_load %}loading="lazy"{% endif %}
                width="400"
