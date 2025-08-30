@@ -1,0 +1,510 @@
+{%- comment -%}
+  MIDNIGHT MAGNOLIA THEME
+  Support Page Template - Help Center & Resources
+{%- endcomment -%}
+
+<div class="support-page celestial-bg">
+
+  {%- comment -%} Hero Section {%- endcomment -%}
+  <section class="support-hero section--large">
+    <div class="container">
+      <div class="hero-content text-center animate-fade-in-up">
+        <div class="hero-logo">
+          {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 80px; height: 80px;' }}
+        </div>
+        <div class="section-badge">SACRED SUPPORT</div>
+        <h1 class="hero-title">We're Here for You</h1>
+        <p class="hero-subtitle">
+          Your spiritual journey matters to us. Find answers, get help, and access
+          resources to support your healing and growth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Quick Help Section {%- endcomment -%}
+  <section class="quick-help section">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <h2 class="animate-fade-in-up">How Can We Support You Today?</h2>
+        <p class="animate-fade-in-up" style="animation-delay: 0.1s;">
+          Choose the type of support that best fits your needs
+        </p>
+      </div>
+
+      <div class="help-options grid grid--4-col">
+        <a href="#order-support" class="help-card animate-fade-in-up">
+          <div class="help-icon">📦</div>
+          <h3>Order Support</h3>
+          <p>Questions about orders, shipping, or digital downloads</p>
+        </a>
+
+        <a href="#technical-help" class="help-card animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="help-icon">⚙️</div>
+          <h3>Technical Help</h3>
+          <p>Website issues, account problems, or technical difficulties</p>
+        </a>
+
+        <a href="#product-questions" class="help-card animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="help-icon">❓</div>
+          <h3>Product Questions</h3>
+          <p>Learn more about our spiritual tools and resources</p>
+        </a>
+
+        <a href="#community-support" class="help-card animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="help-icon">💜</div>
+          <h3>Community Support</h3>
+          <p>Connect with our healing community and facilitators</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Contact Methods Section {%- endcomment -%}
+  <section class="contact-methods section celestial-bg">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <h2 class="animate-fade-in-up">Ways to Reach Us</h2>
+        <p class="animate-fade-in-up" style="animation-delay: 0.1s;">
+          Multiple channels for support, designed with your preferences in mind
+        </p>
+      </div>
+
+      <div class="contact-grid grid grid--2-col">
+        <div class="contact-card primary animate-fade-in-up">
+          <div class="contact-header">
+            <div class="contact-icon">✉️</div>
+            <h3>Sacred Support Email</h3>
+            <span class="response-time">Response within 24 hours</span>
+          </div>
+          <div class="contact-content">
+            <p>For detailed questions or when you need a thoughtful, comprehensive response.</p>
+            <div class="contact-info">
+              <p><strong>Email:</strong> <a href="mailto:support@midnightmagnolia.com">support@midnightmagnolia.com</a></p>
+              <p><strong>Best for:</strong> Complex questions, order issues, refund requests</p>
+              <p><strong>Hours:</strong> We respond 7 days a week</p>
+            </div>
+            <a href="mailto:support@midnightmagnolia.com" class="btn btn--primary">Send Email</a>
+          </div>
+        </div>
+
+        <div class="contact-card animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="contact-header">
+            <div class="contact-icon">💬</div>
+            <h3>Live Chat Support</h3>
+            <span class="response-time">Immediate response</span>
+          </div>
+          <div class="contact-content">
+            <p>Quick questions and immediate assistance during business hours.</p>
+            <div class="contact-info">
+              <p><strong>Available:</strong> Mon-Fri 9 AM - 6 PM EST</p>
+              <p><strong>Best for:</strong> Quick questions, order status, general info</p>
+              <p><strong>Language:</strong> English (working on adding more!)</p>
+            </div>
+            <a href="#chat-widget" class="btn btn--secondary">Start Chat</a>
+          </div>
+        </div>
+
+        <div class="contact-card animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="contact-header">
+            <div class="contact-icon">📱</div>
+            <h3>Community Discord</h3>
+            <span class="response-time">Community-powered</span>
+          </div>
+          <div class="contact-content">
+            <p>Connect with other community members and get peer support.</p>
+            <div class="contact-info">
+              <p><strong>Access:</strong> Available to Healing Circle members</p>
+              <p><strong>Best for:</strong> Product discussions, peer support</p>
+              <p><strong>Moderation:</strong> 24/7 trained facilitators</p>
+            </div>
+            <a href="/pages/healing-circle" class="btn btn--secondary">Join Discord</a>
+          </div>
+        </div>
+
+        <div class="contact-card animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="contact-header">
+            <div class="contact-icon">📞</div>
+            <h3>Crisis Resources</h3>
+            <span class="response-time">Immediate help</span>
+          </div>
+          <div class="contact-content">
+            <p>If you're experiencing a mental health crisis, please reach out for immediate support.</p>
+            <div class="contact-info">
+              <p><strong>US Crisis Line:</strong> <a href="tel:988">988</a></p>
+              <p><strong>Crisis Text Line:</strong> Text HOME to <a href="sms:741741">741741</a></p>
+              <p><strong>International:</strong> <a href="https://findahelpline.com" target="_blank">findahelpline.com</a></p>
+            </div>
+            <a href="https://findahelpline.com" target="_blank" class="btn btn--accent">Get Crisis Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} FAQ Section {%- endcomment -%}
+  <section id="faq" class="faq-section section">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <h2 class="animate-fade-in-up">Frequently Asked Questions</h2>
+        <p class="animate-fade-in-up" style="animation-delay: 0.1s;">
+          Quick answers to common questions about our products and services
+        </p>
+      </div>
+
+      <div class="faq-categories">
+        <div class="faq-category">
+          <h3 id="order-support" class="category-title animate-fade-in-up">📦 Orders & Shipping</h3>
+          <div class="faq-items">
+            <div class="faq-item animate-fade-in-up">
+              <h4 class="faq-question">How do I access my digital downloads?</h4>
+              <div class="faq-answer">
+                <p>After purchase, you'll receive an email with download links. You can also access your downloads from your account dashboard under "My Downloads." Links are available for 30 days and can be downloaded up to 5 times.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.1s;">
+              <h4 class="faq-question">What shipping options do you offer?</h4>
+              <div class="faq-answer">
+                <p>We offer carbon-neutral shipping options including standard (5-7 days), priority (2-3 days), and overnight delivery. All physical items ship from our eco-friendly fulfillment center.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.2s;">
+              <h4 class="faq-question">Can I return or exchange items?</h4>
+              <div class="faq-answer">
+                <p>Physical items can be returned within 30 days for a full refund. Digital products have a 14-day satisfaction guarantee. We want you to love your sacred tools!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-category">
+          <h3 id="product-questions" class="category-title animate-fade-in-up">❓ Product Questions</h3>
+          <div class="faq-items">
+            <div class="faq-item animate-fade-in-up">
+              <h4 class="faq-question">What formats are your digital products available in?</h4>
+              <div class="faq-answer">
+                <p>Most digital products come in multiple formats: PDF for easy reading, EPUB for e-readers, and interactive formats when applicable. We also offer print-at-home options for many items.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.1s;">
+              <h4 class="faq-question">Are your products suitable for beginners?</h4>
+              <div class="faq-answer">
+                <p>Absolutely! All our products include beginner-friendly guidance. We clearly mark difficulty levels and provide prerequisite information when needed.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.2s;">
+              <h4 class="faq-question">Do you offer bulk or group discounts?</h4>
+              <div class="faq-answer">
+                <p>Yes! We offer volume discounts for orders of 10+ items and special pricing for educators, nonprofits, and healing practitioners. Contact us for custom pricing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-category">
+          <h3 id="technical-help" class="category-title animate-fade-in-up">⚙️ Technical Support</h3>
+          <div class="faq-items">
+            <div class="faq-item animate-fade-in-up">
+              <h4 class="faq-question">I'm having trouble downloading my files</h4>
+              <div class="faq-answer">
+                <p>Try using a different browser or check your spam folder for the download email. If you're still having issues, email us at support@midnightmagnolia.com with your order number.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.1s;">
+              <h4 class="faq-question">How do I reset my account password?</h4>
+              <div class="faq-answer">
+                <p>Click "Forgot Password" on the login page and enter your email. You'll receive reset instructions within a few minutes. Check your spam folder if you don't see it.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.2s;">
+              <h4 class="faq-question">The website isn't working properly on my device</h4>
+              <div class="faq-answer">
+                <p>Our site is optimized for modern browsers. Try clearing your cache or updating your browser. If issues persist, let us know your device and browser version so we can help.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-category">
+          <h3 id="community-support" class="category-title animate-fade-in-up">💜 Community & Accessibility</h3>
+          <div class="faq-items">
+            <div class="faq-item animate-fade-in-up">
+              <h4 class="faq-question">Do you offer financial assistance or sliding scale pricing?</h4>
+              <div class="faq-answer">
+                <p>Yes! We believe spiritual wellness should be accessible to all. We offer sliding scale pricing, payment plans, and scholarships. Email us to discuss options that work for your situation.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.1s;">
+              <h4 class="faq-question">Are your products accessible for people with disabilities?</h4>
+              <div class="faq-answer">
+                <p>Accessibility is core to our mission. Our digital products are screen-reader compatible, and we offer large-print versions upon request. Let us know how we can better serve your needs.</p>
+              </div>
+            </div>
+
+            <div class="faq-item animate-fade-in-up" style="animation-delay: 0.2s;">
+              <h4 class="faq-question">How do I report inappropriate behavior in community spaces?</h4>
+              <div class="faq-answer">
+                <p>Contact our community moderators immediately through Discord or email community@midnightmagnolia.com. We have a clear accountability process and take all reports seriously.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Resources Section {%- endcomment -%}
+  <section class="support-resources section celestial-bg">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <h2 class="animate-fade-in-up">Free Resources & Tools</h2>
+        <p class="animate-fade-in-up" style="animation-delay: 0.1s;">
+          Helpful resources to support your spiritual journey
+        </p>
+      </div>
+
+      <div class="resources-grid grid grid--3-col">
+        <div class="resource-card animate-fade-in-up">
+          <div class="resource-icon">📚</div>
+          <h3>Getting Started Guide</h3>
+          <p>New to spiritual wellness? This free guide covers the basics and helps you begin your journey.</p>
+          <a href="/collections/free-resources" class="btn btn--secondary">Download Guide</a>
+        </div>
+
+        <div class="resource-card animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="resource-icon">🎧</div>
+          <h3>Guided Meditations</h3>
+          <p>Free collection of 10-minute guided meditations for various intentions and needs.</p>
+          <a href="/collections/free-resources" class="btn btn--secondary">Listen Now</a>
+        </div>
+
+        <div class="resource-card animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="resource-icon">📱</div>
+          <h3>Mobile App</h3>
+          <p>Track your spiritual practices, access your purchases, and connect with community on the go.</p>
+          <a href="#app-download" class="btn btn--secondary">Get App</a>
+        </div>
+
+        <div class="resource-card animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="resource-icon">🌙</div>
+          <h3>Moon Phase Calendar</h3>
+          <p>Track lunar cycles and plan your spiritual practices around moon energy.</p>
+          <a href="/collections/free-resources" class="btn btn--secondary">View Calendar</a>
+        </div>
+
+        <div class="resource-card animate-fade-in-up" style="animation-delay: 0.4s;">
+          <div class="resource-icon">📖</div>
+          <h3>Blog & Articles</h3>
+          <p>Weekly articles on spiritual wellness, healing practices, and community wisdom.</p>
+          <a href="/blogs/midnight-musings" class="btn btn--secondary">Read Blog</a>
+        </div>
+
+        <div class="resource-card animate-fade-in-up" style="animation-delay: 0.5s;">
+          <div class="resource-icon">🎥</div>
+          <h3>Video Tutorials</h3>
+          <p>Step-by-step video guides for using our digital products and spiritual practices.</p>
+          <a href="#video-library" class="btn btn--secondary">Watch Videos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Still Need Help Section {%- endcomment -%}
+  <section class="still-need-help section">
+    <div class="container">
+      <div class="help-content text-center">
+        <h2 class="animate-fade-in-up">Still Need Help?</h2>
+        <p class="animate-fade-in-up" style="animation-delay: 0.1s;">
+          We're here for you. Every question matters, and we're committed to providing
+          the support you need for your spiritual journey.
+        </p>
+
+        <div class="contact-options animate-fade-in-up" style="animation-delay: 0.2s;">
+          <a href="mailto:support@midnightmagnolia.com" class="btn btn--primary">
+            Email Sacred Support
+          </a>
+          <a href="#chat-widget" class="btn btn--secondary">
+            Start Live Chat
+          </a>
+        </div>
+
+        <div class="response-promise animate-fade-in-up" style="animation-delay: 0.3s;">
+          <p><strong>Our Promise:</strong> We respond to all inquiries within 24 hours, and we'll work with you until your question is fully answered.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<style>
+.support-page .help-card,
+.support-page .contact-card,
+.support-page .resource-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.support-page .help-card:hover,
+.support-page .resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(159, 122, 234, 0.2);
+  text-decoration: none;
+  color: inherit;
+}
+
+.support-page .contact-card.primary {
+  border-color: var(--colors-accent-1);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.support-page .help-icon,
+.support-page .contact-icon,
+.support-page .resource-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.support-page .contact-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.support-page .response-time {
+  display: inline-block;
+  background: rgba(159, 122, 234, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.support-page .contact-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.support-page .contact-info p {
+  margin: 0.5rem 0;
+}
+
+.support-page .faq-category {
+  margin-bottom: 3rem;
+}
+
+.support-page .category-title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--colors-accent-1);
+}
+
+.support-page .faq-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.support-page .faq-question {
+  padding: 1rem;
+  margin: 0;
+  cursor: pointer;
+  background: rgba(212, 175, 55, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease;
+}
+
+.support-page .faq-question:hover {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.support-page .faq-answer {
+  padding: 1rem;
+}
+
+.support-page .faq-answer p {
+  margin: 0;
+}
+
+.support-page .contact-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.support-page .response-promise {
+  max-width: 600px;
+  margin: 2rem auto 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .support-page .help-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .support-page .contact-grid,
+  .support-page .resources-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .support-page .contact-options {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .support-page .help-options {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+      const answer = this.nextElementSibling;
+      const isOpen = answer.style.display === 'block';
+      
+      // Close all answers
+      document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+      
+      // Open clicked answer if it wasn't already open
+      if (!isOpen) {
+        answer.style.display = 'block';
+      }
+    });
+  });
+});
+</script>
