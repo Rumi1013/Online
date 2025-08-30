@@ -6,38 +6,8 @@
 
 <div class="homepage celestial-bg">
 
-  {%- comment -%} Hero Section {%- endcomment -%}
-  <section class="hero section--large">
-    <div class="container">
-      <div class="hero__content animate-fade-in-up">
-        <h1 class="hero__title">
-          Welcome to Your Digital Sanctuary
-        </h1>
-        <p class="hero__subtitle">
-          Discover transformative tools for spiritual wellness, healing, and sacred living.
-          Your journey to inner peace begins here in our mystical digital garden.
-        </p>
-        <div class="hero__cta">
-          <a href="/collections/all" class="btn btn--primary btn--enter-garden">
-            Enter the Garden
-          </a>
-          <a href="/pages/our-story" class="btn btn--secondary">
-            Our Sacred Story
-          </a>
-        </div>
-      </div>
-    </div>
-
-    {%- comment -%} Floating celestial elements {%- endcomment -%}
-    <div class="hero__celestial">
-      <div class="animate-float" style="position: absolute; top: 20%; left: 10%; opacity: 0.3;">
-        {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 60px; height: 60px;' }}
-      </div>
-      <div class="animate-float" style="position: absolute; top: 60%; right: 15%; opacity: 0.2; animation-delay: 1s;">
-        {{ 'stars.svg' | asset_url | img_tag: '', 'width: 80px; height: 80px;' }}
-      </div>
-    </div>
-  </section>
+  {%- comment -%} Animated Hero Section {%- endcomment -%}
+  {% section 'hero' %}
 
   {%- comment -%} Featured Sacred Tools Section {%- endcomment -%}
   {%- if collections['featured-tools'] and collections['featured-tools'].products.size > 0 -%}

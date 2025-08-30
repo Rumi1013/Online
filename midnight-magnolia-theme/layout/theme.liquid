@@ -234,16 +234,27 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image:
-          radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
-          radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
-          radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
-          radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent),
-          radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.2), transparent);
-        background-repeat: repeat;
-        background-size: 200px 100px;
+        background-image: url('{{ "celestial-bg.svg" | asset_url }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         z-index: -1;
-        animation: celestialFloat 20s ease-in-out infinite;
+        opacity: 0.8;
+        animation: celestialFloat 30s ease-in-out infinite;
+      }
+
+      /* Fallback for browsers that don't support SVG backgrounds */
+      @supports not (background-image: url('data:image/svg+xml')) {
+        body::before {
+          background-image:
+            radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+            radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+            radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+            radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent),
+            radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.2), transparent);
+          background-repeat: repeat;
+          background-size: 200px 100px;
+        }
       }
 
       @keyframes celestialFloat {
@@ -292,6 +303,13 @@
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
     {%- endif -%}
+
+    <!-- Mystical Elements -->
+    {% render 'floating-elements' %}
+    {% render 'moon-phase-indicator' %}
+
+    <!-- Constellation Overlay -->
+    <div class="constellation-overlay" aria-hidden="true"></div>
 
     {% section 'header' %}
 
