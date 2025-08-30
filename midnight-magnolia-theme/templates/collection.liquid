@@ -6,6 +6,10 @@
 
 <div class="collection-page celestial-bg">
 
+  {%- comment -%} Mystical Elements {%- endcomment -%}
+  {% render 'floating-elements' %}
+  {% render 'moon-phase-indicator' %}
+
   {%- comment -%} Collection Header {%- endcomment -%}
   <section class="collection-header section">
     <div class="container">
@@ -36,7 +40,7 @@
   {%- comment -%} Collection Filters & Sort {%- endcomment -%}
   <section class="collection-toolbar section--small">
     <div class="container">
-      <div class="toolbar animate-fade-in-up" style="animation-delay: 0.2s;">
+      <div class="toolbar animate-fade-in-up animate-delay-02">
 
         {%- comment -%} Filter Toggle {%- endcomment -%}
         <div class="toolbar-left">
@@ -157,8 +161,7 @@
       {%- if collection.products.size > 0 -%}
         <div class="products-grid grid grid--3-col" id="products-grid">
           {%- for product in collection.products -%}
-            <div class="product-card animate-fade-in-up"
-                 style="animation-delay: {{ forloop.index | times: 0.05 }}s;"
+            <div class="product-card animate-fade-in-up animate-delay-0{{ forloop.index | modulo: 10 }}"
                  data-product-id="{{ product.id }}"
                  data-price="{{ product.price }}"
                  data-tags="{{ product.tags | join: ',' | downcase }}"
@@ -326,13 +329,13 @@
           <p>Every tool is created with spiritual intention and mindful design to support your healing journey.</p>
         </div>
 
-        <div class="feature-card magnolia-card text-center animate-fade-in-up" style="animation-delay: 0.2s;">
+        <div class="feature-card magnolia-card text-center animate-fade-in-up animate-delay-02">
           <div class="feature-icon">💫</div>
           <h3>Instant Access</h3>
           <p>Digital tools are available immediately after purchase, so you can begin your transformation right away.</p>
         </div>
 
-        <div class="feature-card magnolia-card text-center animate-fade-in-up" style="animation-delay: 0.4s;">
+        <div class="feature-card magnolia-card text-center animate-fade-in-up animate-delay-04">
           <div class="feature-icon">🌸</div>
           <h3>Community Support</h3>
           <p>Join our healing circle for guidance, support, and connection with fellow spiritual seekers.</p>

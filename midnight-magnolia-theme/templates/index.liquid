@@ -6,6 +6,10 @@
 
 <div class="homepage celestial-bg">
 
+  {%- comment -%} Mystical Elements {%- endcomment -%}
+  {% render 'floating-elements' %}
+  {% render 'moon-phase-indicator' %}
+
   {%- comment -%} Animated Hero Section {%- endcomment -%}
   {% section 'hero' %}
 
@@ -22,7 +26,7 @@
 
         <div class="grid grid--3-col">
           {%- for product in collections['featured-tools'].products limit: 6 -%}
-            <div class="product-card animate-fade-in-up" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
+            <div class="product-card animate-fade-in-up animate-delay-0{{ forloop.index }}">
 
               {%- comment -%} Product Image {%- endcomment -%}
               <div class="product-card__image">

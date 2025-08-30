@@ -6,6 +6,10 @@
 
 <div class="product-page celestial-bg">
 
+  {%- comment -%} Mystical Elements {%- endcomment -%}
+  {% render 'floating-elements' %}
+  {% render 'moon-phase-indicator' %}
+
   {%- comment -%} Product Hero Section {%- endcomment -%}
   <section class="product-hero section">
     <div class="container">
@@ -81,7 +85,7 @@
           </div>
 
           {%- comment -%} Product Price {%- endcomment -%}
-          <div class="product-price animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="product-price animate-fade-in-up animate-delay-01">
             {%- if product.compare_at_price > product.price -%}
               <span class="price price--sale">{{ product.price | money }}</span>
               <span class="price price--compare">{{ product.compare_at_price | money }}</span>
@@ -93,13 +97,13 @@
 
           {%- comment -%} Product Description {%- endcomment -%}
           {%- if product.description != blank -%}
-            <div class="product-description animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="product-description animate-fade-in-up animate-delay-02">
               {{ product.description }}
             </div>
           {%- endif -%}
 
           {%- comment -%} Product Form {%- endcomment -%}
-          <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form animate-fade-in-up" style="animation-delay: 0.3s;">
+          <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form animate-fade-in-up animate-delay-03">
 
             {%- comment -%} Product Variants {%- endcomment -%}
             {%- if product.variants.size > 1 -%}
@@ -160,7 +164,7 @@
           </form>
 
           {%- comment -%} Product Features {%- endcomment -%}
-          <div class="product-features animate-fade-in-up" style="animation-delay: 0.4s;">
+          <div class="product-features animate-fade-in-up animate-delay-04">
             <div class="features-grid">
               {%- if product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
                 <div class="feature">

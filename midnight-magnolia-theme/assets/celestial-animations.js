@@ -1755,6 +1755,7 @@
       this.detectPerformanceCapabilities();
       this.initAccessibilityChecks();
       this.createAnimationControls();
+      this.startPerformanceMonitoring();
     }
 
     detectPerformanceCapabilities() {
@@ -1885,6 +1886,257 @@
         hardwareAcceleration: this.hasHardwareAcceleration,
         devicePixelRatio: this.devicePixelRatio
       };
+    }
+
+    /**
+     * Performance monitoring and optimization
+     */
+    startPerformanceMonitoring() {
+      this.performanceData = {
+        fps: [],
+        memoryUsage: [],
+        animationCount: 0,
+        lastFrameTime: performance.now()
+      };
+
+      this.monitorFPS();
+      this.monitorMemory();
+      this.optimizeBasedOnPerformance();
+    }
+
+    /**
+     * Monitor FPS for performance optimization
+     */
+    monitorFPS() {
+      const monitor = () => {
+        const now = performance.now();
+        const delta = now - this.performanceData.lastFrameTime;
+        const fps = 1000 / delta;
+
+        this.performanceData.fps.push(fps);
+        if (this.performanceData.fps.length > 60) {
+          this.performanceData.fps.shift(); // Keep last 60 readings
+        }
+
+        this.performanceData.lastFrameTime = now;
+
+        // Check if FPS is consistently low
+        const avgFPS = this.performanceData.fps.reduce((a, b) => a + b, 0) / this.performanceData.fps.length;
+        if (avgFPS < 30 && !this.performanceMode) {
+          console.warn('Low FPS detected, enabling performance mode');
+          this.enablePerformanceMode();
+        }
+
+        requestAnimationFrame(monitor);
+      };
+
+      requestAnimationFrame(monitor);
+    }
+
+    /**
+     * Monitor memory usage
+     */
+    monitorMemory() {
+      if (performance.memory) {
+        setInterval(() => {
+          const memoryUsage = performance.memory.usedJSHeapSize / performance.memory.totalJSHeapSize;
+          this.performanceData.memoryUsage.push(memoryUsage);
+
+          if (this.performanceData.memoryUsage.length > 10) {
+            this.performanceData.memoryUsage.shift();
+          }
+
+          // If memory usage is high, trigger cleanup
+          const avgMemoryUsage = this.performanceData.memoryUsage.reduce((a, b) => a + b, 0) / this.performanceData.memoryUsage.length;
+          if (avgMemoryUsage > 0.8) {
+            this.performGarbageCollection();
+          }
+        }, 5000);
+      }
+    }
+
+    /**
+     * Perform garbage collection and cleanup
+     */
+    performGarbageCollection() {
+      // Clear any cached elements
+      this.clearOrphanedElements();
+
+      // Reduce particle counts
+      this.reduceParticleEffects();
+
+      // Force garbage collection if available
+      if (window.gc) {
+        window.gc();
+      }
+    }
+
+    /**
+     * Clear orphaned DOM elements
+     */
+    clearOrphanedElements() {
+      const orphanedSelectors = [
+        '.magical-particles',
+        '.energy-particles',
+        '.nav-magic-particles',
+        '.button-magic-particles',
+        '.card-energy-field'
+      ];
+
+      orphanedSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          if (!element.parentElement || !document.contains(element)) {
+            element.remove();
+          }
+        });
+      });
+    }
+
+    /**
+     * Reduce particle effects for performance
+     */
+    reduceParticleEffects() {
+      // Reduce particle counts in existing effects
+      const particleContainers = document.querySelectorAll('.button-magic-particles, .card-energy-particles');
+
+      particleContainers.forEach(container => {
+        const particles = container.querySelectorAll('.button-particle, .energy-particle');
+        if (particles.length > 3) {
+          // Remove excess particles
+          for (let i = 3; i < particles.length; i++) {
+            particles[i].remove();
+          }
+        }
+      });
+    }
+
+    /**
+     * Optimize animations based on performance
+     */
+    optimizeBasedOnPerformance() {
+      // Throttle expensive animations
+      this.throttleExpensiveAnimations();
+
+      // Use passive event listeners
+      this.optimizeEventListeners();
+
+      // Implement animation batching
+      this.implementAnimationBatching();
+    }
+
+    /**
+     * Throttle expensive animations
+     */
+    throttleExpensiveAnimations() {
+      const expensiveAnimations = [
+        '.energy-orb',
+        '.floating-petal',
+        '.zodiac-sign'
+      ];
+
+      expensiveAnimations.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((element, index) => {
+          if (index % 2 === 0) { // Skip every other element
+            element.style.animationPlayState = 'paused';
+          }
+        });
+      });
+    }
+
+    /**
+     * Optimize event listeners
+     */
+    optimizeEventListeners() {
+      // Use passive listeners for scroll and touch events
+      const scrollElements = document.querySelectorAll('[style*="animation"]');
+
+      scrollElements.forEach(element => {
+        element.addEventListener('scroll', () => {}, { passive: true });
+        element.addEventListener('touchstart', () => {}, { passive: true });
+        element.addEventListener('touchmove', () => {}, { passive: true });
+      });
+    }
+
+    /**
+     * Implement animation batching
+     */
+    implementAnimationBatching() {
+      let animationBatch = [];
+      let batchTimer = null;
+
+      this.batchAnimation = (callback) => {
+        animationBatch.push(callback);
+
+        if (!batchTimer) {
+          batchTimer = setTimeout(() => {
+            // Execute all batched animations in one frame
+            requestAnimationFrame(() => {
+              animationBatch.forEach(cb => cb());
+              animationBatch = [];
+              batchTimer = null;
+            });
+          }, 16); // ~60fps
+        }
+      };
+    }
+
+    /**
+     * Create performance report
+     */
+    generatePerformanceReport() {
+      const report = {
+        timestamp: new Date().toISOString(),
+        performanceMode: this.performanceMode,
+        hardwareAcceleration: this.hasHardwareAcceleration,
+        averageFPS: this.performanceData.fps.length > 0 ?
+          this.performanceData.fps.reduce((a, b) => a + b, 0) / this.performanceData.fps.length : 0,
+        memoryUsage: this.performanceData.memoryUsage.length > 0 ?
+          this.performanceData.memoryUsage.reduce((a, b) => a + b, 0) / this.performanceData.memoryUsage.length : 0,
+        totalAnimations: this.animations.size,
+        recommendations: this.generateRecommendations()
+      };
+
+      console.table(report);
+      return report;
+    }
+
+    /**
+     * Generate performance recommendations
+     */
+    generateRecommendations() {
+      const recommendations = [];
+
+      const avgFPS = this.performanceData.fps.reduce((a, b) => a + b, 0) / this.performanceData.fps.length;
+      if (avgFPS < 30) {
+        recommendations.push('Consider enabling performance mode for better FPS');
+      }
+
+      if (this.animations.size > 50) {
+        recommendations.push('High number of animations detected, consider reducing for better performance');
+      }
+
+      if (!this.hasHardwareAcceleration) {
+        recommendations.push('Hardware acceleration not available, animations may be slower');
+      }
+
+      return recommendations;
+    }
+
+    /**
+     * Emergency performance mode
+     */
+    enableEmergencyMode() {
+      // Disable all non-essential animations
+      document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+
+      const allAnimatedElements = document.querySelectorAll('[style*="animation"]');
+      allAnimatedElements.forEach(element => {
+        element.style.animation = 'none';
+      });
+
+      console.warn('Emergency performance mode enabled - all animations disabled');
     }
   }
 
@@ -2273,6 +2525,172 @@
         height: 100%;
         pointer-events: none;
         z-index: -1;
+      }
+
+      /* Button Mystical Effects */
+      @keyframes buttonParticleSparkle {
+        0% {
+          opacity: 1;
+          transform: scale(0) rotate(0deg);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1) rotate(180deg);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.5) rotate(360deg);
+        }
+      }
+
+      @keyframes buttonRippleExpand {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 1;
+        }
+        100% {
+          width: 120px;
+          height: 120px;
+          opacity: 0;
+        }
+      }
+
+      @keyframes buttonEnergyBurst {
+        0% {
+          opacity: 1;
+          transform: rotate(var(--rotation)) translate(15px) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: rotate(var(--rotation)) translate(40px) scale(0);
+        }
+      }
+
+      /* Form Field Mystical Effects */
+      .form-field-focused {
+        position: relative;
+      }
+
+      .form-field-focused::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: inherit;
+        background: linear-gradient(45deg, rgba(246, 213, 92, 0.2), rgba(159, 122, 234, 0.2));
+        z-index: -1;
+        animation: formFieldGlow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes formFieldGlow {
+        0% {
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 0.7;
+        }
+      }
+
+      .form-field-has-content {
+        background: rgba(246, 213, 92, 0.05) !important;
+      }
+
+      @keyframes typingParticleFade {
+        0% {
+          opacity: 1;
+          transform: translateY(-50%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-50%) scale(0.5);
+        }
+      }
+
+      /* Scroll Animation Effects */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .animate-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Mystical Hover Effects */
+      .hover-mystical {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hover-mystical::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(246, 213, 92, 0.1), transparent);
+        transition: left 0.5s;
+      }
+
+      .mystical-hover-active::before {
+        left: 100%;
+      }
+
+      .mystical-hover-active {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(246, 213, 92, 0.2);
+      }
+
+      /* Mystical Loading States */
+      .loading-mystical {
+        position: relative;
+      }
+
+      .loading-mystical::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid rgba(246, 213, 92, 0.3);
+        border-top: 2px solid rgba(246, 213, 92, 0.8);
+        border-radius: 50%;
+        animation: mysticalSpin 1s linear infinite;
+      }
+
+      @keyframes mysticalSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Success/Error States */
+      .success-mystical {
+        animation: successPulse 0.6s ease-out;
+      }
+
+      .error-mystical {
+        animation: errorShake 0.5s ease-in-out;
+      }
+
+      @keyframes successPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+
+      @keyframes errorShake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
       }
     `;
     document.head.appendChild(style);
