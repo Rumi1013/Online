@@ -1,0 +1,162 @@
+/* Midnight Magnolia Shopify Theme Custom CSS */
+:root {
+  --color-midnight-blue: #0A192F;
+  --color-magnolia-white: #FAF3E0;
+  --color-sage-green: #A3B18A;
+  --color-warm-gray: #D4B99F;
+  --color-gold: #D4AF37;
+  --font-header: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+  --font-accent: 'Montserrat', sans-serif;
+}
+
+body {
+  background: var(--color-midnight-blue);
+  color: var(--color-magnolia-white);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  color: var(--color-gold);
+}
+
+a, button, .cta {
+  color: var(--color-sage-green);
+  font-family: var(--font-accent);
+  transition: color 0.2s, background 0.2s;
+}
+
+a:hover, button:hover, .cta:hover {
+  color: var(--color-gold);
+  background: var(--color-magnolia-white);
+}
+
+.header, .footer {
+  background: var(--color-midnight-blue);
+  color: var(--color-magnolia-white);
+}
+
+/* Accessibility & ADHD-friendly navigation */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  background: var(--color-gold);
+  color: var(--color-midnight-blue);
+  z-index: 1000;
+}
+
+/* Shopify-specific adjustments */
+.shopify-section {
+  padding: 2rem 0;
+}
+
+.shopify-header {
+  background: var(--color-midnight-blue);
+  color: var(--color-magnolia-white);
+  font-family: var(--font-header);
+  border-bottom: 1px solid var(--color-warm-gray);
+}
+
+.shopify-footer {
+  background: var(--color-midnight-blue);
+  color: var(--color-magnolia-white);
+  font-family: var(--font-header);
+  border-top: 1px solid var(--color-warm-gray);
+}
+
+.shopify-logo {
+  max-height: 48px;
+  margin-right: 1rem;
+}
+
+.shopify-nav {
+  display: flex;
+  gap: 2rem;
+  font-family: var(--font-accent);
+}
+
+.shopify-nav a {
+  color: var(--color-sage-green);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.shopify-nav a:hover {
+  color: var(--color-gold);
+}
+
+.shopify-btn, .shopify-cta {
+  background: var(--color-sage-green);
+  color: var(--color-midnight-blue);
+  font-family: var(--font-accent);
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.shopify-btn:hover, .shopify-cta:hover {
+  background: var(--color-gold);
+  color: var(--color-midnight-blue);
+}
+
+.shopify-testimonial {
+  background: var(--color-warm-gray);
+  color: var(--color-midnight-blue);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.shopify-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+@media (max-width: 768px) {
+  .shopify-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.shopify-product-card {
+  background: var(--color-magnolia-white);
+  color: var(--color-midnight-blue);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(10,25,47,0.08);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+}
+.shopify-product-card:hover {
+  box-shadow: 0 4px 16px rgba(212,175,55,0.15);
+}
+
+.shopify-blog-preview {
+  background: var(--color-warm-gray);
+  color: var(--color-midnight-blue);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.shopify-newsletter {
+  background: var(--color-gold);
+  color: var(--color-midnight-blue);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* ...add more as needed for hero, carousel, etc... */
