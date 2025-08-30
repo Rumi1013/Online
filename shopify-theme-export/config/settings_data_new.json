@@ -205,7 +205,7 @@
             "button": "#f6d55c",
             "button_label": "#1a1a2e",
             "secondary_button_label": "#f6d55c",
-            "shadow": "rgba(246, 213, 92, 0.3)"
+            "shadow": "#ffffff"
           }
         },
         "scheme-2": {

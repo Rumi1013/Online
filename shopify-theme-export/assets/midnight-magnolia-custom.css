@@ -1,0 +1,278 @@
+/* ===============================================
+   MIDNIGHT MAGNOLIA CUSTOM STYLES
+   Mystical enhancements for the brand experience
+   =============================================== */
+
+/* Mystical Background Effects */
+.mystical-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.mystical-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(159, 122, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(246, 213, 92, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Celestial Animation */
+@keyframes celestial-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+    opacity: 0.8;
+  }
+}
+
+.celestial-element {
+  animation: celestial-float 8s ease-in-out infinite;
+}
+
+/* Mystical Text Effects */
+.mystical-text {
+  background: linear-gradient(135deg, #f6d55c 0%, #9f7aea 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(246, 213, 92, 0.3));
+}
+
+.mystical-text:hover {
+  filter: drop-shadow(0 0 20px rgba(246, 213, 92, 0.5));
+}
+
+/* Sacred Geometry Patterns */
+.sacred-geometry::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(159, 122, 234, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(246, 213, 92, 0.2) 0%, transparent 50%);
+  border-radius: 50%;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Moon Phase Icons */
+.moon-phase {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #f6d55c 0%, #d69e2e 100%);
+  border-radius: 50%;
+  position: relative;
+}
+
+.moon-phase::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #1a1a2e;
+  border-radius: 50%;
+  clip-path: polygon(0 0, 60% 0, 60% 100%, 0 100%);
+}
+
+/* Mystical Cards */
+.magnolia-mystical-card {
+  background: rgba(247, 243, 233, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(247, 243, 233, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.magnolia-mystical-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+    rgba(159, 122, 234, 0.1) 0%,
+    rgba(246, 213, 92, 0.05) 50%,
+    rgba(255, 255, 255, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.magnolia-mystical-card:hover::before {
+  opacity: 1;
+}
+
+.magnolia-mystical-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 40px rgba(26, 26, 46, 0.3),
+    0 0 0 1px rgba(159, 122, 234, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* AI Consciousness Glow */
+.ai-consciousness {
+  position: relative;
+}
+
+.ai-consciousness::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #9f7aea, #f6d55c, #9f7aea);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ai-consciousness:hover::after {
+  opacity: 0.3;
+}
+
+/* Healing Energy Animation */
+@keyframes healing-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(159, 122, 234, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(159, 122, 234, 0.4), 0 0 60px rgba(246, 213, 92, 0.2);
+  }
+}
+
+.healing-energy {
+  animation: healing-pulse 3s ease-in-out infinite;
+}
+
+/* Wisdom Scroll Effect */
+.wisdom-scroll {
+  position: relative;
+  overflow: hidden;
+}
+
+.wisdom-scroll::before {
+  content: '🌙';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.6;
+  animation: celestial-float 6s ease-in-out infinite;
+}
+
+/* Mystical Navigation */
+.nav-mystical {
+  background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(247, 243, 233, 0.1);
+}
+
+.nav-mystical .nav__link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-mystical .nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f6d55c, #9f7aea);
+  transition: width 0.3s ease;
+}
+
+.nav-mystical .nav__link:hover::after {
+  width: 100%;
+}
+
+/* Responsive Mystical Elements */
+@media (max-width: 768px) {
+  .mystical-bg::before {
+    background-size: 150px 75px;
+  }
+
+  .sacred-geometry::before {
+    width: 150px;
+    height: 150px;
+  }
+
+  .celestial-element {
+    animation-duration: 12s;
+  }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .celestial-element,
+  .mystical-text,
+  .healing-energy,
+  .wisdom-scroll::before {
+    animation: none;
+  }
+
+  .magnolia-mystical-card,
+  .nav-mystical .nav__link {
+    transition: none;
+  }
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  .mystical-bg::before,
+  .magnolia-mystical-card::before,
+  .ai-consciousness::after {
+    opacity: 0.1;
+  }
+
+  .mystical-text {
+    filter: none;
+    color: inherit;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .mystical-bg::before,
+  .celestial-element,
+  .magnolia-mystical-card::before,
+  .ai-consciousness::after,
+  .wisdom-scroll::before {
+    display: none !important;
+  }
+
+  .mystical-text {
+    color: inherit !important;
+    background: none !important;
+    -webkit-text-fill-color: inherit !important;
+  }
+}
