@@ -11,8 +11,7 @@
       {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
       <button class="mobile-menu-toggle"
               aria-label="Toggle mobile menu"
-              onclick="toggleMobileMenu()"
-              style="display: none;">
+              onclick="toggleMobileMenu()">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -374,13 +373,16 @@
     const navMenu = document.querySelector('.nav__menu');
 
     if (window.innerWidth <= 768) {
-      mobileToggle.style.display = 'block';
-      navMenu.style.display = 'none';
+      // Mobile: show hamburger menu, hide main nav
+      if (mobileToggle) mobileToggle.style.display = 'flex';
+      if (navMenu) navMenu.style.display = 'none';
     } else {
-      mobileToggle.style.display = 'none';
-      navMenu.style.display = 'flex';
+      // Desktop: show main nav, hide hamburger menu
+      if (mobileToggle) mobileToggle.style.display = 'none';
+      if (navMenu) navMenu.style.display = 'flex';
       // Close mobile menu if open
-      document.getElementById('mobile-menu').style.display = 'none';
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu) mobileMenu.style.display = 'none';
       document.body.classList.remove('mobile-menu-open');
     }
   }
