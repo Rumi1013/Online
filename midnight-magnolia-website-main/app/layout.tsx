@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display, Lora, Montserrat } from "next/font/google"
+// Temporarily disable Google Fonts to fix build issues
+// import { Inter, Playfair_Display, Lora, Montserrat } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "./components/Header"
@@ -8,23 +9,23 @@ import Footer from "./components/Footer"
 import { CartProvider } from "@/app/hooks/useCart"
 import SacredCart from "./components/SacredCart"
 
-// Font configurations
-const inter = Inter({ subsets: ["latin"] })
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-})
-const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-lora",
-  display: "swap",
-})
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-})
+// Font configurations - temporarily disabled for build
+// const inter = Inter({ subsets: ["latin"] })
+// const playfair = Playfair_Display({
+//   subsets: ["latin"],
+//   variable: "--font-playfair",
+//   display: "swap",
+// })
+// const lora = Lora({
+//   subsets: ["latin"],
+//   variable: "--font-lora",
+//   display: "swap",
+// })
+// const montserrat = Montserrat({
+//   subsets: ["latin"],
+//   variable: "--font-montserrat",
+//   display: "swap",
+// })
 
 // Safe URL helper function
 function getSafeUrl(envVar: string | undefined, fallback = "https://midnight-magnolia.com"): string {
@@ -119,7 +120,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${lora.variable} ${montserrat.variable}`}>
+    <html lang="en" className="font-sans">
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -129,7 +130,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0A192F" />
         <meta name="msapplication-TileColor" content="#0A192F" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className="antialiased font-sans">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <CartProvider>
             <div className="flex min-h-screen flex-col">

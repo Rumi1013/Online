@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import { ENV } from "@/lib/env"
 
+export const dynamic = "force-static"
+
 export async function GET() {
   try {
     // Safe environment variable inspection

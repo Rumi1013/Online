@@ -1,0 +1,81 @@
+# 🌙 Midnight Magnolia - Azure Deployment Configuration
+
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: [ main, master ]
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: ./midnight-magnolia-website-main/package-lock.json
+      
+      - name: Install dependencies
+        run: |
+          cd midnight-magnolia-website-main
+          npm ci --legacy-peer-deps
+      
+      - name: Build application
+        run: |
+          cd midnight-magnolia-website-main
+          npm run build
+        env:
+          # Build-time environment variables
+          SITE_URL: ${{ secrets.SITE_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SHOPIFY_DOMAIN: ${{ secrets.SHOPIFY_DOMAIN }}
+          SHOPIFY_TOKEN: ${{ secrets.SHOPIFY_TOKEN }}
+          SHOPIFY_WEBHOOK_SECRET: ${{ secrets.SHOPIFY_WEBHOOK_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          GOOGLE_SITE_VERIFICATION: ${{ secrets.GOOGLE_SITE_VERIFICATION }}
+          PATREON_CLIENT_ID: ${{ secrets.PATREON_CLIENT_ID }}
+          PATREON_CLIENT_SECRET: ${{ secrets.PATREON_CLIENT_SECRET }}
+      
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "./midnight-magnolia-website-main"
+          api_location: "./midnight-magnolia-website-main"
+          output_location: ".next"
+          app_build_command: "npm run build"
+          api_build_command: "npm run build"
+          skip_app_build: true
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: "close"
