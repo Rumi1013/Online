@@ -174,7 +174,7 @@
                     data-variant-id="{{ variant.id }}"
                     {% unless variant.available %}disabled{% endunless %}>
               {{ variant.title }}
-            </button>
+                class="shopify-product-card animate-fade-in-up"
           {%- endfor -%}
           {%- if product.variants.size > 5 -%}
             <span class="variant-more">+{{ product.variants.size | minus: 5 }} more</span>
