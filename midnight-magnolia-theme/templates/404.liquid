@@ -1,0 +1,235 @@
+{% comment %}
+  404 Error Page - Midnight Magnolia Theme
+  A mystical 404 page that guides lost souls back to the sacred path
+{% endcomment %}
+
+<div class="error-page">
+  <div class="error-content">
+    <div class="error-icon">
+      <svg class="moon-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M30 50 A20 20 0 0 0 70 50 A15 15 0 0 1 30 50" fill="currentColor"/>
+      </svg>
+    </div>
+    
+    <h1 class="error-title">Lost in the Cosmic Void</h1>
+    
+    <div class="error-message">
+      <p>The page you seek has vanished like mist in moonlight.<br>
+         But fear not, wanderer—every path leads to wisdom.</p>
+    </div>
+    
+    <div class="error-actions">
+      <a href="/" class="btn btn-primary">
+        {{ 'general.404.link' | t | default: 'Return to Sacred Ground' }}
+      </a>
+      
+      <a href="/collections" class="btn btn-secondary">
+        {{ 'general.404.explore' | t | default: 'Explore Sacred Tools' }}
+      </a>
+    </div>
+    
+    <div class="error-search">
+      <form action="/search" method="get" class="search-form">
+        <div class="search-wrapper">
+          <input 
+            type="search" 
+            name="q" 
+            placeholder="{{ 'general.search.placeholder' | t | default: 'Search for sacred wisdom...' }}" 
+            class="search-input"
+            autocomplete="off"
+          >
+          <button type="submit" class="search-submit">
+            <span class="visually-hidden">{{ 'general.search.submit' | t | default: 'Search' }}</span>
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="error-suggestions">
+      <p class="suggestions-title">Perhaps you seek:</p>
+      <ul class="suggestions-list">
+        <li><a href="/collections/sacred-home">Sacred Home Collection</a></li>
+        <li><a href="/collections/mystical-accessories">Mystical Accessories</a></li>
+        <li><a href="/collections/healing-journals">Healing Journals</a></li>
+        <li><a href="/blogs/midnight-musings">Midnight Musings Blog</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  {% comment %} Celestial Background Animation {% endcomment %}
+  <div class="celestial-bg" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="moon-phases"></div>
+  </div>
+</div>
+
+<style>
+.error-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 600px;
+  z-index: 2;
+  position: relative;
+}
+
+.error-icon {
+  margin-bottom: 2rem;
+}
+
+.moon-icon {
+  width: 80px;
+  height: 80px;
+  color: var(--color-accent-1, #9f7aea);
+  animation: moonGlow 3s ease-in-out infinite alternate;
+}
+
+.error-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: var(--color-foreground);
+  font-family: var(--font-heading-family);
+}
+
+.error-message {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-foreground-secondary);
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.error-search {
+  margin-bottom: 2rem;
+}
+
+.search-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  padding-right: 3rem;
+  border: 1px solid var(--color-border);
+  border-radius: 2rem;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-size: 1rem;
+}
+
+.search-submit {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: none;
+  color: var(--color-foreground-secondary);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-submit svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.error-suggestions {
+  margin-top: 2rem;
+}
+
+.suggestions-title {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-foreground-secondary);
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.suggestions-list li a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--color-background-secondary);
+  color: var(--color-foreground);
+  text-decoration: none;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.suggestions-list li a:hover {
+  background: var(--color-accent-1);
+  color: var(--color-background);
+  transform: translateY(-2px);
+}
+
+.celestial-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+@keyframes moonGlow {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .error-title {
+    font-size: 2rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .suggestions-list {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
