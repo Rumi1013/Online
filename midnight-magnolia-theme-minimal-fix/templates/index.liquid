@@ -1,0 +1,277 @@
+{%- comment -%}
+  MIDNIGHT MAGNOLIA THEME
+  Homepage Template - Digital Sanctuary
+  Spiritual wellness and healing tools theme
+{%- endcomment -%}
+
+<div class="homepage celestial-bg">
+
+  {%- comment -%} Mystical Elements {%- endcomment -%}
+  {% render 'floating-elements' %}
+  {% render 'moon-phase-indicator' %}
+
+  {%- comment -%} Animated Hero Section {%- endcomment -%}
+  {% section 'hero' %}
+
+  {%- comment -%} Featured Sacred Tools Section {%- endcomment -%}
+  {%- if collections['featured-tools'] and collections['featured-tools'].products.size > 0 -%}
+    <section class="featured-tools section">
+      <div class="container">
+        <div class="section-header text-center mb-4">
+          <h2 class="animate-fade-in-up">Sacred Tools for Transformation</h2>
+          <p class="animate-fade-in-up" style="animation-delay: 0.2s;">
+            Curated digital resources to support your spiritual journey and healing practice
+          </p>
+        </div>
+
+        <div class="grid grid--3-col">
+          {%- comment -%} Featured Product Showcase {%- endcomment -%}
+          <div class="product-card animate-fade-in-up">
+            <div class="product-card__image">
+              <img src="{{ 'healing-journal-cover.png' | asset_url }}"
+                   alt="The Magnolia Reset - Healing Journal for Personal Transformation"
+                   loading="lazy">
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">The Magnolia Reset</h3>
+              <p class="product-card__description">A transformative healing journal designed for your spiritual journey and personal growth.</p>
+              <div class="product-card__price">$24.99</div>
+              <a href="/products/healing-journal" class="btn btn--ghost w-full">Explore Journal</a>
+            </div>
+          </div>
+
+          <div class="product-card animate-fade-in-up animate-delay-01">
+            <div class="product-card__image">
+              <img src="{{ 'elegant-moon-magnolia-mug.png' | asset_url }}"
+                   alt="Moonlight Meditation Mug - Ceramic mug with celestial design"
+                   loading="lazy">
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Moonlight Mug</h3>
+              <p class="product-card__description">Sip your tea mindfully with this beautifully crafted ceramic mug featuring moon phases.</p>
+              <div class="product-card__price">$18.99</div>
+              <a href="/products/moonlight-mug" class="btn btn--ghost w-full">Explore Mug</a>
+            </div>
+          </div>
+
+          <div class="product-card animate-fade-in-up animate-delay-02">
+            <div class="product-card__image">
+              <img src="{{ 'magnolia-tote-bag.png' | asset_url }}"
+                   alt="Southern Gothic Tote Bag - Canvas tote with magnolia flower design"
+                   loading="lazy">
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Magnolia Tote</h3>
+              <p class="product-card__description">Carry your sacred tools in style with this durable canvas tote featuring our signature magnolia design.</p>
+              <div class="product-card__price">$22.99</div>
+              <a href="/products/magnolia-tote" class="btn btn--ghost w-full">Explore Tote</a>
+            </div>
+          </div>
+
+          {%- for product in collections['featured-tools'].products limit: 3 -%}
+            <div class="product-card animate-fade-in-up animate-delay-0{{ forloop.index | plus: 3 }}">
+              {%- comment -%} Product Image {%- endcomment -%}
+              <div class="product-card__image">
+                {%- if product.featured_media -%}
+                  <img src="{{ product.featured_media | image_url: width: 400 }}"
+                       alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                       loading="lazy">
+                {%- else -%}
+                  <div class="product-card__placeholder">
+                    {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 100px; height: 100px; opacity: 0.3;' }}
+                  </div>
+                {%- endif -%}
+
+                {%- comment -%} Product Badges {%- endcomment -%}
+                <div class="product-card__badges">
+                  {%- if product.metafields.midnight_magnolia.bestseller -%}
+                    <span class="badge badge--bestseller">Bestseller</span>
+                  {%- endif -%}
+                  {%- if product.metafields.midnight_magnolia.coming_soon -%}
+                    <span class="badge badge--coming-soon">Coming Soon</span>
+                  {%- endif -%}
+                  {%- if product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
+                    <span class="badge badge--digital">Digital</span>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              {%- comment -%} Product Content {%- endcomment -%}
+              <div class="product-card__content">
+                <h3 class="product-card__title">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+
+                {%- if product.description != blank -%}
+                  <p class="product-card__description">
+                    {{ product.description | strip_html | truncate: 120 }}
+                  </p>
+                {%- endif -%}
+
+                <div class="product-card__price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="price price--sale">{{ product.price | money }}</span>
+                    <span class="price price--compare">{{ product.compare_at_price | money }}</span>
+                  {%- else -%}
+                    <span class="price">{{ product.price | money }}</span>
+                  {%- endif -%}
+                </div>
+
+                <a href="{{ product.url }}" class="btn btn--ghost w-full">
+                  {%- if product.metafields.midnight_magnolia.coming_soon -%}
+                    Notify Me
+                  {%- else -%}
+                    Explore Tool
+                  {%- endif -%}
+                </a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="/collections/all" class="btn btn--secondary">
+            View All Sacred Tools
+          </a>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
+  {%- comment -%} Justice & Healing Information Cards {%- endcomment -%}
+  <section class="justice-healing section celestial-bg">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <h2 class="animate-fade-in-up">Justice & Healing</h2>
+        <p class="animate-fade-in-up" style="animation-delay: 0.2s;">
+          Our commitment to creating positive change through spiritual activism and community healing
+        </p>
+      </div>
+
+      <div class="grid grid--2-col">
+        <div class="magnolia-card animate-fade-in-up" style="animation-delay: 0.3s;">
+          <h3>Sacred Activism</h3>
+          <p>We believe that spiritual growth and social justice are deeply interconnected. Our tools support both personal transformation and collective healing.</p>
+          <a href="/pages/justice-healing" class="btn btn--ghost">Learn More</a>
+        </div>
+
+        <div class="magnolia-card animate-fade-in-up" style="animation-delay: 0.4s;">
+          <h3>Community Support</h3>
+          <p>Join our healing circle where we share resources, support each other's journeys, and work together to create positive change in our communities.</p>
+          <a href="/pages/healing-circle" class="btn btn--ghost">Join Circle</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Blog Posts - Midnight Musings {%- endcomment -%}
+  {%- if blog.articles.size > 0 -%}
+    <section class="blog-preview section">
+      <div class="container">
+        <div class="section-header text-center mb-4">
+          <h2 class="animate-fade-in-up">Midnight Musings</h2>
+          <p class="animate-fade-in-up" style="animation-delay: 0.2s;">
+            Reflections on healing, spirituality, and sacred living
+          </p>
+        </div>
+
+        <div class="grid grid--2-col">
+            {%- for article in blog.articles limit: 2 -%}
+              {% render 'blog-card', article: article %}
+            {%- endfor -%}
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="/blogs/midnight-musings" class="btn btn--secondary">
+            View All Posts
+          </a>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
+  {%- comment -%} Sacred Promise Section {%- endcomment -%}
+  <section class="sacred-promise section celestial-bg">
+    <div class="container">
+      <div class="text-center">
+        <div class="magnolia-card animate-fade-in-up" style="max-width: 800px; margin: 0 auto;">
+          <h2>Our Sacred Promise</h2>
+          <p class="mb-3">
+            Every tool we create is infused with intention, love, and a deep commitment to your healing journey.
+            We promise to provide resources that honor your spiritual path while supporting positive change in the world.
+          </p>
+          <div class="sacred-promise__features">
+            <div class="grid grid--3-col" style="gap: 1rem;">
+              <div class="feature">
+                <div class="feature__icon">🌙</div>
+                <h4>Intentionally Crafted</h4>
+                <p>Each resource is created with mindful intention and spiritual guidance</p>
+              </div>
+              <div class="feature">
+                <div class="feature__icon">🌸</div>
+                <h4>Healing Focused</h4>
+                <p>Tools designed to support your personal transformation and growth</p>
+              </div>
+              <div class="feature">
+                <div class="feature__icon">✨</div>
+                <h4>Community Driven</h4>
+                <p>Created with and for our sacred community of healers and seekers</p>
+              </div>
+            </div>
+          </div>
+          <a href="/pages/sacred-promise" class="btn btn--primary">
+            Read Our Full Promise
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Newsletter Signup {%- endcomment -%}
+  <section class="newsletter section">
+    <div class="container">
+      <div class="text-center">
+        <div class="magnolia-card animate-fade-in-up" style="max-width: 600px; margin: 0 auto;">
+          <h2>Join Our Sacred Circle</h2>
+          <p class="mb-3">
+            Receive monthly moon letters with spiritual insights, new tool releases,
+            and exclusive content for our community.
+          </p>
+
+          <form action="/contact#contact_form" method="post" class="newsletter-form">
+            <div class="form-group">
+              <label for="newsletter-email" class="visually-hidden">Email Address</label>
+              <input type="email"
+                     id="newsletter-email"
+                     name="contact[email]"
+                     class="form-input"
+                     placeholder="Enter your email address"
+                     required>
+            </div>
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <button type="submit" class="btn btn--primary w-full">
+              🌙 Join the Circle
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{%- comment -%} Schema markup for homepage {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ shop.name }}",
+  "url": "{{ shop.url }}",
+  "description": "{{ shop.description | escape }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ routes.search_url }}?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

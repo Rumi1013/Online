@@ -1,0 +1,372 @@
+{%- comment -%}
+  MIDNIGHT MAGNOLIA THEME
+  Product Card Snippet - Reusable Product Display Component
+  Spiritual wellness and healing tools theme
+
+  Usage:
+  {% render 'product-card', product: product, show_vendor: true, show_quick_add: false %}
+{%- endcomment -%}
+
+{%- liquid
+  assign show_vendor = show_vendor | default: false
+  assign show_quick_add = show_quick_add | default: true
+  assign show_compare = show_compare | default: false
+  assign lazy_load = lazy_load | default: true
+  assign card_class = card_class | default: ''
+-%}
+
+<div class="product-card {{ card_class }}"
+     data-product-id="{{ product.id }}"
+     data-product-handle="{{ product.handle }}">
+
+  {%- comment -%} Product Image {%- endcomment -%}
+  <div class="product-card__image">
+    <a href="{{ product.url }}" class="product-card__image-link">
+      {%- if product.featured_media -%}
+        <img src="{{ product.featured_media | image_url: width: 400 }}"
+             alt="{{ product.featured_media.alt | default: product.title | escape }}"
+             class="product-card__img"
+             {% if lazy_load %}loading="lazy"{% endif %}
+             width="400"
+             height="400">
+
+        {%- comment -%} Hover image (second image) {%- endcomment -%}
+        {%- if product.media[1] -%}
+          <img src="{{ product.media[1] | image_url: width: 400 }}"
+               alt="{{ product.media[1].alt | default: product.title | escape }}"
+               class="product-card__img product-card__img--hover"
+               {% if lazy_load %}loading="lazy"{% endif %}
+               width="400"
+               height="400">
+        {%- endif -%}
+      {%- else -%}
+        <div class="product-card__placeholder">
+          {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 100px; height: 100px; opacity: 0.3;' }}
+        </div>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Product Badges {%- endcomment -%}
+    <div class="product-card__badges">
+      {%- if product.metafields.midnight_magnolia.bestseller -%}
+        <span class="badge badge--bestseller">✨ Bestseller</span>
+      {%- endif -%}
+
+      {%- if product.metafields.midnight_magnolia.coming_soon -%}
+        <span class="badge badge--coming-soon">🌙 Coming Soon</span>
+      {%- endif -%}
+
+      {%- if product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
+        <span class="badge badge--digital">💫 Digital</span>
+      {%- endif -%}
+
+      {%- if product.compare_at_price > product.price -%}
+        <span class="badge badge--sale">
+          Save {{ product.compare_at_price | minus: product.price | money }}
+        </span>
+      {%- endif -%}
+
+      {%- comment -%} New product badge (within 30 days) {%- endcomment -%}
+      {%- assign days_since_created = 'now' | date: '%s' | minus: product.created_at | date: '%s' | divided_by: 86400 -%}
+      {%- if days_since_created <= 30 -%}
+        <span class="badge badge--new">🌸 New</span>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Quick Actions {%- endcomment -%}
+    <div class="product-card__actions">
+      <button class="quick-action wishlist-btn"
+              data-product-id="{{ product.id }}"
+              title="Add to Wishlist"
+              aria-label="Add {{ product.title }} to wishlist">
+        <span class="wishlist-icon">🤍</span>
+      </button>
+
+      {%- if show_compare -%}
+        <button class="quick-action compare-btn"
+                data-product-id="{{ product.id }}"
+                title="Add to Compare"
+                aria-label="Add {{ product.title }} to compare">
+          <span class="compare-icon">⚖️</span>
+        </button>
+      {%- endif -%}
+
+      <button class="quick-action quick-view-btn"
+              data-product-id="{{ product.id }}"
+              title="Quick View"
+              aria-label="Quick view {{ product.title }}">
+        <span class="quick-view-icon">👁️</span>
+      </button>
+    </div>
+  </div>
+
+  {%- comment -%} Product Content {%- endcomment -%}
+  <div class="product-card__content">
+
+    {%- comment -%} Category Tag {%- endcomment -%}
+    {%- if product.metafields.midnight_magnolia.category_tag -%}
+      <span class="product-card__category">
+        {{ product.metafields.midnight_magnolia.category_tag }}
+      </span>
+    {%- endif -%}
+
+    {%- comment -%} Vendor {%- endcomment -%}
+    {%- if show_vendor and product.vendor != blank -%}
+      <div class="product-card__vendor">
+        by {{ product.vendor }}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Product Title {%- endcomment -%}
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}" class="product-card__title-link">
+        {{ product.title }}
+      </a>
+    </h3>
+
+    {%- comment -%} Product Description {%- endcomment -%}
+    {%- if product.description != blank -%}
+      <p class="product-card__description">
+        {{ product.description | strip_html | truncate: 100 }}
+      </p>
+    {%- endif -%}
+
+    {%- comment -%} Product Rating (placeholder for review app integration) {%- endcomment -%}
+    <div class="product-card__rating">
+      <div class="stars-small">
+        {%- for i in (1..5) -%}
+          <span class="star">⭐</span>
+        {%- endfor -%}
+      </div>
+      <span class="rating-count">({{ product.metafields.reviews.rating_count | default: '5' }})</span>
+    </div>
+
+    {%- comment -%} Product Price {%- endcomment -%}
+    <div class="product-card__price">
+      {%- if product.compare_at_price > product.price -%}
+        <span class="price price--sale">{{ product.price | money }}</span>
+        <span class="price price--compare">{{ product.compare_at_price | money }}</span>
+        <span class="price-savings">
+          Save {{ product.compare_at_price | minus: product.price | money }}
+        </span>
+      {%- else -%}
+        <span class="price">{{ product.price | money }}</span>
+      {%- endif -%}
+
+      {%- comment -%} Price per unit (if applicable) {%- endcomment -%}
+      {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
+        <div class="unit-price">
+          {{ product.selected_or_first_available_variant.unit_price | money }}/
+          {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+            {{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}
+          {%- endif -%}
+          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Product Variants (if multiple options) {%- endcomment -%}
+    {%- if product.variants.size > 1 and product.options.size == 1 -%}
+      <div class="product-card__variants">
+        <div class="variant-options">
+          {%- for variant in product.variants limit: 5 -%}
+            <button class="variant-option {% if variant == product.selected_or_first_available_variant %}active{% endif %}"
+                    data-variant-id="{{ variant.id }}"
+                    {% unless variant.available %}disabled{% endunless %}>
+              {{ variant.title }}
+                class="shopify-product-card animate-fade-in-up"
+          {%- endfor -%}
+          {%- if product.variants.size > 5 -%}
+            <span class="variant-more">+{{ product.variants.size | minus: 5 }} more</span>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Product Features/Tags {%- endcomment -%}
+    {%- if product.tags.size > 0 -%}
+      <div class="product-card__tags">
+        {%- for tag in product.tags limit: 3 -%}
+          <span class="product-tag">{{ tag }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Call to Action Button {%- endcomment -%}
+    <div class="product-card__cta">
+      {%- if product.metafields.midnight_magnolia.coming_soon -%}
+        <button class="btn btn--ghost w-full" disabled>
+          🌙 Coming Soon
+        </button>
+      {%- elsif product.available -%}
+        {%- if show_quick_add and product.variants.size == 1 -%}
+          <form action="/cart/add" method="post" enctype="multipart/form-data" class="quick-add-form">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button type="submit" class="btn btn--ghost w-full quick-add-btn">
+              <span class="btn-text">✨ Add to Collection</span>
+              <span class="btn-loading" style="display: none;">Adding...</span>
+            </button>
+          </form>
+        {%- else -%}
+          <a href="{{ product.url }}" class="btn btn--ghost w-full">
+            ✨ Explore Tool
+          </a>
+        {%- endif -%}
+      {%- else -%}
+        <button class="btn btn--ghost w-full" disabled>
+          Sold Out
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Product Card JavaScript (inline for performance) {%- endcomment -%}
+<script>
+  // Quick add to cart functionality
+  document.querySelectorAll('.quick-add-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const button = this.querySelector('.quick-add-btn');
+      const btnText = button.querySelector('.btn-text');
+      const btnLoading = button.querySelector('.btn-loading');
+
+      // Show loading state
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      button.disabled = true;
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Success
+        btnText.textContent = '✨ Added!';
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+
+        // Update cart count
+        const cartCount = document.getElementById('cart-count');
+        if (cartCount) {
+          fetch('/cart.js')
+            .then(response => response.json())
+            .then(cart => {
+              cartCount.textContent = cart.item_count;
+            });
+        }
+
+        // Reset button after delay
+        setTimeout(() => {
+          btnText.textContent = '✨ Add to Collection';
+          button.disabled = false;
+        }, 2000);
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
+        btnText.textContent = 'Error - Try Again';
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        button.disabled = false;
+
+        setTimeout(() => {
+          btnText.textContent = '✨ Add to Collection';
+        }, 2000);
+      });
+    });
+  });
+
+  // Wishlist functionality
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const productId = this.dataset.productId;
+      const icon = this.querySelector('.wishlist-icon');
+
+      // Toggle wishlist state
+      this.classList.toggle('active');
+      icon.textContent = this.classList.contains('active') ? '💖' : '🤍';
+
+      // Save to localStorage (or send to server)
+      let wishlist = JSON.parse(localStorage.getItem('midnight-magnolia-wishlist') || '[]');
+
+      if (this.classList.contains('active')) {
+        if (!wishlist.includes(productId)) {
+          wishlist.push(productId);
+        }
+      } else {
+        wishlist = wishlist.filter(id => id !== productId);
+      }
+
+      localStorage.setItem('midnight-magnolia-wishlist', JSON.stringify(wishlist));
+
+      // Update wishlist count
+      const wishlistCount = document.getElementById('wishlist-count');
+      if (wishlistCount) {
+        wishlistCount.textContent = wishlist.length;
+      }
+    });
+  });
+
+  // Quick view functionality
+  document.querySelectorAll('.quick-view-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const productId = this.dataset.productId;
+
+      // Here you would typically open a modal with product details
+      console.log('Quick view for product:', productId);
+
+      // For now, just navigate to product page
+      const productCard = this.closest('.product-card');
+      const productLink = productCard.querySelector('.product-card__title-link');
+      if (productLink) {
+        window.location.href = productLink.href;
+      }
+    });
+  });
+
+  // Variant selection
+  document.querySelectorAll('.variant-option').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const variantId = this.dataset.variantId;
+      const productCard = this.closest('.product-card');
+
+      // Update active state
+      productCard.querySelectorAll('.variant-option').forEach(option => {
+        option.classList.remove('active');
+      });
+      this.classList.add('active');
+
+      // Update hidden input if quick add form exists
+      const hiddenInput = productCard.querySelector('input[name="id"]');
+      if (hiddenInput) {
+        hiddenInput.value = variantId;
+      }
+
+      // Here you could also update price, image, etc. based on variant
+    });
+  });
+
+  // Initialize wishlist state from localStorage
+  document.addEventListener('DOMContentLoaded', function() {
+    const wishlist = JSON.parse(localStorage.getItem('midnight-magnolia-wishlist') || '[]');
+
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+      const productId = btn.dataset.productId;
+      if (wishlist.includes(productId)) {
+        btn.classList.add('active');
+        btn.querySelector('.wishlist-icon').textContent = '💖';
+      }
+    });
+
+    // Update wishlist count
+    const wishlistCount = document.getElementById('wishlist-count');
+    if (wishlistCount) {
+      wishlistCount.textContent = wishlist.length;
+    }
+  });
+</script>

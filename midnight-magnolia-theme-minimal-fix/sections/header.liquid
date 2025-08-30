@@ -1,0 +1,447 @@
+{%- comment -%}
+  MIDNIGHT MAGNOLIA THEME
+  Header Section - Navigation & Branding
+  Spiritual wellness and healing tools theme
+{%- endcomment -%}
+
+<header class="header" role="banner">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+
+      {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
+      <button class="mobile-menu-toggle"
+              aria-label="Toggle mobile menu"
+              onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      {%- comment -%} Logo {%- endcomment -%}
+      <div class="nav__logo">
+        {%- if settings.logo != blank -%}
+          <a href="{{ routes.root_url }}" class="logo-link">
+            <img src="{{ settings.logo | image_url: width: 200 }}"
+                 alt="{{ shop.name }}"
+                 class="logo-image"
+                 width="{{ settings.logo_width | default: 180 }}"
+                 height="auto"
+                 loading="eager">
+          </a>
+        {%- else -%}
+          <a href="{{ routes.root_url }}" class="logo-link">
+            <img src="{{ 'logo-main.jpg' | asset_url }}"
+                 alt="{{ shop.name }}"
+                 class="logo-image"
+                 width="{{ settings.logo_width | default: 180 }}"
+                 height="auto"
+                 loading="eager">
+          </a>
+        {%- endif -%}
+      </div>
+        class="shopify-header"
+      {%- comment -%} Main Navigation Menu {%- endcomment -%}
+      <ul class="nav__menu" role="menubar">
+
+        {%- comment -%} Sacred Tools Dropdown {%- endcomment -%}
+        <li class="nav__item nav__item--dropdown" role="none">
+          <a href="/collections/all"
+             class="nav__link"
+             role="menuitem"
+             aria-haspopup="true"
+             aria-expanded="false">
+            Sacred Tools
+            <span class="dropdown-icon">🔮</span>
+          </a>
+
+          <div class="nav__dropdown" role="menu">
+            <div class="dropdown-content">
+              <div class="dropdown-section">
+                <h4 class="dropdown-title">Digital Sanctuary</h4>
+                <div class="dropdown-links">
+                  <a href="/collections/healing-journals" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">📖</span>
+                    The Magnolia Reset
+                  </a>
+                  <a href="/collections/tarot-divination" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">🔮</span>
+                    Midnight Messages
+                  </a>
+                  <a href="/collections/digital-planners" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">📅</span>
+                    Sacred Productivity
+                  </a>
+                  <a href="/collections/ritual-guides" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">🌙</span>
+                    Ritual Guides
+                  </a>
+                </div>
+              </div>
+
+              <div class="dropdown-section">
+                <h4 class="dropdown-title">Featured Collections</h4>
+                <div class="dropdown-links">
+                  <a href="/collections/bestsellers" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">✨</span>
+                    Bestsellers
+                  </a>
+                  <a href="/collections/new-arrivals" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">🌸</span>
+                    New Arrivals
+                  </a>
+                  <a href="/collections/coming-soon" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">🌙</span>
+                    Coming Soon
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        {%- comment -%} Shop Dropdown {%- endcomment -%}
+        <li class="nav__item nav__item--dropdown" role="none">
+          <a href="/collections"
+             class="nav__link"
+             role="menuitem"
+             aria-haspopup="true"
+             aria-expanded="false">
+            Shop
+            <span class="dropdown-icon">🛍️</span>
+          </a>
+
+          <div class="nav__dropdown" role="menu">
+            <div class="dropdown-content">
+              <div class="dropdown-section">
+                <h4 class="dropdown-title">Physical Collections</h4>
+                <div class="dropdown-links">
+                  <a href="/collections/sacred-home" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">🏠</span>
+                    Sacred Home Collection
+                  </a>
+                  <a href="/collections/mystical-accessories" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">💎</span>
+                    Mystical Accessories
+                  </a>
+                  <a href="/collections/midnight-menagerie" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">🐾</span>
+                    Midnight Menagerie
+                  </a>
+                </div>
+              </div>
+
+              <div class="dropdown-section">
+                <h4 class="dropdown-title">Art & Merchandise</h4>
+                <div class="dropdown-links">
+                  <a href="/collections/digital-art" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">🎨</span>
+                    Digital Art Prints
+                  </a>
+                  <a href="/collections/apparel" class="nav__dropdown-link" role="menuitem">
+                    <span class="link-icon">👕</span>
+                    Apparel Line
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        {%- comment -%} Single Navigation Items {%- endcomment -%}
+        <li class="nav__item" role="none">
+          <a href="/pages/our-story" class="nav__link" role="menuitem">
+            Our Story
+          </a>
+        </li>
+
+        <li class="nav__item" role="none">
+          <a href="/blogs/midnight-musings" class="nav__link" role="menuitem">
+            Midnight Musings
+          </a>
+        </li>
+
+        <li class="nav__item" role="none">
+          <a href="/pages/justice-healing" class="nav__link" role="menuitem">
+            Justice & Healing
+          </a>
+        </li>
+
+        <li class="nav__item" role="none">
+          <a href="/pages/community" class="nav__link" role="menuitem">
+            Community
+          </a>
+        </li>
+      </ul>
+
+      {%- comment -%} Header Actions {%- endcomment -%}
+      <div class="nav__actions">
+
+        {%- comment -%} Search Toggle {%- endcomment -%}
+        <button class="nav__action search-toggle"
+                aria-label="Toggle search"
+                onclick="toggleSearch()">
+          <span class="action-icon">🔍</span>
+        </button>
+
+        {%- comment -%} Account Link {%- endcomment -%}
+        <a href="/account" class="nav__action account-link" aria-label="Account">
+          <span class="action-icon">👤</span>
+        </a>
+
+        {%- comment -%} Wishlist Link {%- endcomment -%}
+        <button class="nav__action wishlist-toggle"
+                aria-label="Toggle wishlist"
+                onclick="toggleWishlist()">
+          <span class="action-icon">💖</span>
+          <span class="wishlist-count" id="wishlist-count">0</span>
+        </button>
+
+        {%- comment -%} Cart Link {%- endcomment -%}
+        <a href="/cart" class="nav__action cart-link" aria-label="Shopping cart">
+          <span class="action-icon">🛒</span>
+          <span class="cart-count" id="cart-count">{{ cart.item_count }}</span>
+        </a>
+
+        {%- comment -%} Theme Toggle (Moon Phases) {%- endcomment -%}
+        <button class="nav__action theme-toggle moon-toggle"
+                aria-label="Toggle theme mode">
+          <span class="moon-phase">🌙</span>
+        </button>
+      </div>
+    </nav>
+
+    {%- comment -%} Search Bar (Hidden by default) {%- endcomment -%}
+    <div class="search-bar" id="search-bar" style="display: none;">
+      <form action="/search" method="get" class="search-form" role="search">
+        <div class="search-input-group">
+          <input type="search"
+                 name="q"
+                 class="search-input"
+                 placeholder="Search sacred tools..."
+                 aria-label="Search products"
+                 autocomplete="off">
+          <button type="submit" class="search-submit" aria-label="Submit search">
+            <span class="search-icon">🔍</span>
+          </button>
+        </div>
+        <button type="button" class="search-close" onclick="toggleSearch()" aria-label="Close search">
+          ✕
+        </button>
+      </form>
+
+      {%- comment -%} Search Suggestions {%- endcomment -%}
+      <div class="search-suggestions" id="search-suggestions">
+        <div class="suggestions-section">
+          <h4>Popular Searches</h4>
+          <div class="suggestion-tags">
+            <a href="/search?q=healing+journal" class="suggestion-tag">Healing Journal</a>
+            <a href="/search?q=tarot" class="suggestion-tag">Tarot</a>
+            <a href="/search?q=meditation" class="suggestion-tag">Meditation</a>
+            <a href="/search?q=planner" class="suggestion-tag">Planner</a>
+          </div>
+        </div>
+
+        <div class="suggestions-section">
+          <h4>Categories</h4>
+          <div class="suggestion-links">
+            <a href="/collections/healing-journals" class="suggestion-link">Healing Journals</a>
+            <a href="/collections/tarot-divination" class="suggestion-link">Tarot & Divination</a>
+            <a href="/collections/sacred-home" class="suggestion-link">Sacred Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Mobile Menu (Hidden by default) {%- endcomment -%}
+    <div class="mobile-menu" id="mobile-menu" style="display: none;">
+      <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+          <h3>Menu</h3>
+          <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
+            ✕
+          </button>
+        </div>
+
+        <nav class="mobile-nav" role="navigation">
+          <div class="mobile-nav-section">
+            <h4 class="mobile-nav-title">Sacred Tools</h4>
+            <ul class="mobile-nav-links">
+              <li><a href="/collections/healing-journals">📖 The Magnolia Reset</a></li>
+              <li><a href="/collections/tarot-divination">🔮 Midnight Messages</a></li>
+              <li><a href="/collections/digital-planners">📅 Sacred Productivity</a></li>
+              <li><a href="/collections/ritual-guides">🌙 Ritual Guides</a></li>
+            </ul>
+          </div>
+
+          <div class="mobile-nav-section">
+            <h4 class="mobile-nav-title">Shop</h4>
+            <ul class="mobile-nav-links">
+              <li><a href="/collections/sacred-home">🏠 Sacred Home Collection</a></li>
+              <li><a href="/collections/mystical-accessories">💎 Mystical Accessories</a></li>
+              <li><a href="/collections/midnight-menagerie">🐾 Midnight Menagerie</a></li>
+            </ul>
+          </div>
+
+          <div class="mobile-nav-section">
+            <ul class="mobile-nav-links">
+              <li><a href="/pages/our-story">Our Story</a></li>
+              <li><a href="/blogs/midnight-musings">Midnight Musings</a></li>
+              <li><a href="/pages/justice-healing">Justice & Healing</a></li>
+              <li><a href="/pages/community">Community</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Header JavaScript {%- endcomment -%}
+<script>
+  // Mobile menu toggle
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const isVisible = mobileMenu.style.display !== 'none';
+    mobileMenu.style.display = isVisible ? 'none' : 'block';
+    document.body.classList.toggle('mobile-menu-open', !isVisible);
+  }
+
+  // Search toggle
+  function toggleSearch() {
+    const searchBar = document.getElementById('search-bar');
+    const isVisible = searchBar.style.display !== 'none';
+    searchBar.style.display = isVisible ? 'none' : 'block';
+
+    if (!isVisible) {
+      // Focus on search input when opened
+      setTimeout(() => {
+        searchBar.querySelector('.search-input').focus();
+      }, 100);
+    }
+  }
+
+  // Wishlist toggle
+  function toggleWishlist() {
+    // This would typically open a wishlist drawer or modal
+    console.log('Toggle wishlist');
+  }
+
+  // Dropdown hover functionality
+  document.querySelectorAll('.nav__item--dropdown').forEach(item => {
+    const dropdown = item.querySelector('.nav__dropdown');
+    const link = item.querySelector('.nav__link');
+
+    item.addEventListener('mouseenter', () => {
+      dropdown.style.opacity = '1';
+      dropdown.style.visibility = 'visible';
+      dropdown.style.transform = 'translateY(0)';
+      link.setAttribute('aria-expanded', 'true');
+    });
+
+    item.addEventListener('mouseleave', () => {
+      dropdown.style.opacity = '0';
+      dropdown.style.visibility = 'hidden';
+      dropdown.style.transform = 'translateY(-10px)';
+      link.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Update cart count when cart changes
+  document.addEventListener('cart:updated', function(event) {
+    const cartCount = document.getElementById('cart-count');
+    if (cartCount && event.detail.itemCount !== undefined) {
+      cartCount.textContent = event.detail.itemCount;
+    }
+  });
+
+  // Search functionality
+  const searchInput = document.querySelector('.search-input');
+  const searchSuggestions = document.getElementById('search-suggestions');
+
+  if (searchInput) {
+    searchInput.addEventListener('focus', () => {
+      searchSuggestions.style.display = 'block';
+    });
+
+    searchInput.addEventListener('blur', (e) => {
+      // Delay hiding to allow clicking on suggestions
+      setTimeout(() => {
+        if (!e.relatedTarget || !searchSuggestions.contains(e.relatedTarget)) {
+          searchSuggestions.style.display = 'none';
+        }
+      }, 200);
+    });
+  }
+
+  // Responsive menu handling
+  function handleResize() {
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav__menu');
+
+    if (window.innerWidth <= 768) {
+      // Mobile: show hamburger menu, hide main nav
+      if (mobileToggle) mobileToggle.style.display = 'flex';
+      if (navMenu) navMenu.style.display = 'none';
+    } else {
+      // Desktop: show main nav, hide hamburger menu
+      if (mobileToggle) mobileToggle.style.display = 'none';
+      if (navMenu) navMenu.style.display = 'flex';
+      // Close mobile menu if open
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu) mobileMenu.style.display = 'none';
+      document.body.classList.remove('mobile-menu-open');
+    }
+  }
+
+  // Initialize responsive handling
+  window.addEventListener('resize', handleResize);
+  document.addEventListener('DOMContentLoaded', handleResize);
+</script>
+
+{%- comment -%} Header Schema Settings {%- endcomment -%}
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 100,
+      "max": 300,
+      "step": 10,
+      "default": 180,
+      "unit": "px",
+      "label": "Logo width"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Main menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_search",
+      "label": "Enable search",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_wishlist",
+      "label": "Enable wishlist",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

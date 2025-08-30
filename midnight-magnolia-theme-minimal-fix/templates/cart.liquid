@@ -1,0 +1,443 @@
+{%- comment -%}
+  MIDNIGHT MAGNOLIA THEME
+  Cart Template - Sacred Collection Cart
+  Spiritual wellness and healing tools theme
+{%- endcomment -%}
+
+<div class="cart-page celestial-bg">
+
+  {%- comment -%} Mystical Elements {%- endcomment -%}
+  {% render 'floating-elements' %}
+  {% render 'moon-phase-indicator' %}
+
+  {%- comment -%} Cart Header {%- endcomment -%}
+  <section class="cart-header section">
+    <div class="container">
+      <div class="cart-hero text-center animate-fade-in-up">
+        <h1 class="cart-title">Your Sacred Collection</h1>
+        <p class="cart-subtitle">
+          Review your spiritual tools and complete your journey to transformation
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {%- if cart.item_count > 0 -%}
+    {%- comment -%} Cart Content {%- endcomment -%}
+    <section class="cart-content section">
+      <div class="container">
+        <div class="grid grid--2-col" style="gap: 3rem; align-items: start;">
+
+          {%- comment -%} Cart Items {%- endcomment -%}
+          <div class="cart-items">
+            <div class="cart-items-header">
+              <h2>Sacred Tools ({{ cart.item_count }})</h2>
+              <button class="btn btn--ghost btn--small" onclick="clearCart()">
+                Clear All
+              </button>
+            </div>
+
+            <div class="cart-items-list">
+              {%- for item in cart.items -%}
+                <div class="cart-item magnolia-card animate-fade-in-up"
+                     style="animation-delay: {{ forloop.index | times: 0.1 }}s;"
+                     data-variant-id="{{ item.variant.id }}">
+
+                  {%- comment -%} Item Image {%- endcomment -%}
+                  <div class="cart-item__image">
+                    {%- if item.image -%}
+                      <img src="{{ item.image | image_url: width: 150 }}"
+                           alt="{{ item.image.alt | escape }}"
+                           loading="lazy">
+                    {%- else -%}
+                      {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 80px; height: 80px; opacity: 0.3;' }}
+                    {%- endif -%}
+
+                    {%- comment -%} Item Badges {%- endcomment -%}
+                    {%- if item.product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
+                      <span class="item-badge badge--digital">💫 Digital</span>
+                    {%- endif -%}
+                  </div>
+
+                  {%- comment -%} Item Details {%- endcomment -%}
+                  <div class="cart-item__details">
+                    <div class="item-header">
+                      <h3 class="item-title">
+                        <a href="{{ item.product.url }}">{{ item.product.title }}</a>
+                      </h3>
+
+                      {%- if item.product.metafields.midnight_magnolia.category_tag -%}
+                        <span class="item-category">{{ item.product.metafields.midnight_magnolia.category_tag }}</span>
+                      {%- endif -%}
+                    </div>
+
+                    {%- comment -%} Variant Options {%- endcomment -%}
+                    {%- if item.variant.title != 'Default Title' -%}
+                      <div class="item-variant">
+                        <span class="variant-label">{{ item.variant.title }}</span>
+                      </div>
+                    {%- endif -%}
+
+                    {%- comment -%} Item Properties {%- endcomment -%}
+                    {%- if item.properties.size > 0 -%}
+                      <div class="item-properties">
+                        {%- for property in item.properties -%}
+                          {%- unless property.last == blank -%}
+                            <div class="property">
+                              <span class="property-name">{{ property.first }}:</span>
+                              <span class="property-value">{{ property.last }}</span>
+                            </div>
+                          {%- endunless -%}
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+
+                    {%- comment -%} Quantity and Price Controls {%- endcomment -%}
+                    <div class="item-controls">
+                      <div class="quantity-controls">
+                        <label for="quantity-{{ item.variant.id }}" class="quantity-label">Quantity:</label>
+                        <div class="quantity-input">
+                          <button type="button" class="quantity-btn quantity-minus"
+                                  onclick="updateQuantity('{{ item.variant.id }}', {{ item.quantity | minus: 1 }})">-</button>
+                          <input type="number"
+                                 id="quantity-{{ item.variant.id }}"
+                                 class="quantity-field"
+                                 value="{{ item.quantity }}"
+                                 min="0"
+                                 onchange="updateQuantity('{{ item.variant.id }}', this.value)">
+                          <button type="button" class="quantity-btn quantity-plus"
+                                  onclick="updateQuantity('{{ item.variant.id }}', {{ item.quantity | plus: 1 }})">+</button>
+                        </div>
+                      </div>
+
+                      <div class="item-price">
+                        {%- if item.original_price != item.final_price -%}
+                          <span class="price price--sale">{{ item.final_price | money }}</span>
+                          <span class="price price--compare">{{ item.original_price | money }}</span>
+                        {%- else -%}
+                          <span class="price">{{ item.final_price | money }}</span>
+                        {%- endif -%}
+
+                        {%- if item.quantity > 1 -%}
+                          <div class="item-total">
+                            Total: {{ item.final_line_price | money }}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </div>
+
+                    {%- comment -%} Item Actions {%- endcomment -%}
+                    <div class="item-actions">
+                      <button class="btn btn--ghost btn--small"
+                              onclick="updateQuantity('{{ item.variant.id }}', 0)">
+                        Remove
+                      </button>
+                      <button class="btn btn--ghost btn--small wishlist-btn"
+                              data-product-id="{{ item.product.id }}">
+                        💖 Save for Later
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+
+          {%- comment -%} Cart Summary {%- endcomment -%}
+          <div class="cart-summary">
+            <div class="summary-card magnolia-card animate-fade-in-up" style="animation-delay: 0.3s;">
+              <h3 class="summary-title">Order Summary</h3>
+
+              {%- comment -%} Order Totals {%- endcomment -%}
+              <div class="summary-totals">
+                <div class="total-line">
+                  <span class="total-label">Subtotal ({{ cart.item_count }} items):</span>
+                  <span class="total-value">{{ cart.total_price | money }}</span>
+                </div>
+
+                {%- if cart.total_discounts > 0 -%}
+                  <div class="total-line discount-line">
+                    <span class="total-label">Discounts:</span>
+                    <span class="total-value discount-value">-{{ cart.total_discounts | money }}</span>
+                  </div>
+                {%- endif -%}
+
+                {%- comment -%} Shipping estimate {%- endcomment -%}
+                <div class="total-line">
+                  <span class="total-label">Shipping:</span>
+                  <span class="total-value">
+                    {%- assign has_physical = false -%}
+                    {%- for item in cart.items -%}
+                      {%- unless item.product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
+                        {%- assign has_physical = true -%}
+                        {%- break -%}
+                      {%- endunless -%}
+                    {%- endfor -%}
+
+                    {%- if has_physical -%}
+                      {%- if cart.total_price >= 5000 -%}
+                        Free
+                      {%- else -%}
+                        Calculated at checkout
+                      {%- endif -%}
+                    {%- else -%}
+                      Not applicable (Digital)
+                    {%- endif -%}
+                  </span>
+                </div>
+
+                <div class="total-line total-line--final">
+                  <span class="total-label">Total:</span>
+                  <span class="total-value total-final">{{ cart.total_price | money }}</span>
+                </div>
+              </div>
+
+              {%- comment -%} Discount Code {%- endcomment -%}
+              <div class="discount-code">
+                <form action="/cart" method="post" class="discount-form">
+                  <div class="form-group">
+                    <label for="discount-code" class="form-label">Discount Code</label>
+                    <div class="discount-input-group">
+                      <input type="text"
+                             id="discount-code"
+                             name="discount"
+                             class="form-input"
+                             placeholder="Enter code">
+                      <button type="submit" class="btn btn--ghost">Apply</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              {%- comment -%} Checkout Button {%- endcomment -%}
+              <div class="checkout-actions">
+                <button type="submit" name="add" class="btn btn--primary btn--full checkout-btn">
+                  ✨ Complete Sacred Journey
+                </button>
+
+                <div class="checkout-options">
+                  <div class="express-checkout">
+                    {{ content_for_additional_checkout_buttons }}
+                  </div>
+                </div>
+
+                <div class="continue-shopping">
+                  <a href="/collections/all" class="btn btn--secondary btn--full">
+                    Continue Exploring
+                  </a>
+                </div>
+              </div>
+
+              {%- comment -%} Trust Badges {%- endcomment -%}
+              <div class="trust-badges">
+                <div class="trust-badge">
+                  <div class="trust-icon">🔒</div>
+                  <div class="trust-text">
+                    <strong>Secure Checkout</strong>
+                    <span>SSL encrypted</span>
+                  </div>
+                </div>
+
+                <div class="trust-badge">
+                  <div class="trust-icon">💫</div>
+                  <div class="trust-text">
+                    <strong>Instant Access</strong>
+                    <span>Digital downloads</span>
+                  </div>
+                </div>
+
+                <div class="trust-badge">
+                  <div class="trust-icon">🌙</div>
+                  <div class="trust-text">
+                    <strong>Sacred Promise</strong>
+                    <span>Intentionally crafted</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {%- comment -%} Recommended Products {%- endcomment -%}
+            {%- if recommendations.products.size > 0 -%}
+              <div class="cart-recommendations magnolia-card animate-fade-in-up" style="animation-delay: 0.4s;">
+                <h3>You Might Also Love</h3>
+                <div class="recommendations-grid">
+                  {%- for product in recommendations.products limit: 2 -%}
+                    <div class="recommendation-item">
+                      <div class="recommendation-image">
+                        {%- if product.featured_media -%}
+                          <img src="{{ product.featured_media | image_url: width: 100 }}"
+                               alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                               loading="lazy">
+                        {%- endif -%}
+                      </div>
+                      <div class="recommendation-details">
+                        <h4 class="recommendation-title">
+                          <a href="{{ product.url }}">{{ product.title | truncate: 40 }}</a>
+                        </h4>
+                        <div class="recommendation-price">{{ product.price | money }}</div>
+                        <a href="{{ product.url }}" class="btn btn--ghost btn--small">
+                          Add to Collection
+                        </a>
+                      </div>
+                    </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </section>
+
+  {%- else -%}
+    {%- comment -%} Empty Cart State {%- endcomment -%}
+    <section class="empty-cart section">
+      <div class="container">
+        <div class="empty-cart-content text-center">
+          <div class="magnolia-card animate-fade-in-up" style="max-width: 600px; margin: 0 auto;">
+            <div class="empty-cart-icon mb-3">
+              {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 120px; height: 120px; opacity: 0.3;' }}
+            </div>
+
+            <h2>Your Sacred Collection is Empty</h2>
+            <p class="mb-4">
+              Begin your spiritual journey by exploring our carefully curated tools for healing,
+              transformation, and sacred living.
+            </p>
+
+            <div class="empty-cart-actions">
+              <a href="/collections/all" class="btn btn--primary">
+                🌙 Explore Sacred Tools
+              </a>
+              <a href="/collections/featured-tools" class="btn btn--secondary">
+                ✨ View Featured
+              </a>
+            </div>
+
+            {%- comment -%} Popular Categories {%- endcomment -%}
+            <div class="popular-categories mt-4">
+              <h3>Popular Categories</h3>
+              <div class="category-links">
+                <a href="/collections/healing-journals" class="category-link">Healing Journals</a>
+                <a href="/collections/tarot-divination" class="category-link">Tarot & Divination</a>
+                <a href="/collections/sacred-home" class="category-link">Sacred Home</a>
+                <a href="/collections/mystical-accessories" class="category-link">Mystical Accessories</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
+</div>
+
+{%- comment -%} Cart JavaScript {%- endcomment -%}
+<script>
+  // Update cart quantity
+  function updateQuantity(variantId, quantity) {
+    const data = {
+      id: variantId,
+      quantity: parseInt(quantity)
+    };
+
+    fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Reload page to update cart
+      window.location.reload();
+    })
+    .catch(error => {
+      console.error('Error updating cart:', error);
+    });
+  }
+
+  // Clear entire cart
+  function clearCart() {
+    if (confirm('Are you sure you want to remove all items from your sacred collection?')) {
+      fetch('/cart/clear.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error clearing cart:', error);
+      });
+    }
+  }
+
+  // Checkout button functionality
+  document.querySelector('.checkout-btn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.location.href = '/checkout';
+  });
+
+  // Wishlist functionality
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const productId = this.dataset.productId;
+
+      // Toggle wishlist state
+      this.classList.toggle('active');
+
+      // Here you would typically save to localStorage or send to server
+      console.log('Added to wishlist:', productId);
+
+      // Show confirmation
+      this.innerHTML = this.classList.contains('active') ? '💖 Saved' : '💖 Save for Later';
+    });
+  });
+
+  // Auto-update quantity on input change
+  document.querySelectorAll('.quantity-field').forEach(input => {
+    let timeout;
+    input.addEventListener('input', function() {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const variantId = this.id.replace('quantity-', '');
+        const quantity = parseInt(this.value);
+        if (quantity >= 0) {
+          updateQuantity(variantId, quantity);
+        }
+      }, 1000); // Wait 1 second after user stops typing
+    });
+  });
+</script>
+
+{%- comment -%} Cart Schema Markup {%- endcomment -%}
+{%- if cart.item_count > 0 -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ShoppingCart",
+    "mainEntity": [
+      {%- for item in cart.items -%}
+        {
+          "@type": "Product",
+          "name": "{{ item.product.title | escape }}",
+          "image": "{{ item.image | image_url: width: 600 }}",
+          "offers": {
+            "@type": "Offer",
+            "price": "{{ item.final_price | divided_by: 100.0 }}",
+            "priceCurrency": "{{ cart.currency.iso_code }}",
+            "availability": "https://schema.org/InStock"
+          },
+          "quantity": {{ item.quantity }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+{%- endif -%}
