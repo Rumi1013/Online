@@ -28,8 +28,12 @@
                  height="auto">
           </a>
         {%- else -%}
-          <a href="{{ routes.root_url }}" class="logo-text">
-            {{ shop.name }}
+          <a href="{{ routes.root_url }}" class="logo-link">
+            <img src="{{ 'logo-main.jpg' | asset_url }}"
+                 alt="{{ shop.name }}"
+                 class="logo-image"
+                 width="{{ settings.logo_width | default: 180 }}"
+                 height="auto">
           </a>
         {%- endif -%}
       </div>
