@@ -1,154 +1,157 @@
 {%- comment -%}
-  MIDNIGHT MAGNOLIA THEME
-  Product Template - Sacred Tools Product Page
-  Spiritual wellness and healing tools theme
+  Product template with enhanced features for Midnight Magnolia theme
 {%- endcomment -%}
 
-<div class="product-page celestial-bg">
-
-  {%- comment -%} Mystical Elements {%- endcomment -%}
-  {% render 'floating-elements' %}
-  {% render 'moon-phase-indicator' %}
-
-  {%- comment -%} Product Hero Section {%- endcomment -%}
-  <section class="product-hero section">
-    <div class="container">
-      <div class="grid grid--2-col" style="gap: 3rem; align-items: start;">
-
-        {%- comment -%} Product Images {%- endcomment -%}
-        <div class="product-media">
-          {%- if product.media.size > 0 -%}
-            <div class="product-media__main">
-              <div class="product-image animate-fade-in">
-                <img src="{{ product.featured_media | image_url: width: 600 }}"
-                     alt="{{ product.featured_media.alt | default: product.title | escape }}"
-                     loading="eager"
-                     id="main-product-image">
-              </div>
-
-              {%- comment -%} Product Badges {%- endcomment -%}
-              <div class="product-badges">
-                {%- if product.metafields.midnight_magnolia.bestseller -%}
-                  <span class="badge badge--bestseller">✨ Bestseller</span>
-                {%- endif -%}
-                {%- if product.metafields.midnight_magnolia.coming_soon -%}
-                  <span class="badge badge--coming-soon">🌙 Coming Soon</span>
-                {%- endif -%}
-                {%- if product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
-                  <span class="badge badge--digital">💫 Digital Download</span>
-                {%- endif -%}
-              </div>
+<section class="product-section animate-fade-in" style="padding: 2rem 0 4rem;">
+  <div class="container">
+    <div class="product-layout">
+      {%- comment -%} Product Images {%- endcomment -%}
+      <div class="product-media animate-fade-in-left">
+        <div class="product-gallery">
+          {%- if product.featured_media -%}
+            <div class="product-image-main">
+              <img 
+                src="{{ product.featured_media | image_url: width: 600 }}" 
+                alt="{{ product.featured_media.alt | escape }}"
+                loading="lazy"
+                class="product-image"
+              >
             </div>
-
-            {%- if product.media.size > 1 -%}
-              <div class="product-media__thumbnails">
-                {%- for media in product.media limit: 5 -%}
-                  <button class="thumbnail {% if forloop.first %}active{% endif %}"
-                          data-media-id="{{ media.id }}"
-                          onclick="changeMainImage('{{ media | image_url: width: 600 }}', this)">
-                    <img src="{{ media | image_url: width: 100 }}"
-                         alt="{{ media.alt | default: product.title | escape }}"
-                         loading="lazy">
-                  </button>
-                {%- endfor -%}
-              </div>
-            {%- endif -%}
-          {%- else -%}
-            <div class="product-media__placeholder">
-              {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 200px; height: 200px; opacity: 0.3;' }}
+          {%- endif -%}
+          
+          {%- if product.media.size > 1 -%}
+            <div class="product-thumbnails">
+              {%- for media in product.media limit: 5 -%}
+                <button class="thumbnail {% if forloop.first %}active{% endif %}" data-media-id="{{ media.id }}">
+                  <img 
+                    src="{{ media.preview_image | image_url: width: 100 }}" 
+                    alt="{{ media.alt | escape }}"
+                    loading="lazy"
+                  >
+                </button>
+              {%- endfor -%}
             </div>
           {%- endif -%}
         </div>
+      </div>
 
-        {%- comment -%} Product Information {%- endcomment -%}
-        <div class="product-info">
-          <div class="product-header animate-fade-in-up">
-            {%- if product.metafields.midnight_magnolia.category_tag -%}
-              <span class="product-category">{{ product.metafields.midnight_magnolia.category_tag }}</span>
-            {%- endif -%}
-
-            <h1 class="product-title">{{ product.title }}</h1>
-
-            {%- if product.vendor != blank -%}
-              <p class="product-vendor">by {{ product.vendor }}</p>
-            {%- endif -%}
-
-            <div class="product-rating">
-              {%- comment -%} Star rating placeholder - integrate with review app {%- endcomment -%}
-              <div class="stars">
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
-              </div>
-              <span class="rating-count">({{ product.metafields.reviews.rating_count | default: '12' }} reviews)</span>
-            </div>
-          </div>
-
-          {%- comment -%} Product Price {%- endcomment -%}
-          <div class="product-price animate-fade-in-up animate-delay-01">
-            {%- if product.compare_at_price > product.price -%}
-              <span class="price price--sale">{{ product.price | money }}</span>
-              <span class="price price--compare">{{ product.compare_at_price | money }}</span>
-              <span class="price-savings">Save {{ product.compare_at_price | minus: product.price | money }}</span>
-            {%- else -%}
-              <span class="price">{{ product.price | money }}</span>
-            {%- endif -%}
-          </div>
-
-          {%- comment -%} Product Description {%- endcomment -%}
-          {%- if product.description != blank -%}
-            <div class="product-description animate-fade-in-up animate-delay-02">
-              {{ product.description }}
-            </div>
+      {%- comment -%} Product Information {%- endcomment -%}
+      <div class="product-info animate-fade-in-right">
+        <div class="product-header">
+          {%- if product.metafields.midnight_magnolia.coming_soon -%}
+            <span class="product-badge coming-soon">✨ Coming Soon</span>
+          {%- endif -%}
+          {%- if product.metafields.midnight_magnolia.bestseller -%}
+            <span class="product-badge bestseller">🌟 Bestseller</span>
+          {%- endif -%}
+          
+          <h1 class="product-title">{{ product.title }}</h1>
+          
+          {%- if product.vendor != blank -%}
+            <p class="product-vendor">by {{ product.vendor }}</p>
           {%- endif -%}
 
-          {%- comment -%} Product Form {%- endcomment -%}
-          <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form animate-fade-in-up animate-delay-03">
-
-            {%- comment -%} Product Variants {%- endcomment -%}
-            {%- if product.variants.size > 1 -%}
-              <div class="product-variants">
-                {%- for option in product.options_with_values -%}
-                  <div class="variant-option">
-                    <label class="variant-label">{{ option.name }}</label>
-                    <select name="id" class="variant-select form-select">
-                      {%- for value in option.values -%}
-                        {%- assign variant = product.variants | where: option.name, value | first -%}
-                        <option value="{{ variant.id }}"
-                                {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
-                                {% unless variant.available %}disabled{% endunless %}>
-                          {{ value }}
-                          {%- unless variant.available %} - Sold Out{% endunless -%}
-                          {%- if variant.price != product.price %} - {{ variant.price | money }}{% endif -%}
-                        </option>
-                      {%- endfor -%}
-                    </select>
-                  </div>
-                {%- endfor -%}
-              </div>
+          <div class="product-price">
+            {%- if product.compare_at_price > product.price -%}
+              <span class="price-compare">{{ product.compare_at_price | money }}</span>
+              <span class="price-current sale">{{ product.price | money }}</span>
+              <span class="price-save">Save {{ product.compare_at_price | minus: product.price | money }}</span>
             {%- else -%}
-              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <span class="price-current">{{ product.price | money }}</span>
             {%- endif -%}
+          </div>
+        </div>
 
-            {%- comment -%} Quantity Selector {%- endcomment -%}
-            <div class="quantity-selector">
-              <label for="quantity" class="quantity-label">Quantity</label>
-              <div class="quantity-input">
-                <button type="button" class="quantity-btn quantity-minus" onclick="changeQuantity(-1)">-</button>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-field">
-                <button type="button" class="quantity-btn quantity-plus" onclick="changeQuantity(1)">+</button>
+        {%- comment -%} Product Tabs {%- endcomment -%}
+        <div class="product-tabs animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="description">Description</button>
+            <button class="tab-btn" data-tab="features">Features</button>
+            <button class="tab-btn" data-tab="shipping">Shipping</button>
+          </div>
+
+          <div class="tab-content">
+            <div class="tab-panel active" id="description">
+              <div class="product-description">
+                {{ product.description }}
               </div>
             </div>
 
-            {%- comment -%} Add to Cart Button {%- endcomment -%}
-            <div class="product-actions">
-              {%- if product.metafields.midnight_magnolia.coming_soon -%}
-                <button type="button" class="btn btn--primary btn--full" disabled>
-                  🌙 Coming Soon - Notify Me
-                </button>
-              {%- elsif product.available -%}
+            <div class="tab-panel" id="features">
+              <div class="product-features-content">
+                {%- if product.metafields.midnight_magnolia.product_format -%}
+                  <p><strong>Format:</strong> {{ product.metafields.midnight_magnolia.product_format }}</p>
+                {%- endif -%}
+                {%- if product.metafields.midnight_magnolia.category_tag -%}
+                  <p><strong>Category:</strong> {{ product.metafields.midnight_magnolia.category_tag }}</p>
+                {%- endif -%}
+                <p><strong>SKU:</strong> {{ product.selected_or_first_available_variant.sku | default: 'N/A' }}</p>
+                <p><strong>Weight:</strong> {{ product.selected_or_first_available_variant.weight | weight_with_unit }}</p>
+              </div>
+            </div>
+
+            <div class="tab-panel" id="shipping">
+              <div class="shipping-info">
+                <h4>Shipping Information</h4>
+                <p>Free shipping on orders over $75. Orders typically ship within 1-2 business days.</p>
+                <p>Digital downloads are available immediately after purchase.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {%- comment -%} Product Form {%- endcomment -%}
+        <div class="product-form-container animate-fade-in-up" style="animation-delay: 0.3s;">
+          <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="product-form" id="product-form-{{ product.id }}">
+            {%- unless product.has_only_default_variant -%}
+              <div class="product-variants">
+                {%- for option in product.options_with_values -%}
+                  <fieldset class="variant-input-wrap">
+                    <legend class="variant-input-label">{{ option.name }}</legend>
+                    {%- for value in option.values -%}
+                      <input 
+                        type="radio" 
+                        id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                        name="{{ option.name }}" 
+                        value="{{ value | escape }}"
+                        form="{{ product_form_id }}"
+                        {% if option.selected_value == value %}checked{% endif %}
+                      >
+                      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                        {{ value }}
+                      </label>
+                    {%- endfor -%}
+                  </fieldset>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+            <div class="product-form-buttons">
+              <div class="quantity-selector">
+                <label for="quantity">Quantity:</label>
+                <quantity-input class="quantity">
+                  <button class="quantity__button" name="minus" type="button">
+                    <span class="visually-hidden">Decrease quantity</span>
+                    −
+                  </button>
+                  <input 
+                    class="quantity__input" 
+                    type="number" 
+                    name="quantity" 
+                    id="quantity" 
+                    min="1" 
+                    value="1"
+                  >
+                  <button class="quantity__button" name="plus" type="button">
+                    <span class="visually-hidden">Increase quantity</span>
+                    +
+                  </button>
+                </quantity-input>
+              </div>
+
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              
+              {%- if product.available -%}
                 <button type="submit" class="btn btn--primary btn--full add-to-cart-btn">
                   <span class="btn-text">✨ Add to Sacred Collection</span>
                   <span class="btn-loading" style="display: none;">Adding...</span>
@@ -166,228 +169,45 @@
           </form>
 
           {%- comment -%} Product Features {%- endcomment -%}
-          <div class="product-features animate-fade-in-up animate-delay-04">
+          <div class="product-features animate-fade-in-up" style="animation-delay: 0.4s;">
             <div class="features-grid">
               {%- if product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
                 <div class="feature">
                   <div class="feature-icon">📱</div>
                   <div class="feature-text">
                     <h4>Instant Download</h4>
-                    <p>Access immediately after purchase</p>
+                    <p>Available immediately after purchase</p>
                   </div>
                 </div>
               {%- endif -%}
-
+              
               <div class="feature">
                 <div class="feature-icon">🌙</div>
                 <div class="feature-text">
-                  <h4>Intentionally Crafted</h4>
-                  <p>Created with love and spiritual guidance</p>
+                  <h4>Mystical Design</h4>
+                  <p>Crafted with sacred intention</p>
                 </div>
               </div>
-
+              
               <div class="feature">
                 <div class="feature-icon">💫</div>
                 <div class="feature-text">
-                  <h4>Lifetime Access</h4>
-                  <p>Yours to keep and revisit anytime</p>
+                  <h4>High Quality</h4>
+                  <p>Premium materials and printing</p>
                 </div>
               </div>
-
-              <div class="feature">
-                <div class="feature-icon">🌸</div>
-                <div class="feature-text">
-                  <h4>Community Support</h4>
-                  <p>Join our healing circle for guidance</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {%- comment -%} Social Sharing {%- endcomment -%}
-          <div class="product-share animate-fade-in-up" style="animation-delay: 0.5s;">
-            <h4>Share this Sacred Tool</h4>
-            <div class="share-buttons">
-              <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ product.url }}"
-                 target="_blank" class="share-btn share-facebook">
-                Facebook
-              </a>
-              <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ product.url }}&text={{ product.title | url_encode }}"
-                 target="_blank" class="share-btn share-twitter">
-                Twitter
-              </a>
-              <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_media | image_url: width: 600 }}&description={{ product.title | url_encode }}"
-                 target="_blank" class="share-btn share-pinterest">
-                Pinterest
-              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  {%- comment -%} Product Details Tabs {%- endcomment -%}
-  <section class="product-details section">
-    <div class="container">
-      <div class="product-tabs">
-        <div class="tab-nav">
-          <button class="tab-btn active" data-tab="description">Description</button>
-          <button class="tab-btn" data-tab="details">Details</button>
-          <button class="tab-btn" data-tab="reviews">Reviews</button>
-          <button class="tab-btn" data-tab="shipping">Delivery</button>
-        </div>
-
-        <div class="tab-content">
-          <div class="tab-panel active" id="description">
-            <div class="magnolia-card">
-              <h3>About This Sacred Tool</h3>
-              {%- if product.description != blank -%}
-                {{ product.description }}
-              {%- else -%}
-                <p>This sacred tool has been crafted with intention to support your spiritual journey and healing practice.</p>
-              {%- endif -%}
-            </div>
-          </div>
-
-          <div class="tab-panel" id="details">
-            <div class="magnolia-card">
-              <h3>Product Details</h3>
-              <div class="details-grid">
-                {%- if product.metafields.midnight_magnolia.product_format -%}
-                  <div class="detail-item">
-                    <strong>Format:</strong> {{ product.metafields.midnight_magnolia.product_format }}
-                  </div>
-                {%- endif -%}
-
-                {%- if product.vendor != blank -%}
-                  <div class="detail-item">
-                    <strong>Creator:</strong> {{ product.vendor }}
-                  </div>
-                {%- endif -%}
-
-                <div class="detail-item">
-                  <strong>SKU:</strong> {{ product.selected_or_first_available_variant.sku | default: 'N/A' }}
-                </div>
-
-                {%- if product.tags.size > 0 -%}
-                  <div class="detail-item">
-                    <strong>Categories:</strong> {{ product.tags | join: ', ' }}
-                  </div>
-                {%- endif -%}
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-panel" id="reviews">
-            <div class="magnolia-card">
-              <h3>Customer Reviews</h3>
-              {%- comment -%} Reviews integration placeholder {%- endcomment -%}
-              <div class="reviews-placeholder">
-                <p>Reviews will be displayed here when integrated with a review app.</p>
-                <div class="review-summary">
-                  <div class="rating-overview">
-                    <div class="stars-large">⭐⭐⭐⭐⭐</div>
-                    <span class="rating-text">4.8 out of 5 stars</span>
-                  </div>
-                  <p class="review-count">Based on {{ product.metafields.reviews.rating_count | default: '12' }} reviews</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-panel" id="shipping">
-            <div class="magnolia-card">
-              <h3>Delivery Information</h3>
-              {%- if product.metafields.midnight_magnolia.product_format contains 'Digital' -%}
-                <div class="delivery-info">
-                  <h4>📱 Digital Download</h4>
-                  <p>This is a digital product. You will receive download links immediately after purchase via email.</p>
-                  <ul>
-                    <li>Instant access after payment confirmation</li>
-                    <li>Download links valid for 30 days</li>
-                    <li>Lifetime access to your purchases</li>
-                    <li>Compatible with all devices</li>
-                  </ul>
-                </div>
-              {%- else -%}
-                <div class="delivery-info">
-                  <h4>🚚 Physical Shipping</h4>
-                  <p>This physical product will be shipped to your address.</p>
-                  <ul>
-                    <li>Free shipping on orders over $50</li>
-                    <li>Standard delivery: 5-7 business days</li>
-                    <li>Express delivery: 2-3 business days</li>
-                    <li>International shipping available</li>
-                  </ul>
-                </div>
-              {%- endif -%}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} Related Products {%- endcomment -%}
-  {%- if collections[product.metafields.midnight_magnolia.category_tag].products.size > 1 -%}
-    <section class="related-products section">
-      <div class="container">
-        <h2 class="text-center mb-4">More Sacred Tools</h2>
-
-        <div class="grid grid--4-col">
-          {%- for related_product in collections[product.metafields.midnight_magnolia.category_tag].products limit: 4 -%}
-            {%- unless related_product.id == product.id -%}
-              <div class="product-card">
-                <div class="product-card__image">
-                    {%- if related_product.featured_media -%}
-                      <img src="{{ related_product.featured_media | image_url: width: 300 }}"
-                           alt="{{ related_product.featured_media.alt | default: related_product.title | escape }}"
-                           loading="lazy">
-                    {%- else -%}
-                      <div class="product-card__placeholder">
-                        {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 100px; height: 100px; opacity: 0.3;' }}
-                      </div>
-                    {%- endif -%}
-                  </div>
-
-                <div class="product-card__content">
-                  <h3 class="product-card__title">
-                    <a href="{{ related_product.url }}">{{ related_product.title }}</a>
-                  </h3>
-
-                  <div class="product-card__price">
-                    {{ related_product.price | money }}
-                  </div>
-
-                  <a href="{{ related_product.url }}" class="btn btn--ghost w-full">
-                    Explore Tool
-                  </a>
-                </div>
-              </div>
-            {%- endunless -%}
-          {%- endfor -%}
-        </div>
-      </div>
-    </section>
-  {%- endif -%}
-
-</div>
-
-{%- comment -%} Product JavaScript {%- endcomment -%}
 <script>
-  // Change main product image
-  function changeMainImage(imageUrl, thumbnail) {
-    document.getElementById('main-product-image').src = imageUrl;
-
-    // Update active thumbnail
-    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-    thumbnail.classList.add('active');
-  }
-
   // Quantity controls
-  function changeQuantity(change) {
-    const quantityField = document.getElementById('quantity');
+  function updateQuantity(change) {
+    const quantityField = document.querySelector('#quantity');
     const currentValue = parseInt(quantityField.value);
     const newValue = Math.max(1, currentValue + change);
     quantityField.value = newValue;
@@ -456,8 +276,8 @@
   "name": "{{ product.title | escape }}",
   "description": "{{ product.description | strip_html | escape }}",
   "image": [
-    {%- for media in product.media limit: 5 -%}
-      "{{ media | image_url: width: 600 }}"{% unless forloop.last %},{% endunless %}
+    {%- for media in product.media -%}
+      "{{ media | image_url: width: 1200 }}"{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
   ],
   "brand": {
@@ -469,11 +289,7 @@
     "url": "{{ shop.url }}{{ product.url }}",
     "priceCurrency": "{{ cart.currency.iso_code }}",
     "price": "{{ product.price | divided_by: 100.0 }}",
-    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
-    "seller": {
-      "@type": "Organization",
-      "name": "{{ shop.name | escape }}"
-    }
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
   }
 }
 </script>

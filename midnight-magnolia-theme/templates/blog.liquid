@@ -1,671 +1,109 @@
 {%- comment -%}
-  MIDNIGHT MAGNOLIA THEME
-  Blog Template - Midnight Musings
+  Blog template for article listings
 {%- endcomment -%}
 
-<div class="blog-page celestial-bg">
-
-  {%- comment -%} Mystical Elements {%- endcomment -%}
-  {% render 'floating-elements' %}
-  {% render 'moon-phase-indicator' %}
-
-  {%- comment -%} Hero Section {%- endcomment -%}
-  <section class="blog-hero section--large">
-    <div class="container">
-      <div class="hero-content text-center animate-fade-in-up">
-        <div class="hero-logo">
-          {{ 'moon-phases.svg' | asset_url | img_tag: '', 'width: 100px; height: 30px;' }}
-        </div>
-        <div class="section-badge">SACRED WISDOM</div>
-        <h1 class="hero-title">Midnight Musings</h1>
-        <p class="hero-subtitle">
-          Reflections on healing, productivity, and the sacred art of becoming.
-          Where Southern Gothic meets spiritual awakening in the quiet hours of transformation.
-        </p>
-      </div>
+<div class="blog-page">
+  <div class="container">
+    <div class="blog-header animate-fade-in">
+      <h1 class="blog-title">{{ blog.title }}</h1>
+      {%- if blog.description != blank -%}
+        <p class="blog-description">{{ blog.description }}</p>
+      {%- endif -%}
     </div>
-  </section>
 
-  {%- comment -%} Featured Article {%- endcomment -%}
-  {%- if blog.articles.size > 0 -%}
-    {%- assign featured_article = blog.articles.first -%}
-    <section class="featured-article section">
-      <div class="container">
-        <div class="featured-content">
-          <div class="featured-badge">LATEST MUSING</div>
-          <article class="featured-post magnolia-card animate-fade-in-up">
-            {%- if featured_article.image -%}
-              <div class="featured-image">
-                <img src="{{ featured_article.image | img_url: '800x400' }}"
-                     alt="{{ featured_article.image.alt | default: featured_article.title }}"
-                     loading="eager">
-                <div class="image-overlay"></div>
-              </div>
-            {%- endif -%}
-
-            <div class="featured-meta">
-              <time class="article-date" datetime="{{ featured_article.published_at | date: '%Y-%m-%d' }}">
-                {{ featured_article.published_at | date: '%B %d, %Y' }}
-              </time>
-              {%- if featured_article.tags.size > 0 -%}
-                <div class="article-tags">
-                  {%- for tag in featured_article.tags limit: 3 -%}
-                    <span class="tag">{{ tag }}</span>
-                  {%- endfor -%}
-                </div>
-              {%- endif -%}
-            </div>
-
-            <h2 class="featured-title">
-              <a href="{{ featured_article.url }}">{{ featured_article.title }}</a>
-            </h2>
-
-            {%- if featured_article.excerpt != blank -%}
-              <div class="featured-excerpt">
-                {{ featured_article.excerpt | strip_html | truncate: 200 }}
-              </div>
-            {%- else -%}
-              <div class="featured-excerpt">
-                {{ featured_article.content | strip_html | truncate: 200 }}
-              </div>
-            {%- endif -%}
-
-            <div class="featured-footer">
-              <a href="{{ featured_article.url }}" class="read-more-link">
-                Continue Reading
-                <span class="arrow">→</span>
-              </a>
-              <div class="reading-time">
-                {{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-  {%- endif -%}
-
-  {%- comment -%} Blog Categories {%- endcomment -%}
-  <section class="blog-categories section celestial-bg">
-    <div class="container">
-      <h2 class="section-title text-center animate-fade-in-up">Sacred Categories</h2>
-      <div class="categories-grid grid grid--4-col animate-fade-in-up" style="animation-delay: 0.1s;">
-
-        <div class="category-card magnolia-card">
-          <div class="category-icon">🌙</div>
-          <h3>Moon Cycles</h3>
-          <p>Working with lunar energy for manifestation and release</p>
-          <a href="{{ blog.url }}?tag=moon-cycles" class="category-link">Explore</a>
-        </div>
-
-        <div class="category-card magnolia-card">
-          <div class="category-icon">✨</div>
-          <h3>Sacred Productivity</h3>
-          <p>Gentle systems for achieving your dreams without burnout</p>
-          <a href="{{ blog.url }}?tag=productivity" class="category-link">Explore</a>
-        </div>
-
-        <div class="category-card magnolia-card">
-          <div class="category-icon">🌿</div>
-          <h3>Healing Journey</h3>
-          <p>Stories and wisdom from the path of personal transformation</p>
-          <a href="{{ blog.url }}?tag=healing" class="category-link">Explore</a>
-        </div>
-
-        <div class="category-card magnolia-card">
-          <div class="category-icon">🔮</div>
-          <h3>Divination</h3>
-          <p>Tarot insights, oracle wisdom, and intuitive guidance</p>
-          <a href="{{ blog.url }}?tag=divination" class="category-link">Explore</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} Recent Articles Grid {%- endcomment -%}
-  <section class="recent-articles section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title animate-fade-in-up">Recent Musings</h2>
-        <p class="section-subtitle animate-fade-in-up" style="animation-delay: 0.1s;">
-          Wisdom gathered under the midnight sky
-        </p>
-      </div>
-
-      {%- if blog.articles.size > 1 -%}
-        <div class="articles-grid grid grid--3-col">
-          {%- for article in blog.articles offset: 1 limit: 9 -%}
-            <article class="article-card magnolia-card animate-fade-in-up" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
-
+    <div class="blog-content">
+      {%- if blog.articles.size > 0 -%}
+        <div class="articles-grid">
+          {%- for article in blog.articles -%}
+            <article class="article-card animate-fade-in-up" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
               {%- if article.image -%}
                 <div class="article-image">
                   <a href="{{ article.url }}">
-                    <img src="{{ article.image | img_url: '400x250' }}"
-                         alt="{{ article.image.alt | default: article.title }}"
-                         loading="lazy">
+                    <img 
+                      src="{{ article.image | image_url: width: 400 }}"
+                      alt="{{ article.image.alt | default: article.title | escape }}"
+                      loading="lazy"
+                    >
                   </a>
-                  <div class="image-overlay"></div>
                 </div>
               {%- endif -%}
 
               <div class="article-content">
                 <div class="article-meta">
                   <time class="article-date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-                    {{ article.published_at | date: '%b %d, %Y' }}
+                    {{ article.published_at | date: '%B %d, %Y' }}
                   </time>
-                  <div class="reading-time">
-                    {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min
-                  </div>
+                  {%- if article.tags.size > 0 -%}
+                    <div class="article-tags">
+                      {%- for tag in article.tags limit: 3 -%}
+                        <span class="article-tag">{{ tag }}</span>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
                 </div>
 
-                <h3 class="article-title">
+                <h2 class="article-title">
                   <a href="{{ article.url }}">{{ article.title }}</a>
-                </h3>
+                </h2>
 
-                {%- if article.excerpt != blank -%}
-                  <div class="article-excerpt">
-                    {{ article.excerpt | strip_html | truncate: 120 }}
-                  </div>
-                {%- else -%}
-                  <div class="article-excerpt">
-                    {{ article.content | strip_html | truncate: 120 }}
-                  </div>
-                {%- endif -%}
-
-                {%- if article.tags.size > 0 -%}
-                  <div class="article-tags">
-                    {%- for tag in article.tags limit: 2 -%}
-                      <span class="tag">{{ tag }}</span>
-                    {%- endfor -%}
-                  </div>
-                {%- endif -%}
+                <div class="article-excerpt">
+                  {{ article.excerpt | default: article.content | strip_html | truncate: 150 }}
+                </div>
 
                 <div class="article-footer">
-                  <a href="{{ article.url }}" class="read-more-link">
-                    Read More
-                    <span class="arrow">→</span>
+                  <a href="{{ article.url }}" class="btn btn--secondary article-read-more">
+                    {{ 'blogs.article.read_more' | t }}
                   </a>
+                  
+                  {%- if blog.moderated? == false -%}
+                    <a href="{{ article.url }}#comments" class="article-comments-link">
+                      {{ 'blogs.article.comments' | t: count: article.comments_count }}
+                    </a>
+                  {%- endif -%}
                 </div>
               </div>
             </article>
           {%- endfor -%}
         </div>
-      {%- endif -%}
 
-      {%- comment -%} Pagination {%- endcomment -%}
-      {%- if paginate.pages > 1 -%}
-        <div class="pagination-wrapper">
-          {% paginate blog.articles by 10 %}
-            <nav class="pagination" role="navigation" aria-label="Pagination">
-              {%- if paginate.previous -%}
-                <a href="{{ paginate.previous.url }}" class="pagination-link pagination-prev">
-                  ← Previous
-                </a>
+        {%- comment -%} Pagination {%- endcomment -%}
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" role="navigation" aria-label="Blog Pagination">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" class="pagination__item pagination__item--prev">
+                ← {{ 'general.pagination.previous' | t }}
+              </a>
+            {%- endif -%}
+
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}" class="pagination__item">{{ part.title }}</a>
+              {%- else -%}
+                {%- if part.title == paginate.current_page -%}
+                  <span class="pagination__item pagination__item--current">{{ part.title }}</span>
+                {%- else -%}
+                  <span class="pagination__item">{{ part.title }}</span>
+                {%- endif -%}
               {%- endif -%}
+            {%- endfor -%}
 
-              <div class="pagination-numbers">
-                {%- for part in paginate.parts -%}
-                  {%- if part.is_link -%}
-                    <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
-                  {%- else -%}
-                    {%- if part.title == paginate.current_page -%}
-                      <span class="pagination-link pagination-current">{{ part.title }}</span>
-                    {%- else -%}
-                      <span class="pagination-ellipsis">{{ part.title }}</span>
-                    {%- endif -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              </div>
-
-              {%- if paginate.next -%}
-                <a href="{{ paginate.next.url }}" class="pagination-link pagination-next">
-                  Next →
-                </a>
-              {%- endif -%}
-            </nav>
-          {% endpaginate %}
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" class="pagination__item pagination__item--next">
+                {{ 'general.pagination.next' | t }} →
+              </a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <div class="blog-empty">
+          <h2>No articles yet</h2>
+          <p>Stay tuned for mystical insights and sacred wisdom.</p>
         </div>
       {%- endif -%}
     </div>
-  </section>
-
-  {%- comment -%} Newsletter Signup {%- endcomment -%}
-  <section class="newsletter-section section celestial-bg">
-    <div class="container">
-      <div class="newsletter-content text-center">
-        <div class="newsletter-icon">📬</div>
-        <h2 class="animate-fade-in-up">Join the Midnight Circle</h2>
-        <p class="animate-fade-in-up" style="animation-delay: 0.1s;">
-          Receive sacred wisdom, lunar guidance, and gentle productivity tips
-          delivered to your inbox under the cover of darkness.
-        </p>
-
-        <form class="newsletter-form animate-fade-in-up" style="animation-delay: 0.2s;"
-              action="#" method="post">
-          <div class="form-group">
-            <input type="email"
-                   name="email"
-                   placeholder="Your email address"
-                   required
-                   class="newsletter-input">
-            <button type="submit" class="btn btn--primary newsletter-btn">
-              Subscribe
-            </button>
-          </div>
-          <p class="newsletter-disclaimer">
-            No spam, only sacred wisdom. Unsubscribe anytime.
-          </p>
-        </form>
-      </div>
-    </div>
-  </section>
-
+  </div>
 </div>
 
-<style>
-  .blog-page {
-    min-height: 100vh;
-  }
-
-  .hero-logo {
-    margin-bottom: 1rem;
-    opacity: 0.8;
-  }
-
-  .section-badge {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: rgba(159, 122, 234, 0.2);
-    color: var(--color-mystical-purple);
-    border-radius: 2rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 8vw, 5rem);
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--color-pure-white) 0%, var(--color-golden-yellow) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-subtitle {
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-    max-width: 800px;
-    margin: 0 auto;
-    opacity: 0.9;
-    line-height: 1.6;
-  }
-
-  .featured-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: rgba(214, 158, 46, 0.2);
-    color: var(--color-golden-yellow);
-    border-radius: 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
-  }
-
-  .featured-post {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .featured-image {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 0.75rem 0.75rem 0 0;
-  }
-
-  .featured-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .featured-post:hover .featured-image img {
-    transform: scale(1.05);
-  }
-
-  .image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(26, 26, 46, 0.3) 100%);
-  }
-
-  .featured-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding: 1.5rem 1.5rem 0;
-  }
-
-  .article-date {
-    font-size: 0.875rem;
-    color: var(--color-golden-yellow);
-    font-weight: 500;
-  }
-
-  .article-tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    padding: 0.25rem 0.5rem;
-    background: rgba(159, 122, 234, 0.2);
-    color: var(--color-mystical-purple);
-    border-radius: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-  }
-
-  .featured-title {
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    margin-bottom: 1rem;
-    padding: 0 1.5rem;
-  }
-
-  .featured-title a {
-    color: var(--color-pure-white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .featured-title a:hover {
-    color: var(--color-golden-yellow);
-  }
-
-  .featured-excerpt {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-    padding: 0 1.5rem;
-  }
-
-  .featured-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1.5rem 1.5rem;
-  }
-
-  .read-more-link {
-    color: var(--color-golden-yellow);
-    text-decoration: none;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  .read-more-link:hover {
-    transform: translateX(0.25rem);
-  }
-
-  .arrow {
-    transition: transform 0.3s ease;
-  }
-
-  .read-more-link:hover .arrow {
-    transform: translateX(0.25rem);
-  }
-
-  .reading-time {
-    font-size: 0.875rem;
-    opacity: 0.7;
-  }
-
-  .categories-grid {
-    margin-top: 3rem;
-  }
-
-  .category-card {
-    text-align: center;
-    padding: 2rem 1.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  .category-card:hover {
-    transform: translateY(-0.25rem);
-  }
-
-  .category-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .category-card h3 {
-    margin-bottom: 0.75rem;
-    color: var(--color-golden-yellow);
-  }
-
-  .category-card p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-  }
-
-  .category-link {
-    color: var(--color-mystical-purple);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
-  }
-
-  .category-link:hover {
-    color: var(--color-golden-yellow);
-  }
-
-  .articles-grid {
-    margin-top: 3rem;
-  }
-
-  .article-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
-  }
-
-  .article-card:hover {
-    transform: translateY(-0.25rem);
-  }
-
-  .article-image {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 0.75rem 0.75rem 0 0;
-  }
-
-  .article-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .article-card:hover .article-image img {
-    transform: scale(1.05);
-  }
-
-  .article-content {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .article-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-  }
-
-  .article-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    flex: 1;
-  }
-
-  .article-title a {
-    color: var(--color-pure-white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .article-title a:hover {
-    color: var(--color-golden-yellow);
-  }
-
-  .article-excerpt {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    opacity: 0.8;
-    margin-bottom: 1rem;
-    flex: 1;
-  }
-
-  .article-footer {
-    margin-top: auto;
-  }
-
-  .pagination-wrapper {
-    margin-top: 4rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  .pagination {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .pagination-link {
-    padding: 0.75rem 1rem;
-    color: var(--color-warm-cream);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-
-  .pagination-link:hover {
-    background: rgba(159, 122, 234, 0.2);
-    color: var(--color-mystical-purple);
-  }
-
-  .pagination-current {
-    background: var(--color-golden-yellow);
-    color: var(--color-midnight-navy);
-  }
-
-  .pagination-ellipsis {
-    padding: 0.75rem 0.5rem;
-    color: var(--color-warm-cream);
-    opacity: 0.5;
-  }
-
-  .newsletter-section {
-    text-align: center;
-  }
-
-  .newsletter-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .newsletter-form {
-    max-width: 500px;
-    margin: 2rem auto 0;
-  }
-
-  .form-group {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .newsletter-input {
-    flex: 1;
-    padding: 1rem;
-    background: rgba(247, 243, 233, 0.1);
-    border: 1px solid rgba(247, 243, 233, 0.2);
-    border-radius: 0.5rem;
-    color: var(--color-pure-white);
-    font-size: 1rem;
-  }
-
-  .newsletter-input::placeholder {
-    color: rgba(247, 243, 233, 0.6);
-  }
-
-  .newsletter-input:focus {
-    outline: none;
-    border-color: var(--color-golden-yellow);
-    box-shadow: 0 0 0 2px rgba(214, 158, 46, 0.2);
-  }
-
-  .newsletter-btn {
-    white-space: nowrap;
-  }
-
-  .newsletter-disclaimer {
-    font-size: 0.875rem;
-    opacity: 0.7;
-    margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .categories-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .articles-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .form-group {
-      flex-direction: column;
-    }
-
-    .pagination {
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .categories-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+{%- paginate blog.articles by 9 -%}
+  {%- comment -%} Pagination handled above {%- endcomment -%}
+{%- endpaginate -%}

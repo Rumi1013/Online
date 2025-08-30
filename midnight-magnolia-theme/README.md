@@ -1,78 +1,34 @@
 # 🌙 Midnight Magnolia Shopify Theme
 
-**A sophisticated Shopify theme designed for spiritual wellness, healing tools, and transformative digital products**
-
-![Theme Version](https://img.shields.io/badge/version-2.0.0-purple)
-![Shopify Compatible](https://img.shields.io/badge/shopify-compatible-green)
-![Mobile Responsive](https://img.shields.io/badge/mobile-responsive-blue)
-![Accessibility](https://img.shields.io/badge/accessibility-WCAG%202.1%20AA-orange)
-
-## ✨ Theme Overview
-
-Midnight Magnolia is a mystical, elegant Shopify theme crafted specifically for spiritual wellness brands, healing practitioners, and creators of transformative digital products. With its celestial design elements, sacred geometry patterns, and Southern Gothic elegance, this theme creates a digital sanctuary for your customers' spiritual journey.
-
-### 🎨 Design Philosophy
-
-- **Mystical Aesthetic**: Deep midnight navy backgrounds with celestial elements
-- **Sacred Symbolism**: Magnolia flowers, moon phases, and constellation patterns
-- **Spiritual Wellness Focus**: Designed for healing tools, journals, and digital products
-- **Community-Centered**: Built-in features for building sacred communities
+A mystical and elegant Shopify theme designed for spiritual wellness, sacred tools, and digital products. This theme combines Southern Gothic aesthetics with modern e-commerce functionality, creating a divine shopping experience for your customers.
 
 ## 🌟 Key Features
 
 ### ✨ Mystical Design Elements
-- **Celestial Animations**: Floating stars, moon phases, and sacred geometry
-- **Magnolia Iconography**: Custom SVG elements throughout the theme
-- **Gradient Backgrounds**: Mystical color transitions and ethereal effects
-- **Sacred Typography**: Elegant serif headings with clean sans-serif body text
+- **Celestial Gradients**: Radial gradients simulating star fields and cosmic energy
+- **Glass Morphism**: Translucent cards with backdrop blur effects
+- **Golden Accents**: Illuminated borders and hover effects throughout
+- **Floating Animations**: Gentle movements creating an ethereal atmosphere
+- **Sacred Typography**: Playfair Display and Georgia fonts for mystical elegance
 
 ### 🛍️ E-commerce Excellence
-- **Product Variants**: Support for multiple formats (Digital, KDP, Physical)
-- **Smart Badges**: Bestseller, Coming Soon, Digital Download indicators
-- **Quick Actions**: Wishlist, Quick View, and Compare functionality
-- **Advanced Filtering**: Category, format, price, and special filters
+- **Advanced Product Cards**: Dynamic badges, hover effects, and quick view
+- **Smart Cart Drawer**: Sliding cart with AJAX updates and animations
+- **Product Variants**: Full support for size, color, and custom options
+- **Wishlist Integration**: Save favorite items for later purchase
+- **Quick Add to Cart**: Streamlined purchasing process with loading states
 
 ### 📱 Mobile-First Design
-- **Responsive Layout**: Optimized for all device sizes
-- **Touch-Friendly**: Large tap targets and smooth interactions
-- **Mobile Navigation**: Collapsible menu with sacred iconography
-- **Performance Optimized**: Fast loading on mobile networks
+- **Responsive Layout**: Optimized for all screen sizes and devices
+- **Touch-Friendly**: Large tap targets and swipe gestures
+- **Mobile Cart**: Optimized mobile checkout experience
+- **Collapsible Navigation**: Clean mobile menu with smooth animations
 
 ### ♿ Accessibility Features
 - **WCAG 2.1 AA Compliant**: Full accessibility support
 - **Keyboard Navigation**: Complete keyboard accessibility
-- **Screen Reader Support**: Proper ARIA labels and semantic HTML
-- **High Contrast Mode**: Support for user preferences
-
-## 🏗️ Theme Structure
-
-```
-midnight-magnolia-theme/
-├── assets/                     # CSS, JS, and image assets
-│   ├── theme.css              # Main stylesheet with mystical styling
-│   ├── celestial-animations.js # Interactive animations and effects
-│   ├── celestial-bg.svg       # Animated celestial background
-│   ├── magnolia-flower.svg    # Sacred magnolia icon
-│   ├── moon-phases.svg        # Moon phase indicators
-│   └── stars.svg              # Constellation patterns
-├── config/                     # Theme configuration
-│   ├── settings_schema.json   # Theme customization options
-│   └── settings_data.json     # Default theme settings
-├── layout/                     # Theme wrapper
-│   └── theme.liquid           # Main layout with celestial elements
-├── locales/                    # Translation files
-│   └── en.default.json        # English text strings
-├── sections/                   # Modular content blocks
-│   ├── header.liquid          # Navigation with sacred iconography
-│   └── footer.liquid          # Footer with community links
-├── snippets/                   # Reusable components
-│   └── product-card.liquid    # Sacred tools product display
-└── templates/                  # Page templates
-    ├── index.liquid           # Digital sanctuary homepage
-    ├── product.liquid         # Sacred tools product page
-    ├── collection.liquid      # Marketplace with filtering
-    └── cart.liquid            # Sacred collection cart
-```
+- **Screen Reader Support**: Proper ARIA labels and announcements
+- **High Contrast**: Excellent color contrast ratios for readability
 
 ## 🚀 Installation Guide
 
@@ -97,10 +53,10 @@ shopify auth login
 ### Step 2: Theme Installation
 ```bash
 # Clone the theme repository
-git clone https://github.com/midnight-magnolia/shopify-theme.git
-cd midnight-magnolia-theme
+git clone https://github.com/Rumi1013/Online.git
+cd Online/midnight-magnolia-theme
 
-# Install dependencies
+# Install dependencies (if any)
 npm install
 ```
 
@@ -178,50 +134,39 @@ Set up these custom metafields for enhanced functionality:
 
 ### Required Pages
 Create these pages in Shopify Admin:
-
-1. **Justice & Healing** (`page.justice-healing.liquid`)
-2. **Our Story** (`page.our-story.liquid`)
-3. **Sacred Promise** (`page.sacred-promise.liquid`)
-4. **Healing Circle** (`page.healing-circle.liquid`)
-5. **Support** (`page.support.liquid`)
+- **About Us** (`/pages/about`) - Your sacred story and mission
+- **Our Story** (`/pages/our-story`) - Detailed founder and company information
+- **Justice & Healing** (`/pages/justice-healing`) - Sacred activism and community
+- **Services** (`/pages/services`) - Offered services and consultations
+- **Contact** (`/pages/contact`) - Contact form and information
 
 ### Blog Setup
-Create a blog with handle `midnight-musings` and these article categories:
-- Healing
-- Spirituality
-- Design
-- Entrepreneurship
-- Sacred Activism
+1. Create a blog called "Midnight Musings"
+2. Set up categories: Healing, Spirituality, Moon Magic, Tarot, Business
+3. Configure commenting and moderation settings
 
-## 🎨 Customization Options
+## 🚀 Deployment
 
-### Color Palette
-The theme includes three preset color schemes:
+### Development Workflow
+```bash
+# Start development server
+shopify theme dev
 
-**Midnight Mystical** (Default)
-- Primary: Deep midnight navy (#1a1a2e)
-- Secondary: Warm cream (#f7f3e9)
-- Accent: Golden yellow (#f6d55c)
-- Mystical: Purple accents (#9f7aea)
+# Preview changes
+shopify theme open
 
-**Golden Sanctuary**
-- Light mode with golden accents
-- Perfect for daytime browsing
+# Deploy to staging
+shopify theme push --development
 
-**Minimalist Sacred**
-- Clean, minimal aesthetic
-- Reduced animations for accessibility
+# Deploy to production
+shopify theme push --live
+```
 
-### Typography Options
-- **Heading Font**: Playfair Display (elegant serif)
-- **Body Font**: Inter (clean sans-serif)
-- **Customizable scales**: 90-150% sizing options
-
-### Animation Settings
-- **Celestial Animations**: Floating stars and moon phases
-- **Scroll Animations**: Fade-in effects on scroll
-- **Hover Effects**: Interactive card and button animations
-- **Reduced Motion**: Respects user accessibility preferences
+### Version Control
+- Git-based version control
+- Feature branch workflow
+- Automated testing pipeline
+- Rollback capabilities
 
 ## 🔧 Advanced Configuration
 
@@ -265,57 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
 - **First Contentful Paint**: <2s
 - **Largest Contentful Paint**: <3s
 
-## ♿ Accessibility Features
-
-### WCAG 2.1 AA Compliance
-- **Keyboard Navigation**: Full keyboard accessibility
-- **Screen Readers**: Proper ARIA labels and semantic HTML
-- **Color Contrast**: Meets AA contrast requirements
-- **Focus Management**: Clear focus indicators
-- **Alternative Text**: Descriptive alt text for all images
-
-### User Preferences
-- **Reduced Motion**: Respects prefers-reduced-motion
-- **High Contrast**: Supports high contrast mode
-- **Font Scaling**: Responsive to user font size preferences
-
-## 🌐 Browser Support
-
-### Supported Browsers
-- **Chrome**: 90+
-- **Firefox**: 88+
-- **Safari**: 14+
-- **Edge**: 90+
-- **Mobile Safari**: iOS 14+
-- **Chrome Mobile**: Android 90+
-
-### Progressive Enhancement
-- Core functionality works in all browsers
-- Enhanced features for modern browsers
-- Graceful degradation for older browsers
-
-## 🛡️ Security Features
-
-### Built-in Security
-- **Content Security Policy**: XSS protection
-- **HTTPS Enforcement**: Secure connections only
-- **Input Validation**: Sanitized user inputs
-- **Safe External Links**: Proper rel attributes
-
-## 📱 Mobile Experience
-
-### Mobile-First Design
-- **Touch-Friendly**: Large tap targets (44px minimum)
-- **Swipe Gestures**: Natural mobile interactions
-- **Optimized Images**: Responsive image loading
-- **Fast Loading**: Optimized for mobile networks
-
-### Mobile Features
-- **Mobile Menu**: Collapsible navigation
-- **Touch Animations**: Smooth touch interactions
-- **Mobile Cart**: Optimized checkout flow
-- **Mobile Search**: Easy product discovery
-
 ## 🔍 SEO Optimization
 
 ### Built-in SEO Features
@@ -344,60 +238,56 @@ document.addEventListener('DOMContentLoaded', function() {
 - **Community Guidelines**: Sacred space policies
 - **Support Resources**: Help and guidance
 
-## 🚀 Deployment
+## 🛡️ Security Features
 
-### Development Workflow
-```bash
-# Start development server
-shopify theme dev
+### Built-in Security
+- **Content Security Policy**: XSS protection
+- **HTTPS Enforcement**: Secure connections only
+- **Input Validation**: Sanitized user inputs
+- **Safe External Links**: Proper rel attributes
 
-# Preview changes
-shopify theme open
+## 📱 Mobile Experience
 
-# Deploy to staging
-shopify theme push --development
+### Mobile-First Design
+- **Touch-Friendly**: Large tap targets (44px minimum)
+- **Swipe Gestures**: Natural mobile interactions
+- **Optimized Images**: Responsive image loading
+- **Fast Loading**: Optimized for mobile networks
 
-# Deploy to production
-shopify theme push --live
-```
-
-### Version Control
-- Git-based version control
-- Feature branch workflow
-- Automated testing pipeline
-- Rollback capabilities
+### Mobile Features
+- **Mobile Menu**: Collapsible navigation
+- **Touch Animations**: Smooth touch interactions
+- **Mobile Cart**: Optimized checkout flow
+- **Mobile Search**: Easy product discovery
 
 ## 📞 Support & Documentation
 
 ### Getting Help
-- **Documentation**: Comprehensive guides and tutorials
+- **Theme Documentation**: Complete setup and customization guide
+- **Video Tutorials**: Step-by-step installation videos
 - **Community Forum**: Connect with other users
-- **Email Support**: Direct support for technical issues
-- **Video Tutorials**: Step-by-step setup guides
+- **Direct Support**: Technical assistance available
 
-### Resources
-- **Theme Documentation**: [docs.midnightmagnolia.com](https://docs.midnightmagnolia.com)
-- **Support Portal**: [support.midnightmagnolia.com](https://support.midnightmagnolia.com)
-- **Community Forum**: [community.midnightmagnolia.com](https://community.midnightmagnolia.com)
-- **GitHub Repository**: [github.com/midnight-magnolia/shopify-theme](https://github.com/midnight-magnolia/shopify-theme)
+### Customization Services
+- **Theme Setup**: Professional installation and configuration
+- **Custom Development**: Additional features and modifications
+- **Design Consultation**: Branding and aesthetic guidance
+- **SEO Optimization**: Search engine optimization services
 
 ## 📄 License
 
-This theme is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This theme is licensed under the MIT License. See LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
-Created with love and spiritual intention for the sacred wellness community.
-
-**Special Thanks:**
-- The spiritual wellness community for inspiration
-- Shopify for the robust platform
-- Open source contributors for foundational tools
-- Beta testers for valuable feedback
+- **Design Inspiration**: Sacred geometry and mystical aesthetics
+- **Typography**: Playfair Display and Georgia font combinations
+- **Color Palette**: Inspired by midnight skies and magnolia blossoms
+- **Community**: Built with love for the spiritual wellness community
 
 ---
 
-**🌙 Midnight Magnolia Theme v2.0.0**
+**🌙 Midnight Magnolia Theme v1.1.0**
 *Your Digital Sanctuary for Spiritual Wellness*
 
-For support, visit [support.midnightmagnolia.com](https://support.midnightmagnolia.com)
+*Crafted with intention, designed with love* ✨

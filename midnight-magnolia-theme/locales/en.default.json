@@ -1,122 +1,67 @@
 {
   "general": {
-    "password_page": {
-      "login_form_heading": "Enter using password",
-      "login_password_button": "Enter",
-      "login_form_password_label": "Password",
-      "login_form_password_placeholder": "Your password",
-      "login_form_error": "Wrong password!",
-      "login_form_submit": "Enter",
-      "admin_link_html": "Are you the store owner? <a href=\"/admin\" class=\"link underlined-link\">Log in here</a>",
-      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
+    "meta": {
+      "title": "Midnight Magnolia",
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
     },
-    "social": {
-      "alt_text": {
-        "share_on_facebook": "Share on Facebook",
-        "share_on_twitter": "Share on Twitter",
-        "share_on_pinterest": "Share on Pinterest"
+    "404": {
+      "title": "Not found",
+      "subtext": "The page you were looking for does not exist"
+    },
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "close": "Close",
+      "unit_price_separator": "per",
+      "vendor": "Vendor:",
+      "error": "Error",
+      "refresh_page": "Choosing a selection results in a full page refresh.",
+      "link_messages": {
+        "new_window": "Opens in a new window.",
+        "external": "Opens external website."
       },
-      "links": {
-        "twitter": "Twitter",
-        "facebook": "Facebook",
-        "pinterest": "Pinterest",
-        "instagram": "Instagram",
-        "tumblr": "Tumblr",
-        "snapchat": "Snapchat",
-        "youtube": "YouTube",
-        "vimeo": "Vimeo",
-        "tiktok": "TikTok"
-      }
-    },
-    "continue_shopping": "Continue exploring",
-    "pagination": {
-      "label": "Pagination",
-      "page": "Page {{ number }}",
-      "next": "Next page",
-      "previous": "Previous page"
-    },
-    "search": {
-      "search": "Search sacred tools",
-      "products": "Products",
-      "suggestions": "Suggestions",
-      "pages": "Pages",
-      "collections": "Collections",
-      "results_with_count": {
-        "one": "{{ count }} result for \"{{ terms }}\"",
-        "other": "{{ count }} results for \"{{ terms }}\""
-      },
-      "results_with_count_and_term": {
-        "one": "{{ count }} result found for \"{{ terms }}\"",
-        "other": "{{ count }} results found for \"{{ terms }}\""
-      },
-      "no_results": "No results found for \"{{ terms }}\". Check the spelling or use a different word or phrase.",
-      "no_results_html": "No results found for <strong>\"{{ terms }}\"</strong>. Check the spelling or use a different word or phrase."
-    },
-    "cart": {
-      "view": "View sacred collection ({{ count }})",
-      "item_added": "Item added to your sacred collection",
-      "view_empty_cart": "View cart"
+      "loading": "Loading...",
+      "total_reviews": "total reviews",
+      "star_reviews_info": "{{ rating_value }} out of {{ rating_max }} stars",
+      "collapsible_content_title": "Collapsible content"
     },
     "share": {
-      "copy_to_clipboard": "Copy link",
-      "share_url": "Link",
-      "success_message": "Link copied to clipboard",
-      "close": "Close share"
-    },
-    "slider": {
-      "of": "of",
-      "next_slide": "Slide right",
-      "previous_slide": "Slide left"
+      "success_message": "Link copied to clipboard"
     }
   },
-  "newsletter": {
-    "label": "Email",
-    "success": "Thanks for subscribing to our sacred circle",
-    "button_label": "Subscribe"
-  },
-  "accessibility": {
-    "skip_to_text": "Skip to content",
-    "close": "Close",
-    "unit_price_separator": "per",
-    "vendor": "Vendor:",
-    "error": "Error",
-    "refresh_page": "Choosing a selection results in a full page refresh.",
-    "link_messages": {
-      "new_window": "Opens in a new window.",
-      "external": "Opens external website."
-    },
-    "loading": "Loading...",
-    "total_reviews": "total reviews",
-    "star_reviews_info": "{{ rating_value }} out of {{ rating_max }} stars",
-    "collapsible_content_title": "Collapsible content"
-  },
-  "blogs": {
-    "article": {
-      "blog": "Blog",
-      "read_more_title": "Read more: {{ title }}",
-      "comments": {
-        "one": "{{ count }} comment",
-        "other": "{{ count }} comments"
+  "sections": {
+    "cart": {
+      "title": "Your cart",
+      "caption": "Cart items",
+      "remove_title": "Remove {{ title }}",
+      "note": "Order special instructions",
+      "checkout": "Check out",
+      "empty": "Your cart is empty",
+      "cart_error": "There was an error while updating your cart. Please try again.",
+      "cart_quantity_error_html": "You can only add [quantity] of this item to your cart.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping</a> calculated at checkout",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Shipping calculated at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
+      "headings": {
+        "product": "Product",
+        "price": "Price",
+        "total": "Total",
+        "quantity": "Quantity",
+        "image": "Product image"
       },
-      "moderated": "Please note, comments need to be approved before they are published.",
-      "comment_form_title": "Leave a comment",
-      "name": "Name",
-      "email": "Email",
-      "message": "Comment",
-      "post": "Post comment",
-      "back_to_blog": "Back to {{ title }}",
-      "share": "Share this article",
-      "success": "Your comment was posted successfully! Thank you!",
-      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated."
+      "update": "Update",
+      "login": {
+        "title": "Have an account?",
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> to check out faster."
+      },
+      "estimated_total": "Estimated total",
+      "continue_shopping": "Continue shopping"
     }
-  },
-  "onboarding": {
-    "product_title": "Example product title",
-    "collection_title": "Your collection's name"
   },
   "products": {
     "product": {
-      "add_to_cart": "Add to sacred collection",
+      "add_to_cart": "Add to cart",
       "description": "Description",
       "on_sale": "Sale",
       "product_variants": "Product variants",
@@ -132,7 +77,7 @@
         "sale_price": "Sale price",
         "unit_price": "Unit price"
       },
-      "share": "Share this sacred tool",
+      "share": "Share this product",
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
       "vendor": "Vendor",
@@ -149,9 +94,6 @@
         "refresh": "Refresh"
       },
       "media": {
-        "open_media": "Open media {{ index }} in gallery view",
-        "play_model": "Play 3D Viewer",
-        "play_video": "Play video",
         "gallery_viewer": "Gallery Viewer",
         "load_image": "Load image {{ index }} in gallery view",
         "load_model": "Load 3D Model {{ index }} in gallery view",
@@ -161,24 +103,7 @@
       "view_full_details": "View full details",
       "include_taxes": "Tax included.",
       "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
-      "choose_options": "Choose options",
-      "choose_product_options": "Choose options for {{ product_name }}",
-      "value_unavailable": "{{ option_value }} - Unavailable",
-      "variant_sold_out_or_unavailable": "Variant sold out or unavailable",
-      "inventory_in_stock": "In stock",
-      "inventory_in_stock_show_count": "{{ quantity }} in stock",
-      "inventory_low_stock": "Low stock",
-      "inventory_low_stock_show_count": "{{ quantity }} in stock",
-      "inventory_out_of_stock": "Out of stock",
-      "inventory_out_of_stock_continue_selling": "In stock",
-      "sku": "SKU",
-      "volume_pricing": {
-        "title": "Volume Pricing",
-        "note": "Volume pricing available",
-        "minimum": "{{ quantity }}+",
-        "price_at_each": "at {{ price }}/ea",
-        "price_range": "{{ minimum }} - {{ maximum }}"
-      }
+      "value_unavailable": "{{ option_value }} - Unavailable"
     },
     "modal": {
       "label": "Media gallery"
@@ -190,14 +115,9 @@
       "from": "From",
       "filter_and_sort": "Filter and sort",
       "filter_by_label": "Filter:",
-      "filter_button": "Filter",
-      "filters_selected": {
-        "one": "{{ count }} selected",
-        "other": "{{ count }} selected"
-      },
-      "filter_selected_accessibility": "{{ type }} ({{ count }} filters selected)",
-      "show_more": "Show more",
-      "show_less": "Show less",
+      "filter_selected_accessibility": "{{ type }} filter: {{ value }}",
+      "filter_clear_accessibility": "Clear {{ type }} filter: {{ value }}",
+      "filter_clear_all_accessibility": "Clear all filters",
       "max_price": "The highest price is {{ price }}",
       "product_count": {
         "one": "{{ product_count }} of {{ count }} product",
@@ -228,243 +148,96 @@
       "results_with_count_and_term": {
         "one": "{{ count }} result found for \"{{ terms }}\"",
         "other": "{{ count }} results found for \"{{ terms }}\""
-      }
-    },
-    "cart": {
-      "cart": "Sacred Collection"
-    }
-  },
-  "sections": {
-    "header": {
-      "announcement": "Announcement",
-      "menu": "Menu",
-      "cart_count": {
-        "one": "{{ count }} item",
-        "other": "{{ count }} items"
-      }
-    },
-    "cart": {
-      "title": "Your sacred collection",
-      "caption": "Cart items",
-      "remove_title": "Remove {{ title }}",
-      "subtotal": "Subtotal",
-      "new_subtotal": "New subtotal",
-      "note": "Order special instructions",
-      "checkout": "Check out",
-      "empty": "Your sacred collection is empty",
-      "cart_error": "There was an error while updating your cart. Please try again.",
-      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
-      "taxes_and_shipping_policy_html": "Taxes and <a href=\"{{ link }}\">shipping</a> calculated at checkout",
-      "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
-      "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
-      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
-      "headings": {
-        "product": "Product",
-        "price": "Price",
-        "total": "Total",
-        "quantity": "Quantity"
       },
-      "update": "Update",
-      "login": {
-        "title": "Have an account?",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> to check out faster."
+      "results_pages_with_count": {
+        "one": "{{ count }} page",
+        "other": "{{ count }} pages"
+      },
+      "results_suggestions_with_count": {
+        "one": "{{ count }} suggestion",
+        "other": "{{ count }} suggestions"
+      },
+      "results_articles_with_count": {
+        "one": "{{ count }} article",
+        "other": "{{ count }} articles"
       }
     },
-    "footer": {
-      "payment": "Payment methods"
+    "cart": {
+      "cart": "Cart"
     },
-    "featured_blog": {
-      "view_all": "View all",
-      "onboarding_title": "Blog post",
-      "onboarding_content": "Give your customers a summary of your blog post"
-    },
-    "featured_collection": {
-      "view_all": "View all",
-      "view_all_label": "View all products in the {{ collection_name }} collection"
-    },
-    "collection_list": {
-      "view_all": "View all"
-    },
-    "collection_template": {
-      "title": "Collection",
-      "empty": "No products found",
-      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
-    },
-    "video": {
-      "load_video": "Load video: {{ description }}"
-    },
-    "slideshow": {
-      "load_slide": "Load slide",
-      "previous_slideshow": "Previous slide",
-      "next_slideshow": "Next slide",
-      "pause_slideshow": "Pause slideshow",
-      "play_slideshow": "Play slideshow",
-      "carousel": "Carousel",
-      "slide": "Slide"
-    },
-    "page": {
-      "title": "Page title"
+    "contact": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone number",
+        "comment": "Comment",
+        "send": "Send",
+        "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
+        "error_heading": "Please adjust the following:"
+      }
     }
   },
-  "localization": {
-    "country_label": "Country/Region",
-    "language_label": "Language",
-    "update_language": "Update language",
-    "update_country": "Update country/region"
+  "blogs": {
+    "article": {
+      "blog": "Blog",
+      "read_more_title": "Read more: {{ title }}",
+      "read_more": "Read more",
+      "comments": {
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
+      },
+      "moderated": "Please note, comments need to be approved before they are published.",
+      "comment_form_title": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Comment",
+      "post": "Post comment",
+      "back_to_blog": "Back to blog",
+      "share": "Share this article",
+      "success": "Your comment was posted successfully! Thank you!",
+      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated."
+    }
   },
-  "customer": {
-    "account": {
-      "title": "Account",
-      "details": "Account details",
-      "view_addresses": "View addresses",
-      "return": "Return to Account Details"
-    },
-    "account_fallback": "Account",
-    "activate_account": {
-      "title": "Activate Account",
-      "subtext": "Create your password to activate your account.",
-      "password": "Password",
-      "password_confirm": "Confirm Password",
-      "submit": "Activate Account",
-      "cancel": "Decline Invitation"
-    },
-    "addresses": {
-      "title": "Addresses",
-      "default": "Default",
-      "add_new": "Add a New Address",
-      "edit_address": "Edit address",
-      "first_name": "First name",
-      "last_name": "Last name",
-      "company": "Company",
-      "address1": "Address1",
-      "address2": "Address2",
-      "city": "City",
-      "country": "Country/Region",
-      "province": "Province",
-      "zip": "Postal/ZIP code",
-      "phone": "Phone",
-      "set_default": "Set as default address",
-      "add": "Add address",
-      "update": "Update address",
-      "cancel": "Cancel",
-      "edit": "Edit",
-      "delete": "Delete",
-      "delete_confirm": "Are you sure you wish to delete this address?"
-    },
-    "log_in": "Log in",
-    "log_out": "Log out",
-    "login_page": {
-      "cancel": "Cancel",
-      "create_account": "Create account",
-      "email": "Email",
-      "forgot_password": "Forgot your password?",
-      "guest_continue": "Continue",
-      "guest_title": "Continue as a guest",
-      "password": "Password",
-      "title": "Login",
-      "sign_in": "Sign in",
-      "submit": "Sign in"
-    },
-    "orders": {
-      "title": "Order History",
-      "order_number": "Order",
-      "order_number_link": "Order number {{ number }}",
-      "date": "Date",
-      "payment_status": "Payment status",
-      "fulfillment_status": "Fulfillment status",
-      "total": "Total",
-      "none": "You haven't placed any orders yet."
-    },
-    "recover_password": {
-      "title": "Reset your password",
-      "subtext": "We will send you an email to reset your password",
-      "success": "We've sent you an email with a link to update your password."
-    },
-    "register": {
-      "title": "Create Account",
-      "first_name": "First name",
-      "last_name": "Last name",
-      "email": "Email",
-      "password": "Password",
-      "submit": "Create"
-    },
-    "reset_password": {
-      "title": "Reset account password",
-      "subtext": "Enter a new password for {{ email }}",
-      "password": "Password",
-      "password_confirm": "Confirm Password",
-      "submit": "Reset Password"
+  "onboarding": {
+    "product_title": "Example product title",
+    "collection_title": "Your collection's name"
+  },
+  "snippets": {
+    "color_swatch": {
+      "color": "Color"
     }
   },
   "gift_cards": {
     "issued": {
-      "title": "Here's your {{ value }} gift card for {{ shop }}!",
-      "subtext": "Your gift card",
+      "title": "Your gift card for {{ shop }}!",
+      "subtext": "Here's your gift card!",
       "gift_card_code": "Gift card code",
       "shop_link": "Continue shopping",
-      "remaining_html": "Remaining {{ balance }}",
+      "remaining_html": "{{ balance }} left",
       "add_to_apple_wallet": "Add to Apple Wallet",
       "qr_image_alt": "QR code — scan to redeem gift card",
-      "copy_code": "Copy code",
+      "copy_code": "Copy gift card code",
       "expired": "Expired",
       "copy_code_success": "Code copied successfully",
-      "print_gift_card": "Print"
+      "how_to_use_gift_card": "Use the gift card code online or QR code in-store",
+      "expiration_date": "Expires {{ expires_on }}"
     }
   },
-  "midnight_magnolia": {
-    "sacred_tools": {
-      "add_to_collection": "Add to Sacred Collection",
-      "explore_tool": "Explore Tool",
-      "coming_soon": "Coming Soon",
-      "bestseller": "Bestseller",
-      "digital_download": "Digital Download",
-      "instant_access": "Instant Access",
-      "lifetime_access": "Lifetime Access",
-      "sacred_promise": "Sacred Promise",
-      "intentionally_crafted": "Intentionally Crafted"
-    },
-    "navigation": {
-      "sacred_tools": "Sacred Tools",
-      "digital_sanctuary": "Digital Sanctuary",
-      "our_story": "Our Sacred Story",
-      "midnight_musings": "Midnight Musings",
-      "justice_healing": "Justice & Healing",
-      "healing_circle": "Healing Circle",
-      "community": "Sacred Community"
-    },
-    "homepage": {
-      "welcome_title": "Welcome to Your Digital Sanctuary",
-      "welcome_subtitle": "Discover transformative tools for spiritual wellness, healing, and sacred living. Your journey to inner peace begins here in our mystical digital garden.",
-      "enter_garden": "Enter the Garden",
-      "sacred_tools_title": "Sacred Tools for Transformation",
-      "sacred_tools_subtitle": "Curated digital resources to support your spiritual journey and healing practice",
-      "justice_healing_title": "Justice & Healing",
-      "justice_healing_subtitle": "Our commitment to creating positive change through spiritual activism and community healing",
-      "midnight_musings_title": "Midnight Musings",
-      "midnight_musings_subtitle": "Reflections on healing, spirituality, and sacred living",
-      "sacred_promise_title": "Our Sacred Promise",
-      "sacred_promise_text": "Every tool we create is infused with intention, love, and a deep commitment to your healing journey. We promise to provide resources that honor your spiritual path while supporting positive change in the world.",
-      "newsletter_title": "Join Our Sacred Circle",
-      "newsletter_text": "Receive monthly moon letters with spiritual insights, new tool releases, and exclusive content for our community."
-    },
-    "cart": {
-      "sacred_collection": "Your Sacred Collection",
-      "sacred_collection_subtitle": "Review your spiritual tools and complete your journey to transformation",
-      "complete_sacred_journey": "Complete Sacred Journey",
-      "continue_exploring": "Continue Exploring",
-      "sacred_collection_empty": "Your Sacred Collection is Empty",
-      "explore_sacred_tools": "Explore Sacred Tools"
-    },
-    "footer": {
-      "sacred_community": "Connect with Our Sacred Community",
-      "customer_care": "Customer Care",
-      "sacred_support": "Contact Sacred Support",
-      "join_sacred_circle": "Join Our Sacred Circle",
-      "moon_letters": "Receive monthly moon letters with spiritual insights and exclusive content.",
-      "created_with_love": "Created with love and spiritual intention.",
-      "ssl_secured": "SSL Secured",
-      "eco_friendly": "Eco-Friendly",
-      "made_with_love": "Made with Love"
+  "recipient": {
+    "form": {
+      "checkbox": "I want to send this as a gift",
+      "email_label": "Recipient email",
+      "email": "Email",
+      "name_label": "Recipient name (optional)",
+      "name": "Name",
+      "message_label": "Message (optional)",
+      "message": "Message",
+      "max_characters": "{{ max_chars }} characters max",
+      "email_label_optional_for_no_js_behavior": "Recipient email (optional)",
+      "send_on": "YYYY-MM-DD",
+      "send_on_label": "Send on (optional)",
+      "expanded": "Gift card recipient form expanded",
+      "collapsed": "Gift card recipient form collapsed"
     }
   }
 }

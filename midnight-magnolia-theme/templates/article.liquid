@@ -1,916 +1,283 @@
 {%- comment -%}
-  MIDNIGHT MAGNOLIA THEME
-  Article Template - Individual Blog Post
+  Article template for individual blog posts
 {%- endcomment -%}
 
-<article class="article-page celestial-bg">
-
-  {%- comment -%} Mystical Elements {%- endcomment -%}
-  {% render 'floating-elements' %}
-  {% render 'moon-phase-indicator' %}
-
-  {%- comment -%} Article Header {%- endcomment -%}
-  <header class="article-header section--large">
-    <div class="container">
-      <div class="article-breadcrumb animate-fade-in-up">
-        <a href="{{ blog.url }}" class="breadcrumb-link">← Back to Midnight Musings</a>
-      </div>
-
-      <div class="article-meta animate-fade-in-up" style="animation-delay: 0.1s;">
-        <time class="article-date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-          {{ article.published_at | date: '%B %d, %Y' }}
-        </time>
-        <div class="reading-time">
-          {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read
-        </div>
-      </div>
-
-      <h1 class="article-title animate-fade-in-up" style="animation-delay: 0.2s;">
-        {{ article.title }}
-      </h1>
-
-      {%- if article.excerpt != blank -%}
-        <div class="article-excerpt animate-fade-in-up" style="animation-delay: 0.3s;">
-          {{ article.excerpt }}
+<article class="article-page">
+  <div class="container">
+    <div class="article-header animate-fade-in">
+      {%- if article.image -%}
+        <div class="article-hero-image">
+          <img 
+            src="{{ article.image | image_url: width: 1200 }}"
+            alt="{{ article.image.alt | default: article.title | escape }}"
+            loading="lazy"
+            class="article-featured-image"
+          >
         </div>
       {%- endif -%}
 
-      {%- if article.tags.size > 0 -%}
-        <div class="article-tags animate-fade-in-up" style="animation-delay: 0.4s;">
-          {%- for tag in article.tags -%}
-            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="tag">{{ tag }}</a>
-          {%- endfor -%}
+      <div class="article-meta">
+        <div class="article-breadcrumbs">
+          <a href="{{ blog.url }}">{{ blog.title }}</a>
+          <span class="breadcrumb-separator">→</span>
+          <span>{{ article.title }}</span>
         </div>
-      {%- endif -%}
+        
+        <h1 class="article-title">{{ article.title }}</h1>
+        
+        <div class="article-details">
+          <time class="article-date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{ article.published_at | date: '%B %d, %Y' }}
+          </time>
+          
+          {%- if article.author != blank -%}
+            <span class="article-author">by {{ article.author }}</span>
+          {%- endif -%}
+          
+          {%- if article.tags.size > 0 -%}
+            <div class="article-tags">
+              {%- for tag in article.tags -%}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-tag">
+                  {{ tag }}
+                </a>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
     </div>
-  </header>
 
-  {%- comment -%} Featured Image {%- endcomment -%}
-  {%- if article.image -%}
-    <section class="article-image-section">
-      <div class="container">
-        <div class="article-featured-image animate-fade-in-up">
-          <img src="{{ article.image | img_url: '1200x600' }}"
-               alt="{{ article.image.alt | default: article.title }}"
-               loading="eager">
-          <div class="image-overlay"></div>
+    <div class="article-body animate-fade-in-up">
+      <div class="article-content">
+        {{ article.content }}
+      </div>
+
+      {%- comment -%} Article Sharing {%- endcomment -%}
+      <div class="article-sharing">
+        <h3>Share this article</h3>
+        <div class="social-share-buttons">
+          <a href="https://twitter.com/intent/tweet?text={{ article.title | url_encode }}&url={{ shop.url }}{{ article.url }}" 
+             target="_blank" 
+             rel="noopener" 
+             class="share-button share-twitter">
+            🐦 Twitter
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" 
+             target="_blank" 
+             rel="noopener" 
+             class="share-button share-facebook">
+            📘 Facebook
+          </a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&description={{ article.title | url_encode }}" 
+             target="_blank" 
+             rel="noopener" 
+             class="share-button share-pinterest">
+            📌 Pinterest
+          </a>
         </div>
       </div>
-    </section>
-  {%- endif -%}
 
-  {%- comment -%} Article Content {%- endcomment -%}
-  <section class="article-content-section section">
+      {%- comment -%} Navigation to other articles {%- endcomment -%}
+      <div class="article-navigation">
+        {%- if blog.previous_article -%}
+          <a href="{{ blog.previous_article.url }}" class="article-nav article-nav--prev">
+            <span class="article-nav-label">← Previous</span>
+            <span class="article-nav-title">{{ blog.previous_article.title }}</span>
+          </a>
+        {%- endif -%}
+        
+        {%- if blog.next_article -%}
+          <a href="{{ blog.next_article.url }}" class="article-nav article-nav--next">
+            <span class="article-nav-label">Next →</span>
+            <span class="article-nav-title">{{ blog.next_article.title }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Comments Section {%- endcomment -%}
+    {%- if blog.moderated? == false -%}
+      <div class="article-comments animate-fade-in-up">
+        <h3 id="comments">
+          {{ 'blogs.article.comments' | t: count: article.comments_count }}
+        </h3>
+
+        {%- if article.comments_count > 0 -%}
+          <div class="comments-list">
+            {%- paginate article.comments by 5 -%}
+              {%- for comment in article.comments -%}
+                <div class="comment" id="comment-{{ comment.id }}">
+                  <div class="comment-header">
+                    <h4 class="comment-author">{{ comment.author }}</h4>
+                    <time class="comment-date" datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
+                      {{ comment.created_at | date: '%B %d, %Y at %I:%M %p' }}
+                    </time>
+                  </div>
+                  <div class="comment-content">
+                    {{ comment.content }}
+                  </div>
+                </div>
+              {%- endfor -%}
+
+              {%- if paginate.pages > 1 -%}
+                <nav class="pagination">
+                  {{ paginate | default_pagination }}
+                </nav>
+              {%- endif -%}
+            {%- endpaginate -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Comment Form {%- endcomment -%}
+        {% form 'new_comment', article %}
+          <h4>{{ 'blogs.article.comment_form_title' | t }}</h4>
+          
+          {%- if form.posted_successfully? -%}
+            <p class="comment-success">
+              {%- if blog.moderated? -%}
+                {{ 'blogs.article.success_moderated' | t }}
+              {%- else -%}
+                {{ 'blogs.article.success' | t }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="form-errors">
+              <h5>{{ 'templates.contact.form.error_heading' | t }}</h5>
+              <ul>
+                {%- for field in form.errors -%}
+                  <li>
+                    {%- if field == 'form' -%}
+                      {{ form.errors.messages[field] }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          <div class="comment-form">
+            <div class="field">
+              <label for="CommentAuthor">{{ 'blogs.article.name' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                name="comment[author]"
+                id="CommentAuthor"
+                class="field__input"
+                autocomplete="name"
+                value="{{ form.author }}"
+                aria-required="true"
+                required
+                {% if form.errors contains 'author' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentAuthor-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.name' | t }}"
+              >
+              {%- if form.errors contains 'author' -%}
+                <small id="CommentAuthor-error">
+                  <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                  {{ 'blogs.article.name' | t }} {{ form.errors.messages.author }}.
+                </small>
+              {%- endif -%}
+            </div>
+
+            <div class="field">
+              <label for="CommentEmail">{{ 'blogs.article.email' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                name="comment[email]"
+                id="CommentEmail"
+                autocomplete="email"
+                class="field__input"
+                value="{{ form.email }}"
+                aria-required="true"
+                required
+                {% if form.errors contains 'email' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentEmail-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.email' | t }}"
+              >
+              {%- if form.errors contains 'email' -%}
+                <small id="CommentEmail-error">
+                  <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                  {{ 'blogs.article.email' | t }} {{ form.errors.messages.email }}.
+                </small>
+              {%- endif -%}
+            </div>
+
+            <div class="field">
+              <label for="CommentBody">{{ 'blogs.article.message' | t }} <span aria-hidden="true">*</span></label>
+              <textarea
+                rows="5"
+                name="comment[body]"
+                id="CommentBody"
+                class="text-area field__input"
+                aria-required="true"
+                required
+                {% if form.errors contains 'body' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentBody-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.message' | t }}"
+              >{{ form.body }}</textarea>
+              {%- if form.errors contains 'body' -%}
+                <small id="CommentBody-error">
+                  <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                  {{ 'blogs.article.message' | t }} {{ form.errors.messages.body }}.
+                </small>
+              {%- endif -%}
+            </div>
+
+            {%- if blog.moderated? -%}
+              <p class="article-comment-warning caption">
+                {{ 'blogs.article.moderated' | t }}
+              </p>
+            {%- endif -%}
+
+            <button type="submit" class="button button--primary">
+              {{ 'blogs.article.post' | t }}
+            </button>
+          </div>
+        {% endform %}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%} Related Articles {%- endcomment -%}
+{%- assign related_articles = blog.articles | where: 'id', '!=', article.id | sample: 3 -%}
+{%- if related_articles.size > 0 -%}
+  <section class="related-articles">
     <div class="container">
-      <div class="article-layout">
-
-        {%- comment -%} Main Content {%- endcomment -%}
-        <div class="article-main">
-          <div class="article-content rte animate-fade-in-up">
-            {{ article.content }}
-          </div>
-
-          {%- comment -%} Article Footer {%- endcomment -%}
-          <footer class="article-footer animate-fade-in-up">
-            <div class="article-share">
-              <h4>Share This Musing</h4>
-              <div class="share-buttons">
-                <a href="https://twitter.com/intent/tweet?text={{ article.title | url_encode }}&url={{ shop.url }}{{ article.url }}"
-                   target="_blank"
-                   rel="noopener"
-                   class="share-btn share-twitter">
-                  <span class="share-icon">🐦</span>
-                  Twitter
-                </a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}"
-                   target="_blank"
-                   rel="noopener"
-                   class="share-btn share-facebook">
-                  <span class="share-icon">📘</span>
-                  Facebook
-                </a>
-                <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&description={{ article.title | url_encode }}"
-                   target="_blank"
-                   rel="noopener"
-                   class="share-btn share-pinterest">
-                  <span class="share-icon">📌</span>
-                  Pinterest
-                </a>
-                <button class="share-btn share-copy" onclick="copyToClipboard('{{ shop.url }}{{ article.url }}')">
-                  <span class="share-icon">🔗</span>
-                  Copy Link
-                </button>
-              </div>
-            </div>
-
-            <div class="article-author">
-              <div class="author-avatar">
-                <div class="avatar-placeholder">🌸</div>
-              </div>
-              <div class="author-info">
-                <h4>Written with love</h4>
-                <p>From the Midnight Magnolia sanctuary, where Southern Gothic meets spiritual awakening in the quiet hours of transformation.</p>
-              </div>
-            </div>
-          </footer>
-        </div>
-
-        {%- comment -%} Sidebar {%- endcomment -%}
-        <aside class="article-sidebar">
-
-          {%- comment -%} Newsletter Signup {%- endcomment -%}
-          <div class="sidebar-card magnolia-card animate-fade-in-up">
-            <div class="card-icon">📬</div>
-            <h3>Join the Circle</h3>
-            <p>Receive sacred wisdom and lunar guidance delivered to your inbox.</p>
-            <form class="newsletter-form" action="#" method="post">
-              <input type="email" name="email" placeholder="Your email" required class="newsletter-input">
-              <button type="submit" class="btn btn--primary btn--small">Subscribe</button>
-            </form>
-          </div>
-
-          {%- comment -%} Related Categories {%- endcomment -%}
-          <div class="sidebar-card magnolia-card animate-fade-in-up" style="animation-delay: 0.1s;">
-            <h3>Sacred Categories</h3>
-            <div class="category-links">
-              <a href="{{ blog.url }}?tag=moon-cycles" class="category-link">
-                <span class="category-icon">🌙</span>
-                Moon Cycles
+      <h3 class="section-title">Related Articles</h3>
+      <div class="related-articles-grid">
+        {%- for related_article in related_articles -%}
+          <div class="related-article-card">
+            {%- if related_article.image -%}
+              <a href="{{ related_article.url }}" class="related-article-image">
+                <img 
+                  src="{{ related_article.image | image_url: width: 300 }}"
+                  alt="{{ related_article.image.alt | default: related_article.title | escape }}"
+                  loading="lazy"
+                >
               </a>
-              <a href="{{ blog.url }}?tag=productivity" class="category-link">
-                <span class="category-icon">✨</span>
-                Sacred Productivity
-              </a>
-              <a href="{{ blog.url }}?tag=healing" class="category-link">
-                <span class="category-icon">🌿</span>
-                Healing Journey
-              </a>
-              <a href="{{ blog.url }}?tag=divination" class="category-link">
-                <span class="category-icon">🔮</span>
-                Divination
-              </a>
+            {%- endif -%}
+            <div class="related-article-content">
+              <h4 class="related-article-title">
+                <a href="{{ related_article.url }}">{{ related_article.title }}</a>
+              </h4>
+              <time class="related-article-date">
+                {{ related_article.published_at | date: '%B %d, %Y' }}
+              </time>
             </div>
           </div>
-
-          {%- comment -%} Featured Products {%- endcomment -%}
-          <div class="sidebar-card magnolia-card animate-fade-in-up" style="animation-delay: 0.2s;">
-            <h3>Sacred Tools</h3>
-            <div class="featured-products">
-              <div class="featured-product">
-                <div class="product-icon">📔</div>
-                <div class="product-info">
-                  <h4>The Magnolia Reset</h4>
-                  <p>Healing journal for transformation</p>
-                  <a href="/collections/healing-journals" class="product-link">Explore</a>
-                </div>
-              </div>
-              <div class="featured-product">
-                <div class="product-icon">🔮</div>
-                <div class="product-info">
-                  <h4>Midnight Messages</h4>
-                  <p>Tarot deck for divine guidance</p>
-                  <a href="/collections/tarot-divination" class="product-link">Explore</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </aside>
+        {%- endfor -%}
       </div>
     </div>
   </section>
-
-  {%- comment -%} Related Articles {%- endcomment -%}
-  {%- if blog.articles.size > 1 -%}
-    <section class="related-articles section celestial-bg">
-      <div class="container">
-        <h2 class="section-title text-center animate-fade-in-up">More Midnight Musings</h2>
-
-        <div class="related-grid grid grid--3-col">
-          {%- assign related_articles = blog.articles | where: 'id', '!=', article.id | limit: 3 -%}
-          {%- for related_article in related_articles -%}
-            <article class="related-card magnolia-card animate-fade-in-up" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
-
-              {%- if related_article.image -%}
-                <div class="related-image">
-                  <a href="{{ related_article.url }}">
-                    <img src="{{ related_article.image | img_url: '300x200' }}"
-                         alt="{{ related_article.image.alt | default: related_article.title }}"
-                         loading="lazy">
-                  </a>
-                </div>
-              {%- endif -%}
-
-              <div class="related-content">
-                <div class="related-meta">
-                  <time datetime="{{ related_article.published_at | date: '%Y-%m-%d' }}">
-                    {{ related_article.published_at | date: '%b %d' }}
-                  </time>
-                </div>
-
-                <h3 class="related-title">
-                  <a href="{{ related_article.url }}">{{ related_article.title }}</a>
-                </h3>
-
-                <div class="related-excerpt">
-                  {{ related_article.content | strip_html | truncate: 100 }}
-                </div>
-
-                <a href="{{ related_article.url }}" class="read-more-link">
-                  Read More →
-                </a>
-              </div>
-            </article>
-          {%- endfor -%}
-        </div>
-      </div>
-    </section>
-  {%- endif -%}
-
-  {%- comment -%} Comments Section {%- endcomment -%}
-  {%- if blog.moderated? and article.moderated? -%}
-    <section class="comments-section section">
-      <div class="container">
-        <div class="comments-wrapper">
-          <h2 class="comments-title animate-fade-in-up">Sacred Reflections</h2>
-          <p class="comments-subtitle animate-fade-in-up" style="animation-delay: 0.1s;">
-            Share your thoughts and wisdom with the community
-          </p>
-
-          {%- paginate article.comments by 5 -%}
-            {%- if article.comments.size > 0 -%}
-              <div class="comments-list animate-fade-in-up" style="animation-delay: 0.2s;">
-                {%- for comment in article.comments -%}
-                  <div class="comment magnolia-card">
-                    <div class="comment-header">
-                      <div class="comment-author">
-                        <div class="author-avatar">{{ comment.author | slice: 0 }}</div>
-                        <div class="author-name">{{ comment.author }}</div>
-                      </div>
-                      <time class="comment-date" datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
-                        {{ comment.created_at | date: '%B %d, %Y' }}
-                      </time>
-                    </div>
-                    <div class="comment-content">
-                      {{ comment.content }}
-                    </div>
-                  </div>
-                {%- endfor -%}
-              </div>
-
-              {%- if paginate.pages > 1 -%}
-                <div class="comments-pagination">
-                  {{ paginate | default_pagination }}
-                </div>
-              {%- endif -%}
-            {%- endif -%}
-          {%- endpaginate -%}
-
-          {%- comment -%} Comment Form {%- endcomment -%}
-          <div class="comment-form-wrapper animate-fade-in-up" style="animation-delay: 0.3s;">
-            {% form 'new_comment', article %}
-              <h3>Leave a Sacred Reflection</h3>
-
-              {%- if form.posted_successfully? -%}
-                <div class="form-success">
-                  <p>Thank you for sharing your wisdom! Your comment will appear after moderation.</p>
-                </div>
-              {%- endif -%}
-
-              {%- if form.errors -%}
-                <div class="form-errors">
-                  {{ form.errors | default_errors }}
-                </div>
-              {%- endif -%}
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="CommentAuthor">Name *</label>
-                  <input type="text"
-                         name="comment[author]"
-                         id="CommentAuthor"
-                         value="{{ form.author }}"
-                         required>
-                </div>
-                <div class="form-group">
-                  <label for="CommentEmail">Email *</label>
-                  <input type="email"
-                         name="comment[email]"
-                         id="CommentEmail"
-                         value="{{ form.email }}"
-                         required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="CommentBody">Your Reflection *</label>
-                <textarea name="comment[body]"
-                          id="CommentBody"
-                          rows="6"
-                          required>{{ form.body }}</textarea>
-              </div>
-
-              <button type="submit" class="btn btn--primary">
-                Share Reflection
-              </button>
-            {% endform %}
-          </div>
-        </div>
-      </div>
-    </section>
-  {%- endif -%}
-
-</article>
-
-<script>
-  function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(function() {
-      // Show success message
-      const button = event.target.closest('.share-copy');
-      const originalText = button.innerHTML;
-      button.innerHTML = '<span class="share-icon">✓</span>Copied!';
-      setTimeout(() => {
-        button.innerHTML = originalText;
-      }, 2000);
-    });
-  }
-</script>
-
-<style>
-  .article-page {
-    min-height: 100vh;
-  }
-
-  .article-breadcrumb {
-    margin-bottom: 2rem;
-  }
-
-  .breadcrumb-link {
-    color: var(--color-golden-yellow);
-    text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.3s ease;
-  }
-
-  .breadcrumb-link:hover {
-    opacity: 0.8;
-  }
-
-  .article-meta {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    font-size: 0.875rem;
-  }
-
-  .article-date {
-    color: var(--color-golden-yellow);
-    font-weight: 500;
-  }
-
-  .reading-time {
-    opacity: 0.7;
-  }
-
-  .article-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--color-pure-white) 0%, var(--color-golden-yellow) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
-  }
-
-  .article-excerpt {
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-    opacity: 0.9;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    max-width: 800px;
-  }
-
-  .article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .tag {
-    padding: 0.5rem 1rem;
-    background: rgba(159, 122, 234, 0.2);
-    color: var(--color-mystical-purple);
-    border-radius: 2rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .tag:hover {
-    background: rgba(159, 122, 234, 0.3);
-    transform: translateY(-1px);
-  }
-
-  .article-featured-image {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-    border-radius: 1rem;
-    margin-bottom: 3rem;
-  }
-
-  .article-featured-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(26, 26, 46, 0.2) 100%);
-  }
-
-  .article-layout {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .article-content {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: var(--color-warm-cream);
-  }
-
-  .article-content h2,
-  .article-content h3,
-  .article-content h4 {
-    color: var(--color-golden-yellow);
-    margin: 2rem 0 1rem;
-  }
-
-  .article-content p {
-    margin-bottom: 1.5rem;
-  }
-
-  .article-content blockquote {
-    border-left: 3px solid var(--color-golden-yellow);
-    padding-left: 2rem;
-    margin: 2rem 0;
-    font-style: italic;
-    font-size: 1.25rem;
-    opacity: 0.9;
-  }
-
-  .article-content ul,
-  .article-content ol {
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
-  }
-
-  .article-content li {
-    margin-bottom: 0.5rem;
-  }
-
-  .article-footer {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(247, 243, 233, 0.1);
-  }
-
-  .article-share {
-    margin-bottom: 3rem;
-  }
-
-  .article-share h4 {
-    color: var(--color-golden-yellow);
-    margin-bottom: 1rem;
-  }
-
-  .share-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .share-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: rgba(159, 122, 234, 0.2);
-    color: var(--color-mystical-purple);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    font-size: 0.875rem;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .share-btn:hover {
-    background: rgba(159, 122, 234, 0.3);
-    transform: translateY(-1px);
-  }
-
-  .share-icon {
-    font-size: 1rem;
-  }
-
-  .article-author {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .author-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--color-golden-yellow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--color-midnight-navy);
-  }
-
-  .author-info h4 {
-    color: var(--color-golden-yellow);
-    margin-bottom: 0.5rem;
-  }
-
-  .author-info p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .sidebar-card {
-    padding: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .card-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .sidebar-card h3 {
-    color: var(--color-golden-yellow);
-    margin-bottom: 1rem;
-  }
-
-  .newsletter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .newsletter-input {
-    padding: 0.75rem;
-    background: rgba(247, 243, 233, 0.1);
-    border: 1px solid rgba(247, 243, 233, 0.2);
-    border-radius: 0.5rem;
-    color: var(--color-pure-white);
-    font-size: 0.9rem;
-  }
-
-  .newsletter-input::placeholder {
-    color: rgba(247, 243, 233, 0.6);
-  }
-
-  .newsletter-input:focus {
-    outline: none;
-    border-color: var(--color-golden-yellow);
-  }
-
-  .category-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .category-link {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-warm-cream);
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-  }
-
-  .category-link:hover {
-    background: rgba(159, 122, 234, 0.1);
-    color: var(--color-mystical-purple);
-  }
-
-  .category-icon {
-    font-size: 1.25rem;
-  }
-
-  .featured-products {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .featured-product {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .product-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-  }
-
-  .product-info h4 {
-    color: var(--color-golden-yellow);
-    margin-bottom: 0.25rem;
-    font-size: 1rem;
-  }
-
-  .product-info p {
-    font-size: 0.875rem;
-    opacity: 0.8;
-    margin-bottom: 0.5rem;
-  }
-
-  .product-link {
-    color: var(--color-mystical-purple);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.875rem;
-    transition: color 0.3s ease;
-  }
-
-  .product-link:hover {
-    color: var(--color-golden-yellow);
-  }
-
-  .related-grid {
-    margin-top: 3rem;
-  }
-
-  .related-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .related-image {
-    height: 150px;
-    overflow: hidden;
-    border-radius: 0.75rem 0.75rem 0 0;
-  }
-
-  .related-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .related-card:hover .related-image img {
-    transform: scale(1.05);
-  }
-
-  .related-content {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .related-meta {
-    font-size: 0.875rem;
-    color: var(--color-golden-yellow);
-    margin-bottom: 0.75rem;
-  }
-
-  .related-title {
-    font-size: 1.125rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .related-title a {
-    color: var(--color-pure-white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .related-title a:hover {
-    color: var(--color-golden-yellow);
-  }
-
-  .related-excerpt {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    flex: 1;
-  }
-
-  .read-more-link {
-    color: var(--color-mystical-purple);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.875rem;
-    transition: color 0.3s ease;
-    margin-top: auto;
-  }
-
-  .read-more-link:hover {
-    color: var(--color-golden-yellow);
-  }
-
-  .comments-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .comments-title {
-    text-align: center;
-    color: var(--color-golden-yellow);
-    margin-bottom: 0.5rem;
-  }
-
-  .comments-subtitle {
-    text-align: center;
-    opacity: 0.8;
-    margin-bottom: 3rem;
-  }
-
-  .comment {
-    margin-bottom: 2rem;
-    padding: 2rem;
-  }
-
-  .comment-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .comment-author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .comment .author-avatar {
-    width: 40px;
-    height: 40px;
-    background: var(--color-golden-yellow);
-    color: var(--color-midnight-navy);
-    font-weight: bold;
-    font-size: 1rem;
-  }
-
-  .author-name {
-    font-weight: 600;
-    color: var(--color-golden-yellow);
-  }
-
-  .comment-date {
-    font-size: 0.875rem;
-    opacity: 0.7;
-  }
-
-  .comment-content {
-    line-height: 1.6;
-  }
-
-  .comment-form-wrapper {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(247, 243, 233, 0.1);
-  }
-
-  .comment-form-wrapper h3 {
-    color: var(--color-golden-yellow);
-    margin-bottom: 2rem;
-  }
-
-  .form-success {
-    background: rgba(46, 160, 67, 0.2);
-    color: #4ade80;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .form-errors {
-    background: rgba(239, 68, 68, 0.2);
-    color: #f87171;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--color-golden-yellow);
-    font-weight: 500;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(247, 243, 233, 0.1);
-    border: 1px solid rgba(247, 243, 233, 0.2);
-    border-radius: 0.5rem;
-    color: var(--color-pure-white);
-    font-size: 1rem;
-    font-family: inherit;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-golden-yellow);
-    box-shadow: 0 0 0 2px rgba(214, 158, 46, 0.2);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  @media (max-width: 1024px) {
-    .article-layout {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
-    .article-sidebar {
-      order: -1;
-    }
-
-    .sidebar-card {
-      display: inline-block;
-      width: calc(50% - 1rem);
-      margin-right: 2rem;
-      vertical-align: top;
-    }
-
-    .sidebar-card:nth-child(even) {
-      margin-right: 0;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .article-meta {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .article-tags {
-      justify-content: center;
-    }
-
-    .share-buttons {
-      justify-content: center;
-    }
-
-    .related-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sidebar-card {
-      display: block;
-      width: 100%;
-      margin-right: 0;
-    }
-
-    .form-row {
-      grid-template-columns
+{%- endif -%}

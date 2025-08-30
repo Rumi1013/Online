@@ -1,0 +1,172 @@
+{%- comment -%}
+  General page template for static pages
+{%- endcomment -%}
+
+<div class="page-content">
+  <div class="container">
+    <div class="page-header animate-fade-in">
+      <h1 class="page-title">{{ page.title }}</h1>
+    </div>
+
+    <div class="page-body animate-fade-in-up">
+      <div class="page-content-wrapper">
+        {{ page.content }}
+      </div>
+
+      {%- comment -%} Special content for specific pages {%- endcomment -%}
+      {%- if page.handle == 'contact' -%}
+        <div class="contact-form-section">
+          <h2>Get in Touch</h2>
+          {% form 'contact' %}
+            {%- if form.posted_successfully? -%}
+              <div class="form-success">
+                <p>{{ 'templates.contact.form.post_success' | t }}</p>
+              </div>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <div class="form-errors">
+                <h3>{{ 'templates.contact.form.error_heading' | t }}</h3>
+                <ul>
+                  {%- for field in form.errors -%}
+                    <li>
+                      {%- if field == 'form' -%}
+                        {{ form.errors.messages[field] }}
+                      {%- else -%}
+                        {{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+
+            <div class="contact-form">
+              <div class="field">
+                <label for="ContactFormName">{{ 'templates.contact.form.name' | t }}</label>
+                <input
+                  type="text"
+                  id="ContactFormName"
+                  class="field__input"
+                  name="contact[{{ 'templates.contact.form.name' | t }}]"
+                  value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                  placeholder="{{ 'templates.contact.form.name' | t }}"
+                >
+              </div>
+
+              <div class="field">
+                <label for="ContactFormEmail">{{ 'templates.contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="ContactFormEmail"
+                  class="field__input"
+                  name="contact[email]"
+                  spellcheck="false"
+                  autocomplete="email"
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  aria-required="true"
+                  required
+                  placeholder="{{ 'templates.contact.form.email' | t }}"
+                >
+              </div>
+
+              <div class="field">
+                <label for="ContactFormPhone">{{ 'templates.contact.form.phone' | t }}</label>
+                <input
+                  type="tel"
+                  id="ContactFormPhone"
+                  class="field__input"
+                  autocomplete="tel"
+                  name="contact[{{ 'templates.contact.form.phone' | t }}]"
+                  pattern="[0-9\-]*"
+                  value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                  placeholder="{{ 'templates.contact.form.phone' | t }}"
+                >
+              </div>
+
+              <div class="field">
+                <label for="ContactFormMessage">{{ 'templates.contact.form.comment' | t }}</label>
+                <textarea
+                  rows="10"
+                  id="ContactFormMessage"
+                  class="text-area field__input"
+                  name="contact[body]"
+                  placeholder="{{ 'templates.contact.form.comment' | t }}"
+                >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+              </div>
+
+              <div class="contact-form-actions">
+                <button type="submit" class="button button--primary">
+                  {{ 'templates.contact.form.send' | t }}
+                </button>
+              </div>
+            </div>
+          {% endform %}
+        </div>
+      {%- endif -%}
+
+      {%- if page.handle == 'about' -%}
+        <div class="about-highlights">
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <div class="highlight-icon">🌙</div>
+              <h3>Sacred Mission</h3>
+              <p>Empowering spiritual wellness through technology and ancient wisdom.</p>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">✨</div>
+              <h3>Divine Tools</h3>
+              <p>Curated collection of spiritual and healing accessories.</p>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">💫</div>
+              <h3>Sacred Community</h3>
+              <p>Building connections and supporting spiritual entrepreneurs.</p>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Newsletter signup on certain pages {%- endcomment -%}
+    {%- unless page.handle == 'contact' -%}
+      <div class="page-newsletter">
+        <div class="newsletter-cta">
+          <h3>{{ settings.newsletter_heading | default: 'Join Our Sacred Circle' }}</h3>
+          <p>{{ settings.newsletter_text | default: 'Receive monthly moon letters with spiritual wisdom and exclusive offers.' }}</p>
+          
+          {% form 'customer' %}
+            <div class="newsletter-form">
+              <input 
+                type="email" 
+                name="contact[email]" 
+                placeholder="Enter your email address"
+                class="newsletter-input"
+                required
+              >
+              <button type="submit" class="btn btn--primary newsletter-btn">
+                Subscribe ✨
+              </button>
+            </div>
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            
+            {%- if form.posted_successfully? -%}
+              <p class="newsletter-success">Thank you for joining our sacred circle! 🌙</p>
+            {%- endif -%}
+            
+            {%- if form.errors -%}
+              <p class="newsletter-error">{{ form.errors | first }}</p>
+            {%- endif -%}
+          {% endform %}
+        </div>
+      </div>
+    {%- endunless -%}
+
+    {%- comment -%} Back to previous page {%- endcomment -%}
+    <div class="page-navigation">
+      <a href="javascript:history.back()" class="btn btn--secondary">
+        ← Back
+      </a>
+    </div>
+  </div>
+</div>

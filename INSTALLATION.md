@@ -52,6 +52,22 @@ Set up custom metafields with namespace `midnight_magnolia`:
 4. Set up social media links
 5. Configure newsletter settings
 
+## New in v1.1.0
+- ✨ **NEW:** Expanded Our Story page template with founder information and mission
+- ✨ **NEW:** Detailed Justice & Healing page with sacred activism content
+- 🔥 **ENHANCED:** Midnight Musings blog with featured articles, categories, and newsletter signup
+- 🔥 **ENHANCED:** Comprehensive article template with social sharing, comments, and related posts
+- 📧 **IMPROVED:** Newsletter signup forms and community engagement features
+- 🎨 **ADDED:** Sidebar widgets, author sections, and enhanced typography
+
+## Fixed in v1.0.1
+- ✅ Added missing `meta-tags.liquid` snippet for SEO and social media
+- ✅ Added missing `cart-drawer.liquid` snippet for sliding cart functionality
+- ✅ Added `base.css` for core styling and component support
+- ✅ Added `global.js` for cart functionality and interactive elements
+- ✅ Fixed all Liquid template errors
+- ✅ Enhanced theme stability and functionality
+
 ## Package Contents
 
 The ZIP file contains:
@@ -77,18 +93,4 @@ For installation help or customization support:
 **🌙 Midnight Magnolia Theme v1.1.0**
 *Your Digital Sanctuary for Spiritual Wellness*
 
-## New in v1.1.0
-- ✨ **NEW:** Expanded Our Story page template with founder information and mission
-- ✨ **NEW:** Detailed Justice & Healing page with sacred activism content
-- 🔥 **ENHANCED:** Midnight Musings blog with featured articles, categories, and newsletter signup
-- 🔥 **ENHANCED:** Comprehensive article template with social sharing, comments, and related posts
-- 📧 **IMPROVED:** Newsletter signup forms and community engagement features
-- 🎨 **ADDED:** Sidebar widgets, author sections, and enhanced typography
-
-## Fixed in v1.0.1
-- ✅ Added missing `meta-tags.liquid` snippet for SEO and social media
-- ✅ Added missing `cart-drawer.liquid` snippet for sliding cart functionality
-- ✅ Added `base.css` for core styling and component support
-- ✅ Added `global.js` for cart functionality and interactive elements
-- ✅ Fixed all Liquid template errors
-- ✅ Enhanced theme stability and functionality
+*Made with love for the sacred entrepreneur* ✨

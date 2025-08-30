@@ -1,44 +1,16 @@
-{%- comment -%}
-  MIDNIGHT MAGNOLIA THEME
-  Meta Tags Snippet - SEO and Social Media Meta Tags
-{%- endcomment -%}
-
-{%- assign og_title = page_title -%}
-{%- assign og_url = canonical_url -%}
+{%- assign og_title = page_title | default: shop.name -%}
+{%- assign og_url = canonical_url | default: request.origin -%}
 {%- assign og_type = 'website' -%}
-{%- assign og_description = page_description | default: shop.description -%}
+{%- assign og_description = page_description | default: shop.description | default: shop.name -%}
 
 {%- if template contains 'product' -%}
+  {%- assign og_title = product.title | strip_html -%}
   {%- assign og_type = 'product' -%}
-  {%- if product.featured_media -%}
-    <meta property="og:image" content="{{ product.featured_media | image_url: width: 1200, height: 630 }}">
-    <meta property="og:image:secure_url" content="{{ product.featured_media | image_url: width: 1200, height: 630 }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ product.featured_media | image_url: width: 1200, height: 630 }}">
-  {%- endif -%}
-{%- elsif template contains 'collection' -%}
-  {%- if collection.image -%}
-    <meta property="og:image" content="{{ collection.image | image_url: width: 1200, height: 630 }}">
-    <meta property="og:image:secure_url" content="{{ collection.image | image_url: width: 1200, height: 630 }}">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ collection.image | image_url: width: 1200, height: 630 }}">
-  {%- endif -%}
+  {%- assign og_description = product.description | strip_html -%}
 {%- elsif template contains 'article' -%}
-  {%- if article.image -%}
-    <meta property="og:image" content="{{ article.image | image_url: width: 1200, height: 630 }}">
-    <meta property="og:image:secure_url" content="{{ article.image | image_url: width: 1200, height: 630 }}">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ article.image | image_url: width: 1200, height: 630 }}">
-  {%- endif -%}
-{%- else -%}
-  {%- if settings.logo -%}
-    <meta property="og:image" content="{{ settings.logo | image_url: width: 1200, height: 630 }}">
-    <meta property="og:image:secure_url" content="{{ settings.logo | image_url: width: 1200, height: 630 }}">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="{{ settings.logo | image_url: width: 1200, height: 630 }}">
-  {%- endif -%}
+  {%- assign og_title = article.title | strip_html -%}
+  {%- assign og_type = 'article' -%}
+  {%- assign og_description = article.excerpt | default: article.content | strip_html | truncate: 160 -%}
 {%- endif -%}
 
 <meta property="og:site_name" content="{{ shop.name }}">
@@ -57,6 +29,25 @@
   <meta property="product:condition" content="new">
   <meta property="product:price:amount" content="{{ product.price | money_without_currency | strip }}">
   <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+
+{%- if template contains 'product' and product.featured_media -%}
+  <meta property="og:image" content="{{ product.featured_media | image_url: width: 1200, height: 630 }}">
+  <meta property="og:image:secure_url" content="{{ product.featured_media | image_url: width: 1200, height: 630 }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ product.featured_media | image_url: width: 1200, height: 630 }}">
+{%- elsif template contains 'article' and article.image -%}
+  <meta property="og:image" content="{{ article.image | image_url: width: 1200, height: 630 }}">
+  <meta property="og:image:secure_url" content="{{ article.image | image_url: width: 1200, height: 630 }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ article.image | image_url: width: 1200, height: 630 }}">
+{%- else -%}
+  {%- if settings.logo -%}
+    <meta property="og:image" content="{{ settings.logo | image_url: width: 1200, height: 630 }}">
+    <meta property="og:image:secure_url" content="{{ settings.logo | image_url: width: 1200, height: 630 }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="{{ settings.logo | image_url: width: 1200, height: 630 }}">
+  {%- endif -%}
 {%- endif -%}
 
 {%- if settings.google_analytics_id != blank -%}
@@ -81,11 +72,9 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
+
     fbq('init', '{{ settings.facebook_pixel_id }}');
     fbq('track', 'PageView');
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id={{ settings.facebook_pixel_id }}&ev=PageView&noscript=1"/>
-  </noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={{ settings.facebook_pixel_id }}&ev=PageView&noscript=1"/></noscript>
 {%- endif -%}

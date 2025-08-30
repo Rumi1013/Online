@@ -95,7 +95,6 @@ class CartItems extends HTMLElement {
         }
 
         this.classList.toggle('is-empty', parsedState.item_count === 0);
-        const cartDrawerWrapper = document.querySelector('cart-drawer');
         const cartFooter = document.getElementById('main-cart-footer');
 
         if (cartFooter) cartFooter.classList.toggle('is-empty', parsedState.item_count === 0);
@@ -121,12 +120,12 @@ class CartItems extends HTMLElement {
         if (lineItem && lineItem.querySelector(`[name="${name}"]`)) {
           cartDrawerWrapper ? trapFocus(cartDrawerWrapper, lineItem.querySelector(`[name="${name}"]`)) : lineItem.querySelector(`[name="${name}"]`).focus();
         } else if (parsedState.item_count === 0 && cartDrawerWrapper) {
-          trapFocus(cartDrawerWrapper, document.querySelector('#CartDrawer-Checkout'))
+          trapFocus(cartDrawerWrapper, document.getElementById('CartDrawer-Heading'));
         }
 
         publish(PUB_SUB_EVENTS.cartUpdate, {source: 'cart-items'});
-      }).catch(() => {
-        this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
+      })
+      .catch(() => {
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
         errors.textContent = window.cartStrings.error;
       })
@@ -212,7 +211,7 @@ class QuantityInput extends HTMLElement {
   constructor() {
     super();
     this.input = this.querySelector('input');
-    this.changeEvent = new Event('change', { bubbles: true })
+    this.changeEvent = new Event('change', { bubbles: true });
 
     this.querySelectorAll('button').forEach(
       (button) => button.addEventListener('click', this.onButtonClick.bind(this))
@@ -254,41 +253,48 @@ function trapFocus(container, elementToFocus = container) {
 
   removeTrapFocus();
 
-  container.setAttribute('tabindex', '-1');
-  elementToFocus.focus();
+  trapFocusHandlers.focusin = (event) => {
+    if (
+      event.target !== container &&
+      event.target !== last &&
+      event.target !== first
+    )
+      return;
 
-  function focusin(event) {
-    if (event.target !== container && event.target !== last && event.target !== first) return;
+    document.addEventListener('keydown', trapFocusHandlers.keydown);
+  };
 
-    document.addEventListener('keydown', keydown);
-  }
+  trapFocusHandlers.focusout = function() {
+    document.removeEventListener('keydown', trapFocusHandlers.keydown);
+  };
 
-  function focusout() {
-    document.removeEventListener('keydown', keydown);
-  }
+  trapFocusHandlers.keydown = function(event) {
+    if (event.code.toUpperCase() !== 'TAB') return;
 
-  function keydown(event) {
-    if (event.code.toUpperCase() !== 'TAB') return; // If not TAB key
-
-    // On the last focusable element and tab forward, focus the first element.
     if (event.target === last && !event.shiftKey) {
       event.preventDefault();
       first.focus();
     }
 
-    //  On the first focusable element and tab backward, focus the last element.
-    if ((event.target === container || event.target === first) && event.shiftKey) {
+    if (
+      (event.target === container || event.target === first) &&
+      event.shiftKey
+    ) {
       event.preventDefault();
       last.focus();
     }
+  };
+
+  document.addEventListener('focusout', trapFocusHandlers.focusout);
+  document.addEventListener('focusin', trapFocusHandlers.focusin);
+
+  elementToFocus.focus();
+
+  if (elementToFocus.tagName === 'INPUT' &&
+      ['search', 'text', 'email', 'url'].includes(elementToFocus.type) &&
+      elementToFocus.value) {
+    elementToFocus.setSelectionRange(0, elementToFocus.value.length);
   }
-
-  document.addEventListener('focusout', focusout);
-  document.addEventListener('focusin', focusin);
-
-  container.addEventListener('keyup', function(event) {
-    if (event.code.toUpperCase() === 'ESCAPE') removeTrapFocus();
-  });
 }
 
 function getFocusableElements(container) {
@@ -336,7 +342,7 @@ function subscribe(eventName, callback) {
     subscribers[eventName] = [];
   }
 
-  subscribers[eventName].push(callback);
+  subscribers[eventName] = [...subscribers[eventName], callback];
 
   return function unsubscribe() {
     subscribers[eventName] = subscribers[eventName].filter((cb) => {
