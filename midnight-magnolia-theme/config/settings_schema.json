@@ -23,37 +23,43 @@
       {
         "type": "color",
         "id": "colors_background_1",
-        "default": "#1a1a2e",
+        "default": "#0A192F",
         "label": "Primary background"
       },
       {
         "type": "color",
         "id": "colors_background_2",
-        "default": "#2d3748",
+        "default": "#D4B99F",
         "label": "Secondary background"
       },
       {
         "type": "color",
         "id": "colors_accent_1",
-        "default": "#f6d55c",
-        "label": "Golden accent"
+        "default": "#D4AF37",
+        "label": "Gold accent"
       },
       {
         "type": "color",
         "id": "colors_accent_2",
-        "default": "#9f7aea",
-        "label": "Mystical purple accent"
+        "default": "#A3B18A",
+        "label": "Sage green accent"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_3",
+        "default": "#FAF3E0",
+        "label": "Magnolia white accent"
       },
       {
         "type": "color",
         "id": "colors_solid_button_labels",
-        "default": "#1a1a2e",
+        "default": "#FAF3E0",
         "label": "Button text"
       },
       {
         "type": "color",
         "id": "colors_outline_button_labels",
-        "default": "#f6d55c",
+        "default": "#D4AF37",
         "label": "Outline button text"
       },
       {
@@ -99,9 +105,16 @@
       {
         "type": "font_picker",
         "id": "type_body_font",
-        "default": "inter_n4",
+        "default": "lora_n4",
         "label": "Body font",
         "info": "Used for body text and navigation"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_accent_font",
+        "default": "montserrat_n4",
+        "label": "Accent font",
+        "info": "Used for buttons and accents"
       },
       {
         "type": "range",
@@ -566,19 +579,19 @@
         "id": "checkout_accent_color",
         "options": [
           {
-            "value": "#f6d55c",
-            "label": "Golden Yellow"
+            "value": "#D4AF37",
+            "label": "Gold"
           },
           {
-            "value": "#9f7aea",
-            "label": "Mystical Purple"
+            "value": "#A3B18A",
+            "label": "Sage Green"
           },
           {
-            "value": "#1a1a2e",
-            "label": "Midnight Navy"
+            "value": "#0A192F",
+            "label": "Midnight Blue"
           }
         ],
-        "default": "#f6d55c",
+        "default": "#D4AF37",
         "label": "Accent color"
       }
     ]

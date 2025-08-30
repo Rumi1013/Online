@@ -38,6 +38,7 @@
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
       assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
       assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+      assign accent_font_bold = settings.type_accent_font | font_modify: 'weight', 'bold'
     %}
 
     {% style %}
@@ -46,6 +47,8 @@
       {{ body_font_italic | font_face: font_display: 'swap' }}
       {{ body_font_bold_italic | font_face: font_display: 'swap' }}
       {{ settings.type_header_font | font_face: font_display: 'swap' }}
+      {{ settings.type_accent_font | font_face: font_display: 'swap' }}
+      {{ accent_font_bold | font_face: font_display: 'swap' }}
 
       :root {
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
@@ -56,6 +59,10 @@
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
+
+        --font-accent-family: {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
+        --font-accent-style: {{ settings.type_accent_font.style }};
+        --font-accent-weight: {{ settings.type_accent_font.weight }};
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -177,20 +184,17 @@
         --inputs-radius-outset: {% if settings.inputs_radius > 0 %}{{ settings.inputs_radius | plus: settings.inputs_border_thickness }}{% else %}0{% endif %}px;
 
         /* Midnight Magnolia Custom Properties */
-        --color-midnight-navy: #1a1a2e;
-        --color-deep-navy: #2d3748;
-        --color-warm-cream: #f7f3e9;
-        --color-soft-beige: #e8dcc0;
-        --color-golden-yellow: #f6d55c;
-        --color-warm-gold: #d69e2e;
+        --color-midnight-blue: #0A192F;
+        --color-warm-gray: #D4B99F;
+        --color-magnolia-white: #FAF3E0;
+        --color-sage-green: #A3B18A;
+        --color-gold: #D4AF37;
         --color-pure-white: #ffffff;
         --color-charcoal: #2d3748;
-        --color-mystical-purple: #9f7aea;
-        --color-deep-purple: #805ad5;
 
-        --celestial-gradient: linear-gradient(135deg, var(--color-midnight-navy) 0%, var(--color-deep-navy) 50%, var(--color-mystical-purple) 100%);
-        --magnolia-gradient: linear-gradient(45deg, var(--color-warm-cream) 0%, var(--color-soft-beige) 100%);
-        --golden-gradient: linear-gradient(45deg, var(--color-golden-yellow) 0%, var(--color-warm-gold) 100%);
+        --celestial-gradient: linear-gradient(135deg, var(--color-midnight-blue) 0%, var(--color-warm-gray) 50%, var(--color-sage-green) 100%);
+        --magnolia-gradient: linear-gradient(45deg, var(--color-magnolia-white) 0%, var(--color-warm-gray) 100%);
+        --golden-gradient: linear-gradient(45deg, var(--color-gold) 0%, var(--color-sage-green) 100%);
       }
 
       *,
@@ -264,6 +268,9 @@
     {%- endunless -%}
     {%- unless settings.type_header_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+    {%- unless settings.type_accent_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_accent_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
 
     {%- if settings.predictive_search_enabled -%}

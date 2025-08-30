@@ -23,7 +23,7 @@ body {
   font-family: var(--font-body-family);
   font-weight: var(--font-body-weight);
   line-height: 1.6;
-  color: var(--color-pure-white);
+  color: var(--color-magnolia-white);
   background: var(--celestial-gradient);
   overflow-x: hidden;
 }
@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-heading-weight);
   line-height: 1.2;
   margin: 0 0 1rem 0;
-  color: var(--color-pure-white);
+  color: var(--color-gold);
 }
 
 h1 {
@@ -68,18 +68,18 @@ h6 {
 
 p {
   margin: 0 0 1rem 0;
-  color: var(--color-warm-cream);
+  color: var(--color-magnolia-white);
 }
 
 a {
-  color: var(--color-golden-yellow);
+  color: var(--color-gold);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 a:hover {
-  color: var(--color-warm-gold);
-  text-shadow: 0 0 8px rgba(246, 213, 92, 0.3);
+  color: var(--color-sage-green);
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
 }
 
 /* ===============================================
