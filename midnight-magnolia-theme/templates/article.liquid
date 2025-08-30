@@ -1,0 +1,283 @@
+{%- comment -%}
+  Article template for individual blog posts
+{%- endcomment -%}
+
+<article class="article-page">
+  <div class="container">
+    <div class="article-header animate-fade-in">
+      {%- if article.image -%}
+        <div class="article-hero-image">
+          <img 
+            src="{{ article.image | image_url: width: 1200 }}"
+            alt="{{ article.image.alt | default: article.title | escape }}"
+            loading="lazy"
+            class="article-featured-image"
+          >
+        </div>
+      {%- endif -%}
+
+      <div class="article-meta">
+        <div class="article-breadcrumbs">
+          <a href="{{ blog.url }}">{{ blog.title }}</a>
+          <span class="breadcrumb-separator">→</span>
+          <span>{{ article.title }}</span>
+        </div>
+        
+        <h1 class="article-title">{{ article.title }}</h1>
+        
+        <div class="article-details">
+          <time class="article-date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{ article.published_at | date: '%B %d, %Y' }}
+          </time>
+          
+          {%- if article.author != blank -%}
+            <span class="article-author">by {{ article.author }}</span>
+          {%- endif -%}
+          
+          {%- if article.tags.size > 0 -%}
+            <div class="article-tags">
+              {%- for tag in article.tags -%}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-tag">
+                  {{ tag }}
+                </a>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="article-body animate-fade-in-up">
+      <div class="article-content">
+        {{ article.content }}
+      </div>
+
+      {%- comment -%} Article Sharing {%- endcomment -%}
+      <div class="article-sharing">
+        <h3>Share this article</h3>
+        <div class="social-share-buttons">
+          <a href="https://twitter.com/intent/tweet?text={{ article.title | url_encode }}&url={{ shop.url }}{{ article.url }}" 
+             target="_blank" 
+             rel="noopener" 
+             class="share-button share-twitter">
+            🐦 Twitter
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" 
+             target="_blank" 
+             rel="noopener" 
+             class="share-button share-facebook">
+            📘 Facebook
+          </a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&description={{ article.title | url_encode }}" 
+             target="_blank" 
+             rel="noopener" 
+             class="share-button share-pinterest">
+            📌 Pinterest
+          </a>
+        </div>
+      </div>
+
+      {%- comment -%} Navigation to other articles {%- endcomment -%}
+      <div class="article-navigation">
+        {%- if blog.previous_article -%}
+          <a href="{{ blog.previous_article.url }}" class="article-nav article-nav--prev">
+            <span class="article-nav-label">← Previous</span>
+            <span class="article-nav-title">{{ blog.previous_article.title }}</span>
+          </a>
+        {%- endif -%}
+        
+        {%- if blog.next_article -%}
+          <a href="{{ blog.next_article.url }}" class="article-nav article-nav--next">
+            <span class="article-nav-label">Next →</span>
+            <span class="article-nav-title">{{ blog.next_article.title }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Comments Section {%- endcomment -%}
+    {%- if blog.moderated? == false -%}
+      <div class="article-comments animate-fade-in-up">
+        <h3 id="comments">
+          {{ 'blogs.article.comments' | t: count: article.comments_count }}
+        </h3>
+
+        {%- if article.comments_count > 0 -%}
+          <div class="comments-list">
+            {%- paginate article.comments by 5 -%}
+              {%- for comment in article.comments -%}
+                <div class="comment" id="comment-{{ comment.id }}">
+                  <div class="comment-header">
+                    <h4 class="comment-author">{{ comment.author }}</h4>
+                    <time class="comment-date" datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
+                      {{ comment.created_at | date: '%B %d, %Y at %I:%M %p' }}
+                    </time>
+                  </div>
+                  <div class="comment-content">
+                    {{ comment.content }}
+                  </div>
+                </div>
+              {%- endfor -%}
+
+              {%- if paginate.pages > 1 -%}
+                <nav class="pagination">
+                  {{ paginate | default_pagination }}
+                </nav>
+              {%- endif -%}
+            {%- endpaginate -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Comment Form {%- endcomment -%}
+        {% form 'new_comment', article %}
+          <h4>{{ 'blogs.article.comment_form_title' | t }}</h4>
+          
+          {%- if form.posted_successfully? -%}
+            <p class="comment-success">
+              {%- if blog.moderated? -%}
+                {{ 'blogs.article.success_moderated' | t }}
+              {%- else -%}
+                {{ 'blogs.article.success' | t }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="form-errors">
+              <h5>{{ 'templates.contact.form.error_heading' | t }}</h5>
+              <ul>
+                {%- for field in form.errors -%}
+                  <li>
+                    {%- if field == 'form' -%}
+                      {{ form.errors.messages[field] }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          <div class="comment-form">
+            <div class="field">
+              <label for="CommentAuthor">{{ 'blogs.article.name' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                name="comment[author]"
+                id="CommentAuthor"
+                class="field__input"
+                autocomplete="name"
+                value="{{ form.author }}"
+                aria-required="true"
+                required
+                {% if form.errors contains 'author' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentAuthor-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.name' | t }}"
+              >
+              {%- if form.errors contains 'author' -%}
+                <small id="CommentAuthor-error">
+                  <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                  {{ 'blogs.article.name' | t }} {{ form.errors.messages.author }}.
+                </small>
+              {%- endif -%}
+            </div>
+
+            <div class="field">
+              <label for="CommentEmail">{{ 'blogs.article.email' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                name="comment[email]"
+                id="CommentEmail"
+                autocomplete="email"
+                class="field__input"
+                value="{{ form.email }}"
+                aria-required="true"
+                required
+                {% if form.errors contains 'email' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentEmail-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.email' | t }}"
+              >
+              {%- if form.errors contains 'email' -%}
+                <small id="CommentEmail-error">
+                  <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                  {{ 'blogs.article.email' | t }} {{ form.errors.messages.email }}.
+                </small>
+              {%- endif -%}
+            </div>
+
+            <div class="field">
+              <label for="CommentBody">{{ 'blogs.article.message' | t }} <span aria-hidden="true">*</span></label>
+              <textarea
+                rows="5"
+                name="comment[body]"
+                id="CommentBody"
+                class="text-area field__input"
+                aria-required="true"
+                required
+                {% if form.errors contains 'body' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentBody-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.message' | t }}"
+              >{{ form.body }}</textarea>
+              {%- if form.errors contains 'body' -%}
+                <small id="CommentBody-error">
+                  <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                  {{ 'blogs.article.message' | t }} {{ form.errors.messages.body }}.
+                </small>
+              {%- endif -%}
+            </div>
+
+            {%- if blog.moderated? -%}
+              <p class="article-comment-warning caption">
+                {{ 'blogs.article.moderated' | t }}
+              </p>
+            {%- endif -%}
+
+            <button type="submit" class="button button--primary">
+              {{ 'blogs.article.post' | t }}
+            </button>
+          </div>
+        {% endform %}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%} Related Articles {%- endcomment -%}
+{%- assign related_articles = blog.articles | where: 'id', '!=', article.id | sample: 3 -%}
+{%- if related_articles.size > 0 -%}
+  <section class="related-articles">
+    <div class="container">
+      <h3 class="section-title">Related Articles</h3>
+      <div class="related-articles-grid">
+        {%- for related_article in related_articles -%}
+          <div class="related-article-card">
+            {%- if related_article.image -%}
+              <a href="{{ related_article.url }}" class="related-article-image">
+                <img 
+                  src="{{ related_article.image | image_url: width: 300 }}"
+                  alt="{{ related_article.image.alt | default: related_article.title | escape }}"
+                  loading="lazy"
+                >
+              </a>
+            {%- endif -%}
+            <div class="related-article-content">
+              <h4 class="related-article-title">
+                <a href="{{ related_article.url }}">{{ related_article.title }}</a>
+              </h4>
+              <time class="related-article-date">
+                {{ related_article.published_at | date: '%B %d, %Y' }}
+              </time>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
