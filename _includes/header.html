@@ -1,0 +1,189 @@
+<header class="header" role="banner">
+  <div class="container">
+    <nav class="header__nav" role="navigation" aria-label="Main navigation">
+      <div class="header__logo">
+        <a href="{{ site.baseurl }}/" class="logo-link">
+          <img src="{{ site.baseurl }}/assets/images/magnolia-flower.svg" alt="Midnight Magnolia" width="40" height="40">
+          <span class="logo-text">{{ site.title }}</span>
+        </a>
+      </div>
+
+      <button class="header__menu-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <ul class="header__menu" id="main-menu">
+        {% for item in site.navigation %}
+          <li class="header__menu-item">
+            <a href="{{ site.baseurl }}{{ item.url }}" 
+               class="header__menu-link{% if page.url == item.url %} header__menu-link--current{% endif %}">
+              {{ item.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+.header {
+  background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.header__logo .logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-pure-white);
+  font-family: var(--font-heading-family);
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.header__logo img {
+  margin-right: 1rem;
+  filter: invert(1);
+}
+
+.header__menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-pure-white);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  width: 24px;
+  height: 18px;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--color-pure-white);
+  margin: 2px 0;
+  transition: 0.3s;
+}
+
+.header__menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.header__menu-link {
+  color: var(--color-pure-white);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.header__menu-link:hover,
+.header__menu-link--current {
+  background: rgba(246, 213, 92, 0.1);
+  color: var(--color-golden-yellow);
+}
+
+.header__menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-golden-yellow);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.header__menu-link:hover::after,
+.header__menu-link--current::after {
+  width: 80%;
+}
+
+@media (max-width: 768px) {
+  .header__menu-toggle {
+    display: block;
+  }
+
+  .header__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(26, 26, 46, 0.98);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    padding: 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .header__menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header__menu-item {
+    margin: 0.5rem 0;
+  }
+
+  .header__menu-link {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.header__menu-toggle');
+  const menu = document.querySelector('.header__menu');
+  
+  if (menuToggle && menu) {
+    menuToggle.addEventListener('click', function() {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      menu.classList.toggle('is-open');
+    });
+  }
+});
+</script>

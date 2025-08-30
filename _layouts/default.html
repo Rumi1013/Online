@@ -1,0 +1,173 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#1a1a2e">
+
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/magnolia-flower.svg">
+
+    <title>
+      {% if page.title %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}
+    </title>
+
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Variables -->
+    <style>
+      :root {
+        --font-body-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-body-style: normal;
+        --font-body-weight: 400;
+        --font-body-weight-bold: 600;
+
+        --font-heading-family: 'Playfair Display', Georgia, serif;
+        --font-heading-style: normal;
+        --font-heading-weight: 500;
+
+        --font-body-scale: 1.0;
+        --font-heading-scale: 1.2;
+
+        /* Midnight Magnolia Custom Properties */
+        --color-midnight-navy: #1a1a2e;
+        --color-deep-navy: #2d3748;
+        --color-warm-cream: #f7f3e9;
+        --color-soft-beige: #e8dcc0;
+        --color-golden-yellow: #f6d55c;
+        --color-warm-gold: #d69e2e;
+        --color-pure-white: #ffffff;
+        --color-charcoal: #2d3748;
+        --color-mystical-purple: #9f7aea;
+        --color-deep-purple: #805ad5;
+
+        --celestial-gradient: linear-gradient(135deg, var(--color-midnight-navy) 0%, var(--color-deep-navy) 50%, var(--color-mystical-purple) 100%);
+        --magnolia-gradient: linear-gradient(45deg, var(--color-warm-cream) 0%, var(--color-soft-beige) 100%);
+        --golden-gradient: linear-gradient(45deg, var(--color-golden-yellow) 0%, var(--color-warm-gold) 100%);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+        height: 100%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+        min-height: 100%;
+        margin: 0;
+        font-size: 1.6rem;
+        letter-spacing: 0.06rem;
+        line-height: 1.6;
+        font-family: var(--font-body-family);
+        font-style: var(--font-body-style);
+        font-weight: var(--font-body-weight);
+        background: var(--celestial-gradient);
+        color: var(--color-pure-white);
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Celestial Background Elements */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+          radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent),
+          radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.2), transparent);
+        background-repeat: repeat;
+        background-size: 200px 100px;
+        z-index: -1;
+        animation: celestialFloat 20s ease-in-out infinite;
+      }
+
+      @keyframes celestialFloat {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(1deg); }
+      }
+
+      .skip-to-content-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--color-golden-yellow);
+        color: var(--color-midnight-navy);
+        padding: 8px;
+        text-decoration: none;
+        z-index: 999;
+      }
+
+      .skip-to-content-link:focus {
+        top: 6px;
+      }
+
+      .visually-hidden {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+
+    <!-- Theme Stylesheets -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/base.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    <!-- SEO and Social -->
+    {% seo %}
+  </head>
+
+  <body class="gradient">
+    <a class="skip-to-content-link visually-hidden" href="#MainContent">
+      Skip to content
+    </a>
+
+    {% include header.html %}
+
+    <main id="MainContent" class="content-for-layout" role="main" tabindex="-1">
+      {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">Refresh page</li>
+      <li id="a11y-new-window-message">Opens in a new window</li>
+    </ul>
+
+    <!-- Theme Scripts -->
+    <script src="{{ site.baseurl }}/assets/js/global.js" defer></script>
+    <script src="{{ site.baseurl }}/assets/js/celestial-animations.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+# Midnight Magnolia - Jekyll Configuration for GitHub Pages
+title: "Midnight Magnolia"
+description: "Your Digital Sanctuary for Spiritual Wellness - Discover transformative tools for spiritual wellness, healing, and sacred living"
+url: "https://rumi1013.github.io"
+baseurl: "/Online"
+
+# Site settings
+email: contact@midnightmagnolia.com
+author: Midnight Magnolia
+logo: /assets/images/magnolia-flower.svg
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Our Story
+    url: /our-story/
+  - title: Justice & Healing
+    url: /justice-healing/
+  - title: Sacred Promise
+    url: /sacred-promise/
+  - title: Healing Circle
+    url: /healing-circle/
+  - title: Support
+    url: /support/
+
+# Theme colors (matching original Midnight Magnolia design)
+colors:
+  primary: "#1a1a2e"
+  secondary: "#16213e"
+  accent: "#f6d55c"
+  purple: "#9f7aea"
+  white: "#ffffff"
+
+# Exclude files from processing
+exclude:
+  - midnight-magnolia-theme/
+  - "*.zip"
+  - "*.pdf"
+  - "*.docx"
+  - Database/
+  - .DS_Store
+  - .vscode/
+  - 174Files/
+  - 7.9_alt/
+  - PathOfLightYoga_Files/
+  - yoga6/
+  - yoga7/
+  - yogacss/
+  - "yogacss 2/"
+  - "Intro Programming Logic/"
+
+# Include files
+include:
+  - _pages
+
+# SEO and social
+twitter:
+  username: midnightmagnolia
+facebook:
+  app_id: 
+social:
+  name: Midnight Magnolia
+  links:
+    - https://twitter.com/midnightmagnolia
+    - https://instagram.com/midnightmagnolia
+    - https://facebook.com/midnightmagnolia
+
+# Analytics (if needed)
+google_analytics: 
+
+# Sass configuration
+sass:
+  sass_dir: _sass
+  style: compressed

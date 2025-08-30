@@ -1,0 +1,53 @@
+# Jekyll build files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby and Bundler
+vendor/
+.bundle/
+Gemfile.lock
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if any)
+node_modules/
+
+# Logs
+*.log
+
+# Shopify theme files (we've converted these)
+midnight-magnolia-theme/
+*.zip
+
+# Course files and other non-website content
+174Files/
+7.9_alt/
+PathOfLightYoga_Files/
+PathOfLightYoga_Files\ \(1\)/
+yoga6/
+yoga7/
+yogacss/
+yogacss\ 2/
+Database/
+Intro\ Programming\ Logic/
+*.pdf
+*.docx
+
+# Temporary files
+tmp/
+temp/
