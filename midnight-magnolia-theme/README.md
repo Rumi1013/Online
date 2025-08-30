@@ -2,7 +2,7 @@
 
 **A sophisticated Shopify theme designed for spiritual wellness, healing tools, and transformative digital products**
 
-![Theme Version](https://img.shields.io/badge/version-1.0.0-purple)
+![Theme Version](https://img.shields.io/badge/version-2.0.0-purple)
 ![Shopify Compatible](https://img.shields.io/badge/shopify-compatible-green)
 ![Mobile Responsive](https://img.shields.io/badge/mobile-responsive-blue)
 ![Accessibility](https://img.shields.io/badge/accessibility-WCAG%202.1%20AA-orange)
@@ -397,7 +397,7 @@ Created with love and spiritual intention for the sacred wellness community.
 
 ---
 
-**🌙 Midnight Magnolia Theme v1.0.0**
+**🌙 Midnight Magnolia Theme v2.0.0**
 *Your Digital Sanctuary for Spiritual Wellness*
 
 For support, visit [support.midnightmagnolia.com](https://support.midnightmagnolia.com)
