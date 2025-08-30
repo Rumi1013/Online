@@ -1,6 +1,8 @@
 /**
  * Global JavaScript for Midnight Magnolia Theme
  * Core functionality and utilities
+ * Build: fh4bx8ZG1dzrSs8maYinQhsqYYU5z1MPNtU5gBwaw58
+ * Version: 2.0.0
  */
 
 class CartItems extends HTMLElement {

@@ -96,6 +96,36 @@
     </section>
   {%- endif -%}
 
+  {%- comment -%} Fallback for when featured-tools collection doesn't exist {%- endcomment -%}
+  {%- unless collections['featured-tools'] and collections['featured-tools'].products.size > 0 -%}
+    <section class="featured-tools section">
+      <div class="container">
+        <div class="section-header text-center mb-4">
+          <h2 class="animate-fade-in-up">Sacred Tools for Transformation</h2>
+          <p class="animate-fade-in-up" style="animation-delay: 0.2s;">
+            Your curated spiritual resources will appear here once you create the "featured-tools" collection
+          </p>
+        </div>
+
+        <div class="setup-notice magnolia-card text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+          <h3>🌙 Setup Required</h3>
+          <p>To display your featured sacred tools, please create a collection called "featured-tools" in your Shopify Admin and add your products to it.</p>
+          <div class="setup-steps">
+            <ol class="text-left" style="max-width: 400px; margin: 0 auto;">
+              <li>Go to Shopify Admin → Products → Collections</li>
+              <li>Create a new collection named "featured-tools"</li>
+              <li>Add your best spiritual tools and resources</li>
+              <li>Your homepage will automatically update!</li>
+            </ol>
+          </div>
+          <a href="/collections/all" class="btn btn--primary mt-3">
+            Browse All Products
+          </a>
+        </div>
+      </div>
+    </section>
+  {%- endunless -%}
+
   {%- comment -%} Justice & Healing Information Cards {%- endcomment -%}
   <section class="justice-healing section celestial-bg">
     <div class="container">
