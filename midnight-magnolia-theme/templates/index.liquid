@@ -25,20 +25,51 @@
         </div>
 
         <div class="grid grid--3-col">
-          {%- for product in collections['featured-tools'].products limit: 6 -%}
-            <div class="product-card animate-fade-in-up animate-delay-0{{ forloop.index }}">
+          {%- comment -%} Featured Product Showcase {%- endcomment -%}
+          <div class="product-card animate-fade-in-up">
+            <div class="product-card__image">
+              <img src="{{ 'healing-journal-cover.png' | asset_url }}"
+                   alt="The Magnolia Reset - Healing Journal for Personal Transformation"
+                   loading="lazy">
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">The Magnolia Reset</h3>
+              <p class="product-card__description">A transformative healing journal designed for your spiritual journey and personal growth.</p>
+              <div class="product-card__price">$24.99</div>
+              <a href="/products/healing-journal" class="btn btn--ghost w-full">Explore Journal</a>
+            </div>
+          </div>
 
-              {%- comment -%} Product Image {%- endcomment -%}
-              <div class="product-card__image">
-                {%- if product.featured_media -%}
-                  <img src="{{ product.featured_media | image_url: width: 400 }}"
-                       alt="{{ product.featured_media.alt | default: product.title | escape }}"
-                       loading="lazy">
-                {%- else -%}
-                  <div class="product-card__placeholder">
-                    {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 100px; height: 100px; opacity: 0.3;' }}
-                  </div>
-                {%- endif -%}
+          <div class="product-card animate-fade-in-up animate-delay-01">
+            <div class="product-card__image">
+              <img src="{{ 'elegant-moon-magnolia-mug.png' | asset_url }}"
+                   alt="Moonlight Meditation Mug - Ceramic mug with celestial design"
+                   loading="lazy">
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Moonlight Mug</h3>
+              <p class="product-card__description">Sip your tea mindfully with this beautifully crafted ceramic mug featuring moon phases.</p>
+              <div class="product-card__price">$18.99</div>
+              <a href="/products/moonlight-mug" class="btn btn--ghost w-full">Explore Mug</a>
+            </div>
+          </div>
+
+          <div class="product-card animate-fade-in-up animate-delay-02">
+            <div class="product-card__image">
+              <img src="{{ 'magnolia-tote-bag.png' | asset_url }}"
+                   alt="Southern Gothic Tote Bag - Canvas tote with magnolia flower design"
+                   loading="lazy">
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Magnolia Tote</h3>
+              <p class="product-card__description">Carry your sacred tools in style with this durable canvas tote featuring our signature magnolia design.</p>
+              <div class="product-card__price">$22.99</div>
+              <a href="/products/magnolia-tote" class="btn btn--ghost w-full">Explore Tote</a>
+            </div>
+          </div>
+
+          {%- for product in collections['featured-tools'].products limit: 3 -%}
+            <div class="product-card animate-fade-in-up animate-delay-0{{ forloop.index | plus: 3 }}">
 
                 {%- comment -%} Product Badges {%- endcomment -%}
                 <div class="product-card__badges">

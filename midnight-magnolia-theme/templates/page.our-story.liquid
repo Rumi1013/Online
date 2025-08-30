@@ -89,10 +89,11 @@
       <div class="grid grid--2-col" style="gap: 4rem; align-items: center;">
 
         <div class="founder-image animate-fade-in-up">
-          <div class="image-placeholder">
-            <div class="founder-avatar">
-              {{ 'magnolia-flower.svg' | asset_url | img_tag: '', 'width: 120px; height: 120px;' }}
-            </div>
+          <div class="founder-portrait">
+            <img src="{{ 'founder-portrait.png' | asset_url }}"
+                 alt="Latisha Vincent-Waters, Founder of Midnight Magnolia"
+                 loading="eager"
+                 class="founder-photo">
           </div>
         </div>
 
@@ -308,16 +309,21 @@
     margin-bottom: 1rem;
   }
 
-  .founder-avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: var(--magnolia-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .founder-portrait {
     margin: 0 auto;
+    max-width: 300px;
+  }
+
+  .founder-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
     box-shadow: 0 8px 32px rgba(159, 122, 234, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .founder-photo:hover {
+    transform: scale(1.02);
   }
 
   .founder-credentials ul {
